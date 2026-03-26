@@ -22,8 +22,15 @@ typedef enum  {
     COUNTER_CLOCKWISE,
 } Rotation_Direction;
 
+void resetSwitches (INVERSOR_SWITCHES* switches);
+void updateHallInputs (
+    HALL_INPUTS* hallInputs,
+    uint8_t hallA,
+    uint8_t hallB,
+    uint8_t hallC
+);
 
-void bldcHallSensorComLogic (
+void bldcHallSensor2phComLogic (
     INVERSOR_SWITCHES* switches,
     HALL_INPUTS hallInputs,
     Rotation_Direction direction
