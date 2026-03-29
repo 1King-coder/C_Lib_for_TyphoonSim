@@ -30,61 +30,70 @@ void bldcHallSensor2phComLogic(
     switch (direction) {
 
         case CLOCKWISE: {
+            //0 - 60
             if (hallInputs.HallA == 1 && hallInputs.HallB == 0 && hallInputs.HallC == 0) {
-                switches->Sa_top = 1;
-                switches->Sc_bot = 1;
+                switches->Sc_top = 1;
+                switches->Sb_bot = 1;
             }
+            // 60 - 120
             if (hallInputs.HallA == 1 && hallInputs.HallB == 1 && hallInputs.HallC == 0) {
+                switches->Sa_top = 1;
+                switches->Sb_bot = 1;
+            }
+            // 120 - 180
+            if (hallInputs.HallA == 0 && hallInputs.HallB == 1 && hallInputs.HallC == 0) {
+                switches->Sa_top = 1;
+                switches->Sc_bot = 1;
+            }
+            // 180 - 240
+            if (hallInputs.HallA == 0 && hallInputs.HallB == 1 && hallInputs.HallC == 1) {
                 switches->Sb_top = 1;
                 switches->Sc_bot = 1;
             }
-            if (hallInputs.HallA == 0 && hallInputs.HallB == 1 && hallInputs.HallC == 0) {
+            // 240 - 300
+            if (hallInputs.HallA == 0 && hallInputs.HallB == 0 && hallInputs.HallC == 1) {
                 switches->Sb_top = 1;
                 switches->Sa_bot = 1;
             }
-            if (hallInputs.HallA == 0 && hallInputs.HallB == 1 && hallInputs.HallC == 1) {
+            // 300 - 360
+            if (hallInputs.HallA == 1 && hallInputs.HallB == 0 && hallInputs.HallC == 1) {
                 switches->Sc_top = 1;
                 switches->Sa_bot = 1;
-            }
-            if (hallInputs.HallA == 0 && hallInputs.HallB == 0 && hallInputs.HallC == 1) {
-                switches->Sc_top = 1;
-                switches->Sb_bot = 1;
-            }
-            if (hallInputs.HallA == 1 && hallInputs.HallB == 0 && hallInputs.HallC == 1) {
-                switches->Sa_top = 1;
-                switches->Sb_bot = 1;
             }
             break;
         }
 
 
         case COUNTER_CLOCKWISE: {
-            const uint8_t hallA = hallInputs.HallA;
-            hallInputs.HallA = hallInputs.HallC;
-            hallInputs.HallC = hallA;
+
             if (hallInputs.HallA == 1 && hallInputs.HallB == 0 && hallInputs.HallC == 0) {
                 switches->Sa_top = 1;
                 switches->Sc_bot = 1;
             }
+            // 60 - 120
             if (hallInputs.HallA == 1 && hallInputs.HallB == 1 && hallInputs.HallC == 0) {
-                switches->Sb_top = 1;
-                switches->Sc_bot = 1;
+                switches->Sa_top = 1;
+                switches->Sb_bot = 1;
             }
+            // 120 - 180
             if (hallInputs.HallA == 0 && hallInputs.HallB == 1 && hallInputs.HallC == 0) {
-                switches->Sb_top = 1;
-                switches->Sa_bot = 1;
+                switches->Sc_top = 1;
+                switches->Sb_bot = 1;
             }
+            // 180 - 240
             if (hallInputs.HallA == 0 && hallInputs.HallB == 1 && hallInputs.HallC == 1) {
                 switches->Sc_top = 1;
                 switches->Sa_bot = 1;
             }
+            // 240 - 300
             if (hallInputs.HallA == 0 && hallInputs.HallB == 0 && hallInputs.HallC == 1) {
-                switches->Sc_top = 1;
-                switches->Sb_bot = 1;
+                switches->Sb_top = 1;
+                switches->Sa_bot = 1;
             }
+            // 300 - 360
             if (hallInputs.HallA == 1 && hallInputs.HallB == 0 && hallInputs.HallC == 1) {
-                switches->Sa_top = 1;
-                switches->Sb_bot = 1;
+                switches->Sb_top = 1;
+                switches->Sc_bot = 1;
             }
             break;
         }
