@@ -3,18 +3,18 @@
 #include <stdint.h>
 
 typedef struct {
-    uint8_t Sa_top;
-    uint8_t Sa_bot;
-    uint8_t Sb_top;
-    uint8_t Sb_bot;
-    uint8_t Sc_top;
-    uint8_t Sc_bot;
+    unsigned char Sa_top;
+    unsigned char Sa_bot;
+    unsigned char Sb_top;
+    unsigned char Sb_bot;
+    unsigned char Sc_top;
+    unsigned char Sc_bot;
 } INVERSOR_SWITCHES;
 
 typedef struct {
-    uint8_t HallA;
-    uint8_t HallB;
-    uint8_t HallC;
+    unsigned char HallA;
+    unsigned char HallB;
+    unsigned char HallC;
 } HALL_INPUTS;
 
 typedef enum  {
@@ -25,9 +25,9 @@ typedef enum  {
 void resetSwitches (INVERSOR_SWITCHES* switches);
 void updateHallInputs (
     HALL_INPUTS* hallInputs,
-    uint8_t hallA,
-    uint8_t hallB,
-    uint8_t hallC
+    unsigned char hallA,
+    unsigned char hallB,
+    unsigned char hallC
 );
 
 void bldcHallSensor2phComLogic (

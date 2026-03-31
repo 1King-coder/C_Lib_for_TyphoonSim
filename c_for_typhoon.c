@@ -12,9 +12,9 @@ void resetSwitches (INVERSOR_SWITCHES* switches) {
 }
 void updateHallInputs (
     HALL_INPUTS* hallInputs,
-    uint8_t hallA,
-    uint8_t hallB,
-    uint8_t hallC
+    unsigned char hallA,
+    unsigned char hallB,
+    unsigned char hallC
 ) {
     hallInputs->HallA = hallA;
     hallInputs->HallB = hallB;
