@@ -1,0 +1,2055 @@
+version = 4.2
+
+//
+// Saved by sw version: 2026.1 SP1
+//
+
+model "BLDC - VEL CONTROL" {
+    configuration {
+        hil_device = "VHIL+"
+        hil_configuration_id = 1
+        simulation_method = exact
+        simulation_time_step = auto
+        simulation_discret_scaling = 1.0
+        dsp_timer_periods = 100e-6, 50e-3
+        ss_calc_method = "systematic elimination"
+        enb_pole_shift = True
+        enb_gds_oversampling = True
+        show_modes = False
+        device_ao_limit_enable = False
+        reset_analog_outputs_on_sim_stop = True
+        reset_analog_outputs_on_sim_stop_mode = Offset values
+        reset_digital_outputs_on_sim_stop = True
+        vhil_adio_loopback = False
+        dma_enable = False
+        cpl_stb = False
+        enb_dep_sw_detect = False
+        code_section = "internal memory"
+        data_section = "internal memory"
+        sys_sp_rate_1 = 0.0001
+        sys_sp_rate_2 = 0.05
+        sys_real_type_precision = "default"
+        user_real_type_precision = "default"
+        sys_cpu_optimization = "high"
+        user_cpu_optimization = "high"
+        user_cpu_part_option = "default"
+        matrix_based_reduction = True
+        cpl_dynamics_analysis = False
+        export_ss_to_pickle = False
+        ground_scope_core = False
+        dss_num_tol = 1e-15
+        cce_platform = "generic"
+        cce_use_relative_names = False
+        cce_type_mapping_real = "double"
+        cce_type_mapping_uint = "unsigned int"
+        cce_type_mapping_int = "int"
+        cce_platform = "generic"
+        cce_use_relative_names = False
+        cce_type_mapping_real = "double"
+        cce_type_mapping_uint = "unsigned int"
+        cce_type_mapping_int = "int"
+        cce_term_var_location = "local"
+        cce_directory = ""
+        cce_custom_type_int = ""
+        cce_custom_type_uint = ""
+        cce_custom_type_real = ""
+        tunable_params = "component defined"
+        sp_compiler_type = "C compiler"
+        sig_stim = "off"
+        export_resource_list = ""
+        export_dependency_list = ""
+        excluded_resource_list = ""
+        excluded_component_from_locking_list = ""
+        export_out_file = ""
+        export_lock_top_level = True
+        export_encrypt_library = True
+        export_encrypt_resources = True
+        solver_type = "DAE"
+        integration_method = "BDF"
+        max_sim_step = 1e-4
+        simulation_time = 2
+        abs_tol = 1e-3
+        rel_tol = 1e-3
+        init_sim_step = 1e-6
+        r_on_sw = 1e-3
+        v_on_diode = 0.2
+        data_sampling_rate = 0
+        feedthrough_validation_error_level = error
+    }
+
+    component Subsystem Root {
+        component "core/Brushless DC Machine" BLDC3 {
+            Jm = "Jm"
+            Ls = "Ls"
+            Rs = "Rs"
+            Vpk_over_krpm = "Emf"
+            e_a = "True"
+            e_b = "True"
+            e_c = "True"
+            el_trq_out = "True"
+            execution_rate = "Ts"
+            friction_coeff = "Kw"
+            load_src = "Model"
+            mech_angle_out = "True"
+            mech_speed_out = "True"
+            pms = "pms"
+        }
+        [
+            position = 8824, 9328
+            size = 160, 160
+        ]
+
+        component "core/MOSFET" Sa_top {
+            ctrl_src = "Model"
+            model_load_legacy = "1"
+        }
+        [
+            position = 8160, 9204
+            size = 48, 64
+        ]
+
+        component "core/MOSFET" Sa_bot {
+            ctrl_src = "Model"
+            model_load_legacy = "1"
+        }
+        [
+            position = 8160, 9408
+            size = 48, 64
+        ]
+
+        component "core/MOSFET" Sb_top {
+            ctrl_src = "Model"
+            model_load_legacy = "1"
+        }
+        [
+            position = 8344, 9204
+            size = 48, 64
+        ]
+
+        component "core/MOSFET" Sb_bot {
+            ctrl_src = "Model"
+            model_load_legacy = "1"
+        }
+        [
+            position = 8344, 9408
+            size = 48, 64
+        ]
+
+        component "core/MOSFET" Sc_top {
+            ctrl_src = "Model"
+            model_load_legacy = "1"
+        }
+        [
+            position = 8524, 9204
+            size = 48, 64
+        ]
+
+        component "core/MOSFET" Sc_bot {
+            ctrl_src = "Model"
+            model_load_legacy = "1"
+        }
+        [
+            position = 8524, 9412
+            size = 48, 64
+        ]
+
+        component "core/C function" "C function3" {
+            add_src_path = "..\c_for_typhoon.h;..\c_for_typhoon.c"
+            add_src_path_full = "C:\dev\C-FOR-TYPHOON\c_for_typhoon.h;C:\dev\C-FOR-TYPHOON\c_for_typhoon.c"
+            arb_defs = "/*Begin code section*/
+INVERSOR_SWITCHES switches = {
+    0,0,0,0,0,0
+};
+
+HALL_INPUTS hallIns = {
+    0,0,0
+};
+
+Rotation_Direction direction = CLOCKWISE;
+/*End code section*/"
+            init_fnc = "/*Begin code section*/
+updateHallInputs(&hallIns, HallA, HallB, HallC);
+resetSwitches(&switches);
+
+switch (RotDirec) {
+    case 1: {
+        direction = CLOCKWISE;
+        break;
+    }
+    case -1: {
+        direction = COUNTER_CLOCKWISE;
+    }
+}
+
+bldcHallSensor2phComLogic(
+    &switches,
+    hallIns,
+    direction
+    );
+/*End code section*/"
+            input_terminals = "int HallA;int HallB;int HallC;int RotDirec;"
+            input_terminals_dimensions = "1;1;1;inherit"
+            input_terminals_feedthrough = "True;True;True;True"
+            input_terminals_show_labels = "True;True;True;True"
+            output_fnc = "/*Begin code section*/
+updateHallInputs(&hallIns, HallA, HallB, HallC);
+resetSwitches(&switches);
+
+switch (RotDirec) {
+    case 1: {
+        direction = CLOCKWISE;
+        break;
+    }
+    case -1: {
+        direction = COUNTER_CLOCKWISE;
+    }
+}
+
+bldcHallSensor2phComLogic(
+    &switches,
+    hallIns,
+    direction
+    );
+
+Sa_top = switches.Sa_top;
+Sa_bot = switches.Sa_bot;
+Sb_top = switches.Sb_top;
+Sb_bot = switches.Sb_bot;
+Sc_top = switches.Sc_top;
+Sc_bot = switches.Sc_bot;
+/*End code section*/"
+            output_terminals = "int Sa_top;int Sa_bot;int Sb_top;int Sb_bot;int Sc_top;int Sc_bot;"
+            output_terminals_dimensions = "1;1;1;1;1;1"
+            output_terminals_feedthrough = "True;True;True;True;True;True"
+            output_terminals_show_labels = "True;True;True;True;True;True"
+            update_fnc = "/*Begin code section*/
+
+/*End code section*/"
+        }
+        [
+            position = 7352, 8876
+            rotation = down
+            scale = -1, -1
+            size = 160, 344
+        ]
+
+        component "core/Bus Split" "Bus Split5" {
+            outputs = "3"
+        }
+        [
+            position = 7152, 8876
+            rotation = down
+            hide_name = True
+            scale = -1, -1
+        ]
+
+        component "core/Constant" Constant6 {
+            execution_rate = "Ts"
+            value = "Tau"
+        }
+        [
+            position = 8720, 9156
+            hide_name = True
+        ]
+
+        component "core/Scope" "BLDC measures3" {
+            selected_signals = "[\'BLDC3.mechanical angle\', \'mech_speed_rpm3\', \'BLDC3.e_a\', \'BLDC3.e_b\', \'BLDC3.e_c\', \'BLDC3.Stator.i_a\', \'BLDC3.Stator.i_b\', \'BLDC3.Stator.i_c\', \'Iin\', \'W_ref\']"
+            signals_data = "{\"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"black\", \"legend_visible\": true}, \"signals\": {\"BLDC3.mechanical angle\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#FF0000\"}, \"display\": {\"2\": \"solid\"}}, \"mech_speed_rpm3\": {\"viewports\": [3], \"type\": \"analog\", \"color\": {\"3\": \"#FF0000\"}, \"display\": {\"3\": \"solid\"}}, \"BLDC3.e_a\": {\"viewports\": [4], \"type\": \"analog\", \"color\": {\"4\": \"#FF0000\"}, \"display\": {\"4\": \"solid\"}}, \"BLDC3.e_b\": {\"viewports\": [4], \"type\": \"analog\", \"color\": {\"4\": \"#00CC00\"}, \"display\": {\"4\": \"solid\"}}, \"BLDC3.e_c\": {\"viewports\": [4], \"type\": \"analog\", \"color\": {\"4\": \"#0099FF\"}, \"display\": {\"4\": \"solid\"}}, \"BLDC3.Stator.i_a\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}}, \"BLDC3.Stator.i_b\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#00CC00\"}, \"display\": {\"1\": \"solid\"}}, \"BLDC3.Stator.i_c\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#0099FF\"}, \"display\": {\"1\": \"solid\"}}, \"Iin\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FFCC00\"}, \"display\": {\"1\": \"solid\"}}, \"W_ref\": {\"viewports\": [3], \"type\": \"analog\", \"color\": {\"3\": \"#00CC00\"}, \"display\": {\"3\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}}"
+        }
+        [
+            position = 8532, 9012
+        ]
+
+        component "core/Current Measurement" Ia3 {
+        }
+        [
+            position = 8592, 9296
+            size = 64, 32
+        ]
+
+        component "core/Current Measurement" Ic3 {
+        }
+        [
+            position = 8608, 9364
+            size = 64, 32
+        ]
+
+        component "core/Current Measurement" Ib3 {
+        }
+        [
+            position = 8456, 9324
+            size = 64, 32
+        ]
+
+        component "core/C function" rad_to_rpm2 {
+            arb_defs = "/*Begin code section*/
+double twoPi = 2*3.1415926536;
+/*End code section*/"
+            init_fnc = "/*Begin code section*/
+
+/*End code section*/"
+            input_terminals = "real omega_m;"
+            input_terminals_dimensions = "inherit"
+            input_terminals_feedthrough = "True"
+            input_terminals_show_labels = "False"
+            output_fnc = "/*Begin code section*/
+out = omega_m/(twoPi/60);
+/*End code section*/"
+            output_terminals_dimensions = "inherit"
+            output_terminals_feedthrough = "True"
+            output_terminals_show_labels = "False"
+            update_fnc = "/*Begin code section*/
+
+/*End code section*/"
+        }
+        [
+            position = 8716, 9632
+            size = 48, 48
+        ]
+
+        component "core/Probe" mech_speed_rpm3 {
+        }
+        [
+            position = 8936, 9632
+        ]
+
+        component "core/Bus Split" "Bus Split6" {
+            outputs = "6"
+        }
+        [
+            position = 9032, 9252
+            hide_name = True
+        ]
+
+        component Subsystem "Hall Effect Sensor3" {
+            layout = static
+            component "core/C function" "rem(theta,2pi)" {
+                arb_defs = "/*Begin code section*/
+
+/*End code section*/"
+                execution_rate = "execution_rate"
+                global_variables = "real two_pi;"
+                init_fnc = "/*Begin code section*/
+two_pi = 6.283185307179586476925286766559;
+/*End code section*/"
+                input_terminals_dimensions = "inherit"
+                input_terminals_feedthrough = "True"
+                input_terminals_show_labels = "False"
+                output_fnc = "/*Begin code section*/
+out = fmod(in,two_pi);
+/*End code section*/"
+                output_terminals_dimensions = "inherit"
+                output_terminals_feedthrough = "True"
+                output_terminals_show_labels = "False"
+                update_fnc = "/*Begin code section*/
+
+/*End code section*/"
+            }
+            [
+                position = 8176, 8224
+                size = 48, 48
+            ]
+
+            component "core/Gain" m2e {
+                execution_rate = "execution_rate"
+                gain = "pms"
+            }
+            [
+                position = 8096, 8224
+                hide_name = True
+            ]
+
+            component Subsystem Hall {
+                layout = dynamic
+                component "core/Constant" pi_over_3 {
+                    execution_rate = "execution_rate"
+                    value = "np.pi/3"
+                }
+                [
+                    position = 8080, 8176
+                ]
+
+                component "core/Relational operator" op4 {
+                    execution_rate = "execution_rate"
+                    relational_op = "<="
+                }
+                [
+                    position = 8168, 8224
+                    hide_name = True
+                ]
+
+                component "core/Relational operator" op2 {
+                    execution_rate = "execution_rate"
+                    relational_op = ">="
+                }
+                [
+                    position = 8168, 8072
+                    hide_name = True
+                ]
+
+                component "core/Logical operator" and1 {
+                    execution_rate = "execution_rate"
+                    operator = "OR"
+                }
+                [
+                    position = 8280, 8040
+                    hide_name = True
+                ]
+
+                component "core/Digital Probe" h_A {
+                    execution_rate = "execution_rate"
+                }
+                [
+                    position = 8384, 8040
+                ]
+
+                component "core/Relational operator" op6 {
+                    execution_rate = "execution_rate"
+                    relational_op = ">="
+                }
+                [
+                    position = 8168, 8304
+                    hide_name = True
+                ]
+
+                component "core/Logical operator" and2 {
+                    execution_rate = "execution_rate"
+                }
+                [
+                    position = 8280, 8192
+                    hide_name = True
+                ]
+
+                component "core/Relational operator" op1 {
+                    execution_rate = "execution_rate"
+                    relational_op = "<="
+                }
+                [
+                    position = 8168, 8008
+                    hide_name = True
+                ]
+
+                component "core/Digital Probe" h_B {
+                    addr = "1"
+                    execution_rate = "execution_rate"
+                }
+                [
+                    position = 8384, 8192
+                ]
+
+                component "core/Logical operator" and3 {
+                    execution_rate = "execution_rate"
+                }
+                [
+                    position = 8280, 8336
+                    hide_name = True
+                ]
+
+                component "core/Digital Probe" h_C {
+                    addr = "2"
+                    execution_rate = "execution_rate"
+                }
+                [
+                    position = 8384, 8336
+                ]
+
+                component "core/Relational operator" op5 {
+                    execution_rate = "execution_rate"
+                    relational_op = "<="
+                }
+                [
+                    position = 8168, 8368
+                    hide_name = True
+                ]
+
+                component "core/Constant" "4*pi_over_3" {
+                    execution_rate = "execution_rate"
+                    value = "4*np.pi/3"
+                }
+                [
+                    position = 8080, 8240
+                ]
+
+                component "core/Constant" "2*pi" {
+                    execution_rate = "execution_rate"
+                    value = "2*np.pi"
+                }
+                [
+                    position = 8080, 8384
+                ]
+
+                component "core/Constant" "2*pi_over_3" {
+                    execution_rate = "execution_rate"
+                    value = "2*np.pi/3"
+                }
+                [
+                    position = 8080, 8024
+                ]
+
+                component "core/Relational operator" op3 {
+                    execution_rate = "execution_rate"
+                    relational_op = ">="
+                }
+                [
+                    position = 8168, 8160
+                    hide_name = True
+                ]
+
+                component "core/Constant" "5*pi_over_3" {
+                    execution_rate = "execution_rate"
+                    value = "5*np.pi/3"
+                }
+                [
+                    position = 8080, 8088
+                ]
+
+                component "core/Constant" pi {
+                    execution_rate = "execution_rate"
+                    value = "np.pi"
+                }
+                [
+                    position = 8080, 8320
+                ]
+
+                component "core/Bus Join" "Bus Join1" {
+                    execution_rate = "execution_rate"
+                    inputs = "3"
+                }
+                [
+                    position = 8592, 8152
+                ]
+
+                port theta_e {
+                    position = left center
+                    kind = sp
+                    direction =  out
+                    sp_type {
+                        default = auto
+                    }
+                }
+                [
+                    position = 7920, 8000
+                ]
+
+                port out {
+                    position = right center
+                    kind = sp
+                    direction =  in
+                    sp_type {
+                        default = inherit
+                    }
+                }
+                [
+                    position = 8712, 8152
+                    hide_name = True
+                ]
+
+                junction Junction2 sp
+                [
+                    position = 8008, 8296
+                ]
+
+                junction Junction3 sp
+                [
+                    position = 8008, 8216
+                ]
+
+                junction Junction4 sp
+                [
+                    position = 8008, 8152
+                ]
+
+                junction Junction5 sp
+                [
+                    position = 8008, 8064
+                ]
+
+                junction Junction6 sp
+                [
+                    position = 8008, 8000
+                ]
+
+                junction Junction7 sp
+                [
+                    position = 8352, 8040
+                ]
+
+                junction Junction8 sp
+                [
+                    position = 8336, 8192
+                ]
+
+                junction Junction9 sp
+                [
+                    position = 8344, 8336
+                ]
+
+                connect "2*pi.out" op5.in1 as Connection1
+                connect "2*pi_over_3.out" op1.in1 as Connection2
+                connect "4*pi_over_3.out" op4.in1 as Connection3
+                connect "5*pi_over_3.out" op2.in1 as Connection4
+                connect Junction2 Junction3 as Connection5
+                connect Junction3 Junction4 as Connection6
+                connect Junction4 Junction5 as Connection7
+                connect op1.out and1.in as Connection14
+                connect op2.in Junction5 as Connection15
+                connect op2.out and1.in1 as Connection16
+                connect op3.in Junction4 as Connection17
+                connect op3.out and2.in as Connection18
+                connect op4.in Junction3 as Connection19
+                connect op4.out and2.in1 as Connection20
+                connect op5.in Junction2 as Connection21
+                connect op5.out and3.in1 as Connection22
+                connect op6.in Junction2 as Connection23
+                connect op6.out and3.in as Connection24
+                connect pi.out op6.in1 as Connection25
+                connect pi_over_3.out op3.in1 as Connection26
+                connect op1.in Junction6 as Connection28
+                connect Junction6 Junction5 as Connection29
+                [
+                    position = 0, 0
+                ]
+                connect theta_e Junction6 as Connection30
+                connect h_A.in Junction7 as Connection35
+                connect Junction7 and1.out as Connection36
+                connect "Bus Join1.in" Junction7 as Connection37
+                [
+                    breakpoints = 8544, 8120; 8504, 8120; 8504, 8120; 8352, 8120
+                ]
+                connect and2.out Junction8 as Connection38
+                connect Junction8 h_B.in as Connection39
+                connect "Bus Join1.in1" Junction8 as Connection40
+                [
+                    breakpoints = 8520, 8152; 8336, 8152
+                ]
+                connect and3.out Junction9 as Connection41
+                connect Junction9 h_C.in as Connection42
+                connect "Bus Join1.in2" Junction9 as Connection43
+                [
+                    breakpoints = 8544, 8168; 8544, 8256; 8344, 8256
+                ]
+                connect "Bus Join1.out" out as Connection44
+            }
+            [
+                position = 8296, 8232
+                size = 64, 72
+            ]
+
+            component "core/Probe" theta_e {
+                execution_rate = "execution_rate"
+            }
+            [
+                position = 8296, 8136
+            ]
+
+            port θm {
+                position = left center
+                kind = sp
+                direction =  out
+                sp_type {
+                    default = auto
+                }
+            }
+            [
+                position = 8032, 8224
+            ]
+
+            port out {
+                position = right center
+                kind = sp
+                direction =  in
+                sp_type {
+                    default = inherit
+                }
+            }
+            [
+                position = 8424, 8232
+                hide_name = True
+            ]
+
+            junction Junction1 sp
+            [
+                position = 8224, 8224
+            ]
+
+            connect m2e.in θm as Connection23
+            connect m2e.out "rem(theta,2pi).in" as Connection19
+            [
+                position = 0, 0
+                breakpoints = 8128, 8224
+            ]
+            connect "rem(theta,2pi).out" Junction1 as Connection20
+            connect Junction1 Hall.theta_e as Connection21
+            connect theta_e.in Junction1 as Connection22
+            connect Hall.out out as Connection24
+
+            pms = "pms"
+
+            mask {
+                icon = "image(\'hall_effect_sensor.svg\')"
+                description = "Hall Effect Sensor component."
+                help_file = "hall_effect_sensor.html"
+
+                pms {
+                    label = "Number of pole pairs"
+                    widget = edit
+                    type = generic
+                    default_value = "2"
+                    context typhoonsim {
+                    }
+
+                    context real_time {
+                    }
+
+                }
+
+                execution_rate {
+                    label = "Execution rate"
+                    previous_names = "timer_interval"
+                    description = "Signal processing execution rate"
+                    widget = edit
+                    type = real
+                    default_value = "inherit"
+                    min_value = .1e-9
+                    context typhoonsim {
+                    }
+
+                    context real_time {
+                    }
+
+                }
+
+                CODE open
+                    from typhoon.apps.schematic_editor.dialogs.component_property_dialogs.general import RegularComponentPropertiesDialog
+                
+                    dialog = RegularComponentPropertiesDialog(
+                        component=component,
+                        property_container=component.masks[-1],
+                        current_diagram=current_diagram
+                    )
+                    dialog.exec()
+                
+                ENDCODE
+            }
+        }
+        [
+            position = 6972, 8864
+            hide_name = True
+            size = 94, 96
+        ]
+
+        component "core/Scope" "Torque and Power measures" {
+            selected_signals = "[\'E_torq\', \'Pin\', \'Pout\', \'Iin\']"
+            signals_data = "{\"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"white\", \"legend_visible\": true}, \"signals\": {\"E_torq\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}}, \"Pin\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#0099FF\"}, \"display\": {\"2\": \"solid\"}}, \"Pout\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#00CC00\"}, \"display\": {\"2\": \"solid\"}}, \"Iin\": {\"viewports\": [3], \"type\": \"analog\", \"color\": {\"3\": \"#FF0000\"}, \"display\": {\"3\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}}"
+        }
+        [
+            position = 8700, 9008
+        ]
+
+        component "core/Abs" Abs1 {
+        }
+        [
+            position = 6844, 8868
+            hide_name = True
+        ]
+
+        component "core/Ground" gnd1 {
+        }
+        [
+            position = 7708, 9444
+        ]
+
+        component "core/Ground" gnd2 {
+        }
+        [
+            position = 8140, 9596
+        ]
+
+        component "core/Scope" Scope2 {
+            selected_signals = "[\'mech_speed_rpm4\']"
+            signals_data = "{\"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"white\", \"legend_visible\": true}, \"signals\": {\"mech_speed_rpm4\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}}"
+        }
+        [
+            position = 6384, 9316
+        ]
+
+        component "core/Current Measurement" Ia4 {
+            execution_rate = "Ts"
+            sig_output = "True"
+        }
+        [
+            position = 7904, 9160
+            size = 64, 32
+        ]
+
+        component "core/Voltage Source" Vs5 {
+            init_const_value = "Vs"
+            init_frequency = "20"
+            init_rms_value = "33.94"
+        }
+        [
+            position = 7708, 9264
+            rotation = right
+        ]
+
+        component "core/Voltage Measurement" Va {
+        }
+        [
+            position = 8644, 9424
+            rotation = right
+            size = 64, 32
+        ]
+
+        component "core/Low-Pass Filter" "Low-Pass Filter1" {
+            frequency = "1"
+        }
+        [
+            position = 9048, 9484
+            hide_name = True
+        ]
+
+        component "core/Constant" Constant9 {
+            execution_rate = "Ts"
+            value = "Vs"
+        }
+        [
+            position = 9052, 9548
+        ]
+
+        component "core/Product" Product5 {
+        }
+        [
+            position = 9136, 9524
+        ]
+
+        component "core/Probe" Pin {
+        }
+        [
+            position = 9236, 9524
+        ]
+
+        component "core/Product" Product6 {
+        }
+        [
+            position = 8712, 9740
+        ]
+
+        component "core/Probe" Pout {
+        }
+        [
+            position = 8832, 9752
+        ]
+
+        component "core/Low-Pass Filter" "Low-Pass Filter2" {
+            frequency = "10"
+        }
+        [
+            position = 8608, 9776
+            hide_name = True
+        ]
+
+        component "core/PID controller" "PID controller1" {
+            ki = "16.7957"
+            kp = "4.7983"
+        }
+        [
+            position = 7336, 9192
+            hide_name = True
+        ]
+
+        component "core/Sum" Sum1 {
+            signs = "+-"
+        }
+        [
+            position = 7036, 9200
+            hide_name = True
+        ]
+
+        component "core/Gain" Gain1 {
+            gain = "1/165.21"
+        }
+        [
+            position = 7136, 9200
+            hide_name = True
+        ]
+
+        component "core/Triangular Wave Source" Carrier {
+            execution_rate = "Ts"
+            frequency = "1000"
+            max_val = "1"
+            min_val = "-1"
+        }
+        [
+            position = 7348, 9280
+        ]
+
+        component "core/Product" Product7 {
+        }
+        [
+            position = 7568, 8704
+            hide_name = True
+        ]
+
+        component "core/Product" Product8 {
+        }
+        [
+            position = 7568, 8784
+            hide_name = True
+        ]
+
+        component "core/Product" Product9 {
+        }
+        [
+            position = 7568, 8856
+            hide_name = True
+        ]
+
+        component "core/Product" Product10 {
+        }
+        [
+            position = 7568, 8924
+            hide_name = True
+        ]
+
+        component "core/Product" Product11 {
+        }
+        [
+            position = 7572, 8984
+            hide_name = True
+        ]
+
+        component "core/Product" Product12 {
+        }
+        [
+            position = 7576, 9044
+            hide_name = True
+        ]
+
+        component "core/Comparator" Comparator1 {
+        }
+        [
+            position = 7464, 9232
+            hide_name = True
+        ]
+
+        component "core/Square Wave Source" "Changing ref" {
+            execution_rate = "Ts"
+            frequency = "2"
+            hs_output = "100"
+            ls_output = "50"
+        }
+        [
+            position = 6828, 9176
+        ]
+
+        component "core/Sign" Sign1 {
+        }
+        [
+            position = 6948, 9032
+            hide_name = True
+        ]
+
+        component "core/Probe" W_ref {
+        }
+        [
+            position = 6840, 9048
+            rotation = down
+        ]
+
+        component "core/Scope" "Ctrl syst" {
+            selected_signals = "[\'PID\', \'Err\', \'Va\']"
+            signals_data = "{\"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"black\", \"legend_visible\": true}, \"signals\": {\"PID\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}}, \"Err\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#FF0000\"}, \"display\": {\"2\": \"solid\"}}, \"Va\": {\"viewports\": [4], \"type\": \"analog\", \"color\": {\"4\": \"#FF0000\"}, \"display\": {\"4\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}}"
+        }
+        [
+            position = 8364, 9008
+        ]
+
+        component "core/Abs" Abs2 {
+        }
+        [
+            position = 6944, 9264
+            hide_name = True
+        ]
+
+        component "core/Abs" Abs3 {
+        }
+        [
+            position = 6944, 9176
+            hide_name = True
+        ]
+
+        component "core/Probe" PID {
+        }
+        [
+            position = 7468, 9128
+        ]
+
+        component "core/Probe" Err {
+        }
+        [
+            position = 7136, 9128
+        ]
+
+        component "core/Product" Product13 {
+        }
+        [
+            position = 7216, 9192
+            hide_name = True
+        ]
+
+        component "core/Probe" Iin {
+        }
+        [
+            position = 9212, 9448
+        ]
+
+        component "core/Step" Step1 {
+            execution_rate = "Ts"
+            final_value = "150"
+            step_time = "0"
+        }
+        [
+            position = 6832, 9120
+        ]
+
+        component "core/Probe" E_torq {
+        }
+        [
+            position = 8704, 9812
+        ]
+
+        tag From17 {
+            value = "Theta3"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 6728, 8868
+            rotation = down
+            hide_name = True
+            scale = -1, 1
+            size = 60, 20
+        ]
+
+        tag Goto16 {
+            value = "Sa_top"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 7788, 8760
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag Goto17 {
+            value = "Sa_bot"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 7788, 8804
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag Goto18 {
+            value = "Sb_top"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 7788, 8852
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag Goto19 {
+            value = "Sb_bot"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 7788, 8896
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag Goto20 {
+            value = "Sc_top"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 7788, 8948
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag Goto21 {
+            value = "Sc_bot"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 7792, 9044
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag From18 {
+            value = "Sa_top"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 8052, 9204
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag From19 {
+            value = "Sa_bot"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 8052, 9408
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag From20 {
+            value = "Sb_top"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 8256, 9204
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag From21 {
+            value = "Sb_bot"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 8256, 9408
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag From22 {
+            value = "Sc_top"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 8432, 9204
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag From23 {
+            value = "Sc_bot"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 8428, 9412
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag From24 {
+            value = "mech_speed3"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 8588, 9636
+            size = 60, 20
+        ]
+
+        tag Goto23 {
+            value = "mech_speed3"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 9148, 9204
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag Goto24 {
+            value = "Theta3"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 9148, 9232
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag Goto25 {
+            value = "mech_speed_rpm3"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 8936, 9700
+            size = 60, 20
+        ]
+
+        tag Goto27 {
+            value = "Current_In"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 7972, 9084
+            hide_name = True
+            size = 76, 20
+        ]
+
+        tag Goto28 {
+            value = "EmfA"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 9148, 9268
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag Goto29 {
+            value = "EmfB"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 9148, 9300
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag Goto30 {
+            value = "EmfC"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 9148, 9336
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag From25 {
+            value = "Current_In"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 8976, 9484
+            size = 60, 20
+        ]
+
+        tag Goto31 {
+            value = "E_torq"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 9148, 9164
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag From26 {
+            value = "E_torq"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 8524, 9780
+            size = 60, 20
+        ]
+
+        tag Goto32 {
+            value = "Pin"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 9256, 9588
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag Goto33 {
+            value = "Pout"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 8824, 9808
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag From27 {
+            value = "mech_speed_rpm3"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 6816, 9264
+            hide_name = True
+            size = 124, 20
+        ]
+
+        junction Junction123 pe
+        [
+            position = 8344, 9164
+        ]
+
+        junction Junction124 pe
+        [
+            position = 8344, 9536
+        ]
+
+        junction Junction129 pe
+        [
+            position = 8524, 9360
+        ]
+
+        junction Junction130 pe
+        [
+            position = 8160, 9288
+        ]
+
+        junction Junction131 pe
+        [
+            position = 8344, 9328
+        ]
+
+        junction Junction138 sp
+        [
+            position = 8824, 9632
+        ]
+
+        junction Junction144 pe
+        [
+            position = 8160, 9532
+        ]
+
+        junction Junction146 pe
+        [
+            position = 8160, 9152
+        ]
+
+        junction Junction150 pe
+        [
+            position = 8688, 9296
+        ]
+
+        junction Junction169 sp
+        [
+            position = 8644, 9636
+        ]
+
+        junction Junction170 sp
+        [
+            position = 9192, 9524
+        ]
+
+        junction Junction171 sp
+        [
+            position = 8776, 9752
+        ]
+
+        junction Junction172 sp
+        [
+            position = 7496, 8792
+        ]
+
+        junction Junction173 sp
+        [
+            position = 7496, 8864
+        ]
+
+        junction Junction174 sp
+        [
+            position = 7496, 8932
+        ]
+
+        junction Junction175 sp
+        [
+            position = 7496, 8992
+        ]
+
+        junction Junction176 sp
+        [
+            position = 7500, 9052
+        ]
+
+        junction Junction180 sp
+        [
+            position = 7084, 9200
+        ]
+
+        junction Junction181 sp
+        [
+            position = 7428, 9200
+        ]
+
+        junction Junction182 sp
+        [
+            position = 7192, 9028
+        ]
+
+        junction Junction183 sp
+        [
+            position = 9096, 9484
+        ]
+
+        junction Junction184 sp
+        [
+            position = 6896, 9176
+        ]
+
+        junction Junction185 sp
+        [
+            position = 6896, 9052
+        ]
+
+        junction Junction186 sp
+        [
+            position = 8672, 9776
+        ]
+
+        junction Junction187 pe
+        [
+            position = 8684, 9360
+        ]
+
+        connect Sc_top.D Junction123 as Connection1452
+        [
+            breakpoints = 8524, 9156; 8344, 9156
+        ]
+        connect Junction123 Sb_top.D as Connection1453
+        connect Junction124 Sb_bot.S as Connection1457
+        [
+            breakpoints = 8344, 9536
+        ]
+        connect Sc_bot.S Junction124 as Connection1458
+        connect "Bus Split5.out1" "C function3.HallB" as Connection1473
+        connect "Bus Split5.out" "C function3.HallA" as Connection1474
+        [
+            breakpoints = 7224, 8860; 7224, 8732
+        ]
+        connect "C function3.HallC" "Bus Split5.out2" as Connection1475
+        connect Sa_top.ctrl_in From18 as Connection1483
+        connect From19 Sa_bot.ctrl_in as Connection1484
+        connect From20 Sb_top.ctrl_in as Connection1485
+        connect From21 Sb_bot.ctrl_in as Connection1486
+        connect From23 Sc_bot.ctrl_in as Connection1487
+        connect Sc_top.ctrl_in From22 as Connection1488
+        connect Sc_top.S Junction129 as Connection1495
+        connect Junction129 Sc_bot.D as Connection1496
+        connect Sa_top.S Junction130 as Connection1502
+        connect Junction130 Sa_bot.D as Connection1503
+        connect Ia3.p_node Junction130 as Connection1504
+        connect Ic3.p_node Junction129 as Connection1507
+        connect Sb_bot.D Junction131 as Connection1509
+        connect Junction131 Sb_top.S as Connection1510
+        connect Ib3.p_node Junction131 as Connection1511
+        connect BLDC3.out "Bus Split6.in" as Connection1516
+        connect "Hall Effect Sensor3.out" "Bus Split5.in" as Connection1518
+        connect rad_to_rpm2.out Junction138 as Connection1580
+        [
+            breakpoints = 8756, 9632; 8804, 9632; 8804, 9632
+        ]
+        connect Junction138 mech_speed_rpm3.in as Connection1581
+        [
+            breakpoints = 8904, 9632
+        ]
+        connect Goto25 Junction138 as Connection1582
+        [
+            breakpoints = 8896, 9700; 8824, 9700
+        ]
+        connect Sa_bot.S Junction144 as Connection1609
+        connect Junction144 Junction124 as Connection1610
+        [
+            breakpoints = 8160, 9536; 8344, 9536
+        ]
+        connect gnd2.node Junction144 as Connection1611
+        [
+            breakpoints = 8140, 9536; 8160, 9536
+        ]
+        connect Sa_top.D Junction146 as Connection1623
+        [
+            breakpoints = 8160, 9160
+        ]
+        connect Junction146 Junction123 as Connection1624
+        [
+            breakpoints = 8160, 9156; 8344, 9156
+        ]
+        connect Ia4.n_node Junction146 as Connection1625
+        [
+            breakpoints = 7952, 9152; 8160, 9152
+        ]
+        connect Ia4.out Goto27 as Connection1626
+        connect Junction150 Ia3.n_node as Connection1653
+        [
+            breakpoints = 8672, 9296
+        ]
+        connect Va.p_node Junction150 as Connection1654
+        connect Junction150 BLDC3.a_in as Connection1668
+        [
+            breakpoints = 8704, 9296
+        ]
+        connect BLDC3.b_in Ib3.n_node as Connection1667
+        [
+            breakpoints = 8704, 9324
+        ]
+        connect gnd1.node Vs5.n_node as Connection1679
+        connect Ia4.p_node Vs5.p_node as Connection1681
+        [
+            breakpoints = 7712, 9160
+        ]
+        connect From17 Abs1.in as Connection1868
+        connect Abs1.out "Hall Effect Sensor3.θm" as Connection1869
+        connect Constant6.out BLDC3.load_in as Connection1870
+        connect From25 "Low-Pass Filter1.in" as Connection1871
+        connect Constant9.out Product5.in1 as Connection1873
+        connect "Bus Split6.out" Goto31 as Connection1875
+        [
+            breakpoints = 9096, 9212; 9096, 9164
+        ]
+        connect "Bus Split6.out1" Goto23 as Connection1876
+        connect "Bus Split6.out2" Goto24 as Connection1877
+        connect "Bus Split6.out3" Goto28 as Connection1878
+        connect "Bus Split6.out4" Goto29 as Connection1879
+        connect "Bus Split6.out5" Goto30 as Connection1880
+        [
+            breakpoints = 9072, 9288; 9092, 9288; 9092, 9336
+        ]
+        connect From24 Junction169 as Connection1882
+        connect Junction169 rad_to_rpm2.omega_m as Connection1883
+        connect Product6.in Junction169 as Connection1884
+        connect From26 "Low-Pass Filter2.in" as Connection1886
+        connect Product5.out Junction170 as Connection1888
+        connect Junction170 Pin.in as Connection1889
+        connect Goto32 Junction170 as Connection1890
+        connect Pout.in Junction171 as Connection1891
+        connect Junction171 Product6.out as Connection1892
+        connect Goto33 Junction171 as Connection1893
+        connect "C function3.Sa_top" Product7.in as Connection1908
+        connect "C function3.Sa_bot" Product8.in as Connection1909
+        connect "C function3.Sb_top" Product9.in as Connection1910
+        connect "C function3.Sb_bot" Product10.in as Connection1911
+        connect "C function3.Sc_top" Product11.in as Connection1912
+        connect "C function3.Sc_bot" Product12.in as Connection1913
+        connect Junction172 Junction173 as Connection1914
+        connect Junction173 Junction174 as Connection1915
+        connect Junction174 Junction175 as Connection1916
+        connect Product8.in1 Junction172 as Connection1917
+        connect Product9.in1 Junction173 as Connection1918
+        connect Product10.in1 Junction174 as Connection1919
+        connect Product11.in1 Junction175 as Connection1920
+        connect Product7.in1 Junction172 as Connection1921
+        connect Product7.out Goto16 as Connection1923
+        connect Goto17 Product8.out as Connection1924
+        connect Goto18 Product9.out as Connection1925
+        connect Product10.out Goto19 as Connection1926
+        connect Goto20 Product11.out as Connection1927
+        connect Goto21 Product12.out as Connection1928
+        connect Carrier.out Comparator1.in2 as Connection1930
+        connect Product12.in1 Junction176 as Connection1931
+        connect Junction176 Junction175 as Connection1932
+        connect Comparator1.out Junction176 as Connection1933
+        connect Abs2.in From27 as Connection1964
+        connect Abs2.out Sum1.in1 as Connection1965
+        [
+            hide_name = True
+        ]
+        connect Abs3.out Sum1.in as Connection1973
+        [
+            hide_name = True
+        ]
+        connect Sum1.out Junction180 as Connection1979
+        connect Junction180 Gain1.in as Connection1980
+        connect Junction180 Err.in as Connection1988
+        [
+            breakpoints = 7084, 9156
+        ]
+        connect Comparator1.in1 Junction181 as Connection1993
+        connect Junction181 PID.in as Connection1994
+        [
+            breakpoints = 7428, 9196
+        ]
+        connect "PID controller1.out" Junction181 as Connection1995
+        connect Gain1.out Product13.in1 as Connection1996
+        [
+            hide_name = True
+        ]
+        connect "C function3.RotDirec" Junction182 as Connection1997
+        [
+            breakpoints = 7256, 9028
+        ]
+        connect Junction182 Sign1.out as Connection1998
+        [
+            breakpoints = 7132, 9028
+        ]
+        connect Product13.in Junction182 as Connection1999
+        connect Product13.out "PID controller1.in" as Connection2000
+        [
+            hide_name = True
+        ]
+        connect "Low-Pass Filter1.out" Junction183 as Connection2001
+        connect Junction183 Product5.in as Connection2002
+        connect Iin.in Junction183 as Connection2003
+        connect Step1.out Junction184 as Connection2009
+        [
+            breakpoints = 6872, 9120; 6872, 9176
+        ]
+        connect Junction184 Abs3.in as Connection2010
+        connect Sign1.in Junction185 as Connection2012
+        connect Junction185 Junction184 as Connection2013
+        connect W_ref.in Junction185 as Connection2014
+        connect "Low-Pass Filter2.out" Junction186 as Connection2015
+        connect Junction186 Product6.in1 as Connection2016
+        connect E_torq.in Junction186 as Connection2017
+        connect BLDC3.c_in Junction187 as Connection2018
+        connect Junction187 Ic3.n_node as Connection2019
+        [
+            breakpoints = 8656, 9360
+        ]
+        connect Va.n_node Junction187 as Connection2020
+        [
+            breakpoints = 8680, 9480
+        ]
+    }
+
+    logically_deleted {
+        "Changing ref"
+    }
+
+    default {
+        "core/Abs" {
+            execution_rate = "inherit"
+        }
+
+        "core/Bus Join" {
+            inputs = "2"
+            force_tml = "True"
+            execution_rate = "inherit"
+        }
+
+        "core/Bus Split" {
+            outputs = "2"
+            execution_rate = "inherit"
+        }
+
+        "core/C function" {
+            input_terminals = "real in;"
+            input_terminals_show_labels = "False;"
+            input_terminals_feedthrough = "True;"
+            input_terminals_dimensions = "inherit;"
+            output_terminals = "real out;"
+            output_terminals_show_labels = "False;"
+            output_terminals_feedthrough = "True;"
+            output_terminals_dimensions = "inherit;"
+            output_fnc = ""
+            update_fnc = ""
+            init_fnc = ""
+            global_variables = ""
+            parameters = ""
+            library_load_type = "Compile-time load"
+            dll_file_path = ""
+            dll_file_path_full = ""
+            arm_a9_file_path = ""
+            arm_a9_file_path_full = ""
+            arm_a53_file_path = ""
+            arm_a53_file_path_full = ""
+            h_file_path = ""
+            h_file_path_full = ""
+            add_src_path = ""
+            add_src_path_full = ""
+            convert_to_relative_dll = "True"
+            convert_to_relative_a = "True"
+            convert_to_relative_src = "True"
+            arb_defs = ""
+            add_macros = ""
+            skip_pre_cmpl_check = "False"
+            generate_for_hil = "True"
+            execution_rate = "inherit"
+            _supported_platforms = "[\'generic\']"
+            refresh = "refresh"
+        }
+
+        "core/Comparator" {
+            execution_rate = "inherit"
+        }
+
+        "core/Constant" {
+            value = "1"
+            signal_type = "real"
+            execution_rate = "100e-6"
+            _tunable = "False"
+        }
+
+        "core/Digital Probe" {
+            signal_access = "inherit"
+            override_signal_name = "False"
+            signal_name = ""
+            streaming_en = "False"
+            addr = "0"
+            streaming_er_idx = "0"
+            execution_rate = "inherit"
+        }
+
+        "core/Gain" {
+            gain = "1"
+            multiplication = "Element-wise(K.*u)"
+            force_tml = "True"
+            _tunable = "False"
+            execution_rate = "inherit"
+        }
+
+        "core/Logical operator" {
+            operator = "AND"
+            inputs = "2"
+            execution_rate = "inherit"
+        }
+
+        "core/Low-Pass Filter" {
+            frequency = "500"
+            init_out = "0"
+            unit = "Hz"
+            execution_rate = "inherit"
+            _tunable = "False"
+        }
+
+        "core/PID controller" {
+            controller_type = "PID"
+            kp = "1"
+            kp_source = "internal"
+            ki = "1"
+            ki_source = "internal"
+            kd = "0"
+            kd_source = "internal"
+            filt_coef = "100"
+            int_init_value = "0"
+            filt_init_value = "0"
+            enb_output_limit_out = "False"
+            show_reset = "none"
+            upper_sat_lim = "1"
+            upper_sat_lim_source = "internal"
+            lower_sat_lim = "-1"
+            lower_sat_lim_source = "internal"
+            enb_anti_windup_out = "False"
+            signal_out_type = "inherit"
+            _tunable = "False"
+            execution_rate = "inherit"
+        }
+
+        "core/Probe" {
+            signal_access = "inherit"
+            addr = "0"
+            override_signal_name = "False"
+            signal_name = ""
+            signal_type = "generic"
+            streaming_en = "False"
+            streaming_er_idx = "0"
+            execution_rate = "inherit"
+        }
+
+        "core/Product" {
+            signs = "2"
+            execution_rate = "inherit"
+        }
+
+        "core/Relational operator" {
+            relational_op = "=="
+            execution_rate = "inherit"
+        }
+
+        "core/Scope" {
+            signals_data = "{}"
+            selected_signals = "[]"
+        }
+
+        "core/Sign" {
+            execution_rate = "inherit"
+        }
+
+        "core/Square Wave Source" {
+            hs_output = "1"
+            ls_output = "0"
+            frequency = "50"
+            duty_cycle = "0.5"
+            phase = "0"
+            signal_type = "real"
+            execution_rate = "100e-6"
+            _tunable = "False"
+        }
+
+        "core/Step" {
+            step_time = "1"
+            initial_value = "0"
+            final_value = "1"
+            signal_type = "real"
+            execution_rate = "100e-6"
+        }
+
+        "core/Sum" {
+            signs = "2"
+            execution_rate = "inherit"
+        }
+
+        "core/Triangular Wave Source" {
+            min_val = "-0.5"
+            max_val = "0.5"
+            frequency = "50"
+            duty_cycle = "0.5"
+            phase = "0"
+            execution_rate = "100e-6"
+            _tunable = "False"
+        }
+
+        "core/Voltage Source" {
+            sig_input = "False"
+            type = "signal generator"
+            param_set = "1phase"
+            parent_label = ""
+            dtsm_switch_name = ""
+            addr = "0"
+            spc_nb = "0"
+            execution_rate = "100e-6"
+            cpd_visible = "True"
+            enable_snb = "False"
+            snb_type = "R2"
+            R2 = "0.0"
+            L1 = "0.1"
+            override_signal_name = "False"
+            signal_name = ""
+            init_source_nature = "Constant"
+            init_const_value = "0.0"
+            init_rms_value = "0.0"
+            init_frequency = "50.0"
+            init_phase = "0.0"
+        }
+
+        "core/Brushless DC Machine" {
+            signal_access = "inherit"
+            Rs = "0.64"
+            Ls = "24.4e-3"
+            Vpk_over_krpm = "31.4"
+            pms = "4"
+            Jm = "1e-3"
+            friction_coeff = "0"
+            load_src = "SCADA / external"
+            ext_mdl_load_type = "torque"
+            load_ai_pin_addr = "1"
+            load_ai_offset = "0"
+            load_ai_gain = "1"
+            enc_ppr = "1024"
+            encoder_Z_pulse_length = "Full period"
+            res_pole_pairs = "1"
+            res_carr_source = "internal"
+            res_carr_source_external = "single ended"
+            res_int_carr_f = "5e+3"
+            res_ai_pin_addr = "1"
+            res_ai_pin2_addr = "2"
+            res_ai_offset = "0"
+            res_ai_gain = "1"
+            absenc_type = "None"
+            singleturn_abs_enc = "0"
+            multiturn_enable = "False"
+            multiturn_abs_enc = "0"
+            endat_clock_di_addr = "1"
+            endat_clock_di_logic = "active high"
+            endat_data_di_addr = "2"
+            endat_data_di_logic = "active high"
+            biss_clock_di_addr = "1"
+            biss_clock_di_logic = "active high"
+            biss_data_di_addr = "2"
+            ssi_clock_di_addr = "1"
+            ssi_clock_di_logic = "active high"
+            ssi_data_di_addr = "2"
+            execution_rate = "100e-6"
+            el_trq_out = "False"
+            mech_speed_out = "False"
+            mech_angle_out = "False"
+            e_a = "False"
+            e_b = "False"
+            e_c = "False"
+            psi_a = "False"
+            psi_b = "False"
+            psi_c = "False"
+            is_a = "False"
+            is_b = "False"
+        }
+
+        "core/Current Measurement" {
+            signal_access = "inherit"
+            bw_limit = "False"
+            frequency = "10e3"
+            comparator_enable = "False"
+            operator = "greater"
+            threshold = "0"
+            cmp_abs_value = "False"
+            feed_forward = "false"
+            sig_output = "False"
+            sig_output_filt_and_full_bw = "False"
+            execution_rate = "100e-6"
+            addr = "0"
+            nd_msr_estimation = "false"
+            dev_cpl_msr = "false"
+            host_device = "0"
+            output_to_device = "0"
+            dev_cpl_index = "0"
+            dev_cpl_var_nb = "0"
+            visible = "True"
+            override_signal_name = "False"
+            signal_name = ""
+        }
+
+        "core/MOSFET" {
+            signal_access = "inherit"
+            switches_option = "False"
+            resistance = "1.0"
+            ctrl_src = "Digital inputs"
+            dtsm_switch_name = ""
+            dtsm_switch_ctrl = ""
+            op_mode = "Fixed carrier frequency"
+            carrier_freq = "10000.0"
+            carr_ph_offset = "0.0"
+            d_time = "5e-6"
+            ref_sig_min_max = "[-1.0, 1.0]"
+            load_mode = "on min"
+            switches_names_at_mask = "[\'S1\']"
+            S1 = "1"
+            S1_logic = "active high"
+            execution_rate = "inherit"
+            snb_type = "none"
+            R = "100e3"
+            C = "1e-6"
+            spc_nb = "0"
+            addr = "0"
+            show_monitoring = "False"
+            pwm_enabling = "False"
+            pwm_enable_di = "13"
+            pwm_enable_inv = "active high"
+            model_load_legacy = "0"
+            losses_estimation = "False"
+            load_xml_en = "User tables"
+            Import_igbt_xml = "not selected"
+            Import_diode_xml = "not selected"
+            xml_data = "{}"
+            transistor_data = "{\'package_class\': \'IGBT\', \'variables\': {}, \'constants\': {}, \'custom_tables\': {}, \'turn_on_losses\': {\'type\': \'Table only\', \'formula\': None, \'current_axis\': [0.0, 400.0, 800.0, 1200.0], \'voltage_axis\': [0.0, 1800.0], \'temperature_axis\': [25.0, 125.0], \'energy\': [[[0.0, 0.0, 0.0, 0.0], [0.0, 0.4068, 1.001, 1.822]], [[0.0, 0.0, 0.0, 0.0], [0.0, 0.6317, 1.38, 1.784]]], \'parsed_formula\': \'E_turn_on_losses\'}, \'turn_off_losses\': {\'type\': \'Table only\', \'formula\': None, \'current_axis\': [0.0, 400.0, 800.0, 1200.0], \'voltage_axis\': [0.0, 1800.0], \'temperature_axis\': [25.0, 125.0], \'energy\': [[[0.0, 0.0, 0.0, 0.0], [0.0, 0.6, 0.88, 1.177]], [[0.0, 0.0, 0.0, 0.0], [0.0, 0.9094, 1.25, 1.784]]], \'parsed_formula\': \'E_turn_off_losses\'}, \'conduction_losses\': {\'type\': \'Table only\', \'formula\': None, \'current_axis\': [0.0, 100.0, 200.0, 400.0, 600.0, 700.0, 800.0, 900.0, 1000.0, 1200.0, 1400.0, 1600.0], \'temperature_axis\': [25.0, 125.0], \'voltage_drop\': [[0.0, 1.5, 1.8, 2.3, 2.69, 2.9, 3.1, 3.25, 3.41, 3.73, 4.0, 4.31], [0.0, 1.63, 2.09, 2.77, 3.37, 3.63, 3.8, 4.11, 4.37, 4.81, 5.29, 5.7]], \'parsed_formula\': \'v_conduction_losses\'}, \'c_function_code\': {\'output_fnc\': \'E_turn_on_losses = lookup3d(turn_on_losses_table, i, v, T, current_axis_turn_on_losses, voltage_axis_turn_on_losses, temperature_axis_turn_on_losses, 4, 2, 2);\nE_turn_off_losses = lookup3d(turn_off_losses_table, i, v, T,current_axis_turn_off_losses, voltage_axis_turn_off_losses, temperature_axis_turn_off_losses, 4, 2, 2);\nv_conduction_losses = lookup2d(conduction_losses_table, i, T,current_axis_conduction_losses, temperature_axis_conduction_losses, 12, 2);\ne_t_on = E_turn_on_losses;\ne_t_off = E_turn_off_losses;\nv_ce = v_conduction_losses;\n\', \'arb_defs\': \'real current_axis_turn_off_losses[4] = { 0.0, 400.0, 800.0, 1200.0 };\nreal voltage_axis_turn_off_losses[2] = { 0.0, 1800.0 };\nreal temperature_axis_turn_off_losses[2] = { 25.0, 125.0 };\nreal E_turn_off_losses;\nreal turn_off_losses_table[16] = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.6, 0.88, 1.177, 0.0, 0.0, 0.0, 0.0, 0.0, 0.9094, 1.25, 1.784 };\nreal current_axis_conduction_losses[12] = { 0.0, 100.0, 200.0, 400.0, 600.0, 700.0, 800.0, 900.0, 1000.0, 1200.0, 1400.0, 1600.0 };\nreal temperature_axis_conduction_losses[2] = { 25.0, 125.0 };\nreal v_conduction_losses;\nreal conduction_losses_table[24] = { 0.0, 1.5, 1.8, 2.3, 2.69, 2.9, 3.1, 3.25, 3.41, 3.73, 4.0, 4.31, 0.0, 1.63, 2.09, 2.77, 3.37, 3.63, 3.8, 4.11, 4.37, 4.81, 5.29, 5.7 };\nreal current_axis_turn_on_losses[4] = { 0.0, 400.0, 800.0, 1200.0 };\nreal voltage_axis_turn_on_losses[2] = { 0.0, 1800.0 };\nreal temperature_axis_turn_on_losses[2] = { 25.0, 125.0 };\nreal E_turn_on_losses;\nreal turn_on_losses_table[16] = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.4068, 1.001, 1.822, 0.0, 0.0, 0.0, 0.0, 0.0, 0.6317, 1.38, 1.784 };\n\'}}"
+            diode_data = "{\'package_class\': \'Diode\', \'variables\': {}, \'constants\': {}, \'custom_tables\': {}, \'turn_on_losses\': {\'type\': \'Table only\', \'formula\': None, \'current_axis\': [0.0, 400.0, 800.0, 1200.0], \'voltage_axis\': [0.0, 1800.0], \'temperature_axis\': [25.0, 125.0], \'energy\': [[[0.0, 0.0, 0.0, 0.0], [0.0, 0.4068, 1.001, 1.822]], [[0.0, 0.0, 0.0, 0.0], [0.0, 0.6317, 1.38, 1.784]]], \'parsed_formula\': \'E_turn_on_losses\'}, \'turn_off_losses\': {\'type\': \'Table only\', \'formula\': None, \'current_axis\': [0.0, 400.0, 800.0, 1200.0], \'voltage_axis\': [0.0, 1800.0], \'temperature_axis\': [25.0, 125.0], \'energy\': [[[0.0, 0.0, 0.0, 0.0], [0.0, 0.6, 0.88, 1.177]], [[0.0, 0.0, 0.0, 0.0], [0.0, 0.9094, 1.25, 1.784]]], \'parsed_formula\': \'E_turn_off_losses\'}, \'conduction_losses\': {\'type\': \'Table only\', \'formula\': None, \'current_axis\': [0.0, 100.0, 200.0, 400.0, 600.0, 700.0, 800.0, 900.0, 1000.0, 1200.0, 1400.0, 1600.0], \'temperature_axis\': [25.0, 125.0], \'voltage_drop\': [[0.0, 1.5, 1.8, 2.3, 2.69, 2.9, 3.1, 3.25, 3.41, 3.73, 4.0, 4.31], [0.0, 1.63, 2.09, 2.77, 3.37, 3.63, 3.8, 4.11, 4.37, 4.81, 5.29, 5.7]], \'parsed_formula\': \'v_conduction_losses\'}, \'c_function_code\': {\'output_fnc\': \'E_turn_on_losses = lookup3d(turn_on_losses_table, i, v, T, current_axis_turn_on_losses, voltage_axis_turn_on_losses, temperature_axis_turn_on_losses, 4, 2, 2);\nE_turn_off_losses = lookup3d(turn_off_losses_table, i, v, T,current_axis_turn_off_losses, voltage_axis_turn_off_losses, temperature_axis_turn_off_losses, 4, 2, 2);\nv_conduction_losses = lookup2d(conduction_losses_table, i, T,current_axis_conduction_losses, temperature_axis_conduction_losses, 12, 2);\ne_t_on = E_turn_on_losses;\ne_t_off = E_turn_off_losses;\nv_ce = v_conduction_losses;\n\', \'arb_defs\': \'real current_axis_turn_off_losses[4] = { 0.0, 400.0, 800.0, 1200.0 };\nreal voltage_axis_turn_off_losses[2] = { 0.0, 1800.0 };\nreal temperature_axis_turn_off_losses[2] = { 25.0, 125.0 };\nreal E_turn_off_losses;\nreal turn_off_losses_table[16] = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.6, 0.88, 1.177, 0.0, 0.0, 0.0, 0.0, 0.0, 0.9094, 1.25, 1.784 };\nreal current_axis_conduction_losses[12] = { 0.0, 100.0, 200.0, 400.0, 600.0, 700.0, 800.0, 900.0, 1000.0, 1200.0, 1400.0, 1600.0 };\nreal temperature_axis_conduction_losses[2] = { 25.0, 125.0 };\nreal v_conduction_losses;\nreal conduction_losses_table[24] = { 0.0, 1.5, 1.8, 2.3, 2.69, 2.9, 3.1, 3.25, 3.41, 3.73, 4.0, 4.31, 0.0, 1.63, 2.09, 2.77, 3.37, 3.63, 3.8, 4.11, 4.37, 4.81, 5.29, 5.7 };\nreal current_axis_turn_on_losses[4] = { 0.0, 400.0, 800.0, 1200.0 };\nreal voltage_axis_turn_on_losses[2] = { 0.0, 1800.0 };\nreal temperature_axis_turn_on_losses[2] = { 25.0, 125.0 };\nreal E_turn_on_losses;\nreal turn_on_losses_table[16] = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.4068, 1.001, 1.822, 0.0, 0.0, 0.0, 0.0, 0.0, 0.6317, 1.38, 1.784 };\n\'}}"
+            user_vars_transistor = "User variables transistor"
+            user_vars_diode = "User variables diode"
+            i_sw = "[0.0, 6.0, 12.0, 18.0, 24.0]"
+            v_sw = "[0.0, 600.0]"
+            temp_sw = "[25.0, 50.0, 75.0, 100.0, 125.0]"
+            vce_table_out = "[1.3, 1.3, 1.3, 1.3, 1.3]"
+            vd_table_out = "[1.2, 1.2, 1.2, 1.2, 1.2]"
+            et_on_table_out = "[[0.0, 0.0275e-3, 0.15e-3, 0.275e-3, 0.3e-3], [0.35*3.8e-3, 0.4*3.8e-3, 0.8*3.8e-3, 0.68*3.8e-3, 0.9*3.8e-3], [0.65*3.8e-3, 0.9*3.8e-3, 1.2*3.8e-3, 1.5*3.8e-3, 1.7*3.8e-3], [0.9*3.8e-3, 1.3*3.8e-3, 1.7*3.8e-3, 1.9*3.8e-3, 2.25*3.8e-3], [1.1*3.8e-3, 1.7*3.8e-3, 2.1*3.8e-3, 2.3*3.8e-3, 2.5*3.8e-3]]"
+            et_off_table_out = "[[0.0, 0.0275e-3, 0.15e-3, 0.275e-3, 0.3e-3], [0.35*2.1e-3, 0.4*2.1e-3, 0.8*2.1e-3, 0.68*2.1e-3, 0.9*2.1e-3], [0.65*2.1e-3, 0.9*2.1e-3, 1.2*2.1e-3, 1.5*2.1e-3, 1.7*2.1e-3], [0.9*2.1e-3, 1.3*2.1e-3, 1.7*2.1e-3, 1.9*2.1e-3, 2.25*2.1e-3], [1.1*2.1e-3, 1.7*2.1e-3, 2.1*2.1e-3, 2.3*2.1e-3, 2.5*2.1e-3]]"
+            ed_off_table_out = "[[0.0, 0.0275e-3, 0.15e-3, 0.275e-3, 0.3e-3], [0.35*2.2e-3, 0.4*2.2e-3, 0.8*2.2e-3, 0.68*2.2e-3, 0.9*2.2e-3], [0.65*2.2e-3, 0.9*2.2e-3, 1.2*2.2e-3, 1.5*2.2e-3, 1.7*2.2e-3], [0.9*2.2e-3, 1.3*2.2e-3, 1.7*2.2e-3, 1.9*2.2e-3, 2.25*2.2e-3], [1.1*2.2e-3, 1.7*2.2e-3, 2.1*2.2e-3, 2.3*2.2e-3, 2.5*2.2e-3]]"
+            load_switching_data_from_xml = "Import losses data from xml files"
+            temp_estimation = "False"
+            thermal_networks_type = "Foster"
+            switch_Rth = "[0.159, 0.133, 0.120, 0.038]"
+            switch_Tth = "[1.1e-1, 1.56e-2, 1.35e-3, 1.51e-4]"
+            switch_Cth = "[0.0029, 0.0097, 0.1068, 0.8500]"
+            loss_exec_rate = "100e-6"
+        }
+
+        "core/Voltage Measurement" {
+            signal_access = "inherit"
+            bw_limit = "False"
+            frequency = "10e3"
+            comparator_enable = "False"
+            operator = "greater"
+            threshold = "0"
+            cmp_abs_value = "False"
+            feed_forward = "false"
+            sig_output = "False"
+            sig_output_filt_and_full_bw = "False"
+            execution_rate = "100e-6"
+            addr = "0"
+            nd_msr_estimation = "false"
+            dev_cpl_msr = "false"
+            host_device = "0"
+            output_to_device = "0"
+            dev_cpl_index = "0"
+            dev_cpl_var_nb = "0"
+            visible = "True"
+            override_signal_name = "False"
+            signal_name = ""
+        }
+    }
+
+    CODE model_init
+        # Numpy module is imported as 'np'
+        # Scipy module is imported as 'sp'
+        # The Schematic API is imported as 'mdl'
+        # To get the model file path, use 'mdl.get_model_file_path()'
+        # To print information to the console, use info()
+        
+        #Brushless DC machine parameters:
+        pms = 10      #number of machine pole pairs
+        Kw = 5e-4              #friction coefficient
+        Jm = 0.19445                #combined rotor and load moment of inertia
+        Rs = 0.7                   #stator phase resistance
+        Ls = 0.25e-3                #stator phase inductance
+        Emf = 173.07               #peak line-to-line back emf developed at a mechanical speed of 1000 rpm [V/krpm]
+        
+        #Simulation parameters:
+        Ts = 5e-6                   #execution rate step
+        f_pwm=10000                 #PWM frequency
+        Tpwm=1/f_pwm                #PWM time period
+        Vs=36                     #Voltage source
+        g=9.81                      #gravity acceleration
+        
+        two_pi = 2*np.pi
+        Tau = 9.545
+    ENDCODE
+}
