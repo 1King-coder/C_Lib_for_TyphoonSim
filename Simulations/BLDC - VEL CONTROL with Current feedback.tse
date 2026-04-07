@@ -1,7 +1,7 @@
 version = 4.2
 
 //
-// Saved by sw version: 2025.4
+// Saved by sw version: 2026.1 SP1
 //
 
 model "BLDC - VEL CONTROL with Current feedback" {
@@ -67,7 +67,7 @@ model "BLDC - VEL CONTROL with Current feedback" {
         solver_type = "DAE"
         integration_method = "BDF"
         max_sim_step = 1e-4
-        simulation_time = 2
+        simulation_time = 1.4
         abs_tol = 1e-3
         rel_tol = 1e-3
         init_sim_step = 1e-6
@@ -154,8 +154,8 @@ model "BLDC - VEL CONTROL with Current feedback" {
         ]
 
         component "core/C function" "C function3" {
-            add_src_path = "F:\Dev\C_Lib_for_TyphoonSim\c_for_typhoon.h;F:\Dev\C_Lib_for_TyphoonSim\c_for_typhoon.c"
-            add_src_path_full = "F:\Dev\C_Lib_for_TyphoonSim\c_for_typhoon.h;F:\Dev\C_Lib_for_TyphoonSim\c_for_typhoon.c"
+            add_src_path = "..\c_for_typhoon.c;..\c_for_typhoon.h"
+            add_src_path_full = "C:\dev\C-FOR-TYPHOON\c_for_typhoon.c;C:\dev\C-FOR-TYPHOON\c_for_typhoon.h"
             arb_defs = "/*Begin code section*/
 INVERSOR_SWITCHES switches = {
     0,0,0,0,0,0
@@ -167,7 +167,6 @@ HALL_INPUTS hallIns = {
 
 Rotation_Direction direction = CLOCKWISE;
 /*End code section*/"
-            convert_to_relative_src = "False"
             init_fnc = "/*Begin code section*/
 updateHallInputs(&hallIns, HallA, HallB, HallC);
 resetSwitches(&switches);
@@ -254,8 +253,8 @@ Sc_bot = switches.Sc_bot;
         ]
 
         component "core/Scope" "BLDC measures3" {
-            selected_signals = "[\'BLDC3.mechanical angle\', \'mech_speed_rpm3\', \'BLDC3.e_a\', \'BLDC3.e_b\', \'BLDC3.e_c\', \'BLDC3.Stator.i_a\', \'BLDC3.Stator.i_b\', \'BLDC3.Stator.i_c\', \'W_ref\']"
-            signals_data = "{\"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"black\", \"legend_visible\": true}, \"signals\": {\"BLDC3.mechanical angle\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#FF0000\"}, \"display\": {\"2\": \"solid\"}}, \"mech_speed_rpm3\": {\"viewports\": [3], \"type\": \"analog\", \"color\": {\"3\": \"#FF0000\"}, \"display\": {\"3\": \"solid\"}}, \"BLDC3.e_a\": {\"viewports\": [4], \"type\": \"analog\", \"color\": {\"4\": \"#FF0000\"}, \"display\": {\"4\": \"solid\"}}, \"BLDC3.e_b\": {\"viewports\": [4], \"type\": \"analog\", \"color\": {\"4\": \"#00CC00\"}, \"display\": {\"4\": \"solid\"}}, \"BLDC3.e_c\": {\"viewports\": [4], \"type\": \"analog\", \"color\": {\"4\": \"#0099FF\"}, \"display\": {\"4\": \"solid\"}}, \"BLDC3.Stator.i_a\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}}, \"BLDC3.Stator.i_b\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#00CC00\"}, \"display\": {\"1\": \"solid\"}}, \"BLDC3.Stator.i_c\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#0099FF\"}, \"display\": {\"1\": \"solid\"}}, \"W_ref\": {\"viewports\": [3], \"type\": \"analog\", \"color\": {\"3\": \"#00CC00\"}, \"display\": {\"3\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}}"
+            selected_signals = "[\'BLDC3.mechanical angle\', \'mech_speed_rpm3\', \'BLDC3.e_a\', \'BLDC3.e_b\', \'BLDC3.e_c\', \'BLDC3.Stator.i_a\', \'BLDC3.Stator.i_b\', \'BLDC3.Stator.i_c\', \'W_ref\', \'Iin\']"
+            signals_data = "{\"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"black\", \"legend_visible\": true}, \"signals\": {\"BLDC3.mechanical angle\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#FF0000\"}, \"display\": {\"2\": \"solid\"}}, \"mech_speed_rpm3\": {\"viewports\": [3], \"type\": \"analog\", \"color\": {\"3\": \"#FF0000\"}, \"display\": {\"3\": \"solid\"}}, \"BLDC3.e_a\": {\"viewports\": [4], \"type\": \"analog\", \"color\": {\"4\": \"#FF0000\"}, \"display\": {\"4\": \"solid\"}}, \"BLDC3.e_b\": {\"viewports\": [4], \"type\": \"analog\", \"color\": {\"4\": \"#00CC00\"}, \"display\": {\"4\": \"solid\"}}, \"BLDC3.e_c\": {\"viewports\": [4], \"type\": \"analog\", \"color\": {\"4\": \"#0099FF\"}, \"display\": {\"4\": \"solid\"}}, \"BLDC3.Stator.i_a\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}}, \"BLDC3.Stator.i_b\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#00CC00\"}, \"display\": {\"1\": \"solid\"}}, \"BLDC3.Stator.i_c\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#0099FF\"}, \"display\": {\"1\": \"solid\"}}, \"W_ref\": {\"viewports\": [3], \"type\": \"analog\", \"color\": {\"3\": \"#00CC00\"}, \"display\": {\"3\": \"solid\"}}, \"Iin\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FFCC00\"}, \"display\": {\"1\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}}"
         }
         [
             position = 7948, 8836
@@ -740,8 +739,8 @@ out = fmod(in,two_pi);
         ]
 
         component "core/Scope" "Torque and Power measures" {
-            selected_signals = "[\'BLDC3.electrical torque\', \'Pin\', \'Pout\', \'Iin\']"
-            signals_data = "{\"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"white\", \"legend_visible\": true}, \"signals\": {\"BLDC3.electrical torque\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}}, \"Pin\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#0099FF\"}, \"display\": {\"2\": \"solid\"}}, \"Pout\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#00CC00\"}, \"display\": {\"2\": \"solid\"}}, \"Iin\": {\"viewports\": [3], \"type\": \"analog\", \"color\": {\"3\": \"#FF0000\"}, \"display\": {\"3\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}}"
+            selected_signals = "[\'E_torq\', \'Pin\', \'Pout\', \'Iin\']"
+            signals_data = "{\"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"white\", \"legend_visible\": true}, \"signals\": {\"E_torq\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}}, \"Pin\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#0099FF\"}, \"display\": {\"2\": \"solid\"}}, \"Pout\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#00CC00\"}, \"display\": {\"2\": \"solid\"}}, \"Iin\": {\"viewports\": [3], \"type\": \"analog\", \"color\": {\"3\": \"#FF0000\"}, \"display\": {\"3\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}}"
         }
         [
             position = 7948, 8932
@@ -826,7 +825,7 @@ out = fmod(in,two_pi);
         component "core/Product" Product6 {
         }
         [
-            position = 8712, 9740
+            position = 8708, 9740
             hide_name = True
         ]
 
@@ -849,7 +848,7 @@ out = fmod(in,two_pi);
             kp = "6"
         }
         [
-            position = 7060, 9172
+            position = 7056, 9180
             hide_name = True
         ]
 
@@ -862,10 +861,10 @@ out = fmod(in,two_pi);
         ]
 
         component "core/Gain" Gain1 {
-            gain = "1/165.21"
+            gain = "1/188.15"
         }
         [
-            position = 6884, 9180
+            position = 6888, 9180
             hide_name = True
         ]
 
@@ -893,13 +892,13 @@ out = fmod(in,two_pi);
             ls_output = "50"
         }
         [
-            position = 6588, 9100
+            position = 6416, 8992
         ]
 
         component "core/Sign" Sign1 {
         }
         [
-            position = 6716, 8996
+            position = 6716, 9028
             hide_name = True
         ]
 
@@ -953,6 +952,7 @@ out = fmod(in,two_pi);
         ]
 
         component "core/PID controller" "PID controller2" {
+            filt_coef = "10"
             ki = "700"
             kp = "10"
         }
@@ -975,40 +975,105 @@ out = fmod(in,two_pi);
             position = 8912, 9496
         ]
 
-        component "core/Product" Product13 {
-        }
-        [
-            position = 6964, 9188
-        ]
-
-        component "core/Step" w-ref {
-            execution_rate = "Ts"
-            final_value = "120"
-            step_time = "0"
-        }
-        [
-            position = 6588, 9156
-        ]
-
         component "core/Product" Product14 {
         }
         [
-            position = 7592, 8744
+            position = 7600, 8744
             hide_name = True
         ]
 
         component "core/Product" Product15 {
         }
         [
-            position = 7592, 8852
+            position = 7600, 8856
             hide_name = True
         ]
 
         component "core/Product" Product16 {
         }
         [
-            position = 7592, 8964
+            position = 7600, 8968
             hide_name = True
+        ]
+
+        component "core/Probe" E_torq {
+        }
+        [
+            position = 8716, 9804
+        ]
+
+        component "core/Product" Product17 {
+        }
+        [
+            position = 7600, 8800
+            hide_name = True
+        ]
+
+        component "core/Product" Product18 {
+        }
+        [
+            position = 7600, 8912
+            hide_name = True
+        ]
+
+        component "core/Product" Product19 {
+        }
+        [
+            position = 7600, 9024
+            hide_name = True
+        ]
+
+        component "core/C function" Step_Ramp {
+            add_src_path = "..\c_for_typhoon.c;..\c_for_typhoon.h"
+            add_src_path_full = "C:\dev\C-FOR-TYPHOON\c_for_typhoon.c;C:\dev\C-FOR-TYPHOON\c_for_typhoon.h"
+            arb_defs = "/*Begin code section*/
+
+/*End code section*/"
+            init_fnc = "/*Begin code section*/
+
+/*End code section*/"
+            input_terminals = "real val;inherit stepTime;inherit t;"
+            input_terminals_dimensions = "inherit;inherit;inherit"
+            input_terminals_feedthrough = "True;True;True"
+            input_terminals_show_labels = "True;True;True"
+            output_fnc = "/*Begin code section*/
+rampStep(val, stepTime, t, &out);
+/*End code section*/"
+            output_terminals_dimensions = "inherit"
+            output_terminals_feedthrough = "True"
+            output_terminals_show_labels = "False"
+            update_fnc = "/*Begin code section*/
+
+/*End code section*/"
+        }
+        [
+            position = 6444, 9156
+            size = 104, 120
+        ]
+
+        component "core/Constant" Constant10 {
+            execution_rate = "Ts"
+            value = "100"
+        }
+        [
+            position = 6304, 9116
+            hide_name = True
+        ]
+
+        component "core/Constant" Constant11 {
+            execution_rate = "Ts"
+            value = "0.1"
+        }
+        [
+            position = 6304, 9156
+            hide_name = True
+        ]
+
+        component "core/Ramp" Ramp1 {
+            execution_rate = "Ts"
+        }
+        [
+            position = 6304, 9196
         ]
 
         tag From17 {
@@ -1356,7 +1421,7 @@ out = fmod(in,two_pi);
             direction = in
         }
         [
-            position = 6816, 8996
+            position = 6816, 9028
             hide_name = True
             size = 60, 20
         ]
@@ -1369,18 +1434,6 @@ out = fmod(in,two_pi);
         }
         [
             position = 7172, 9020
-            hide_name = True
-            size = 60, 20
-        ]
-
-        tag From30 {
-            value = "rotDirec"
-            scope = local
-            kind = sp
-            direction = out
-        }
-        [
-            position = 6868, 9228
             hide_name = True
             size = 60, 20
         ]
@@ -1425,29 +1478,19 @@ out = fmod(in,two_pi);
             position = 8776, 9740
         ]
 
-        junction Junction180 sp
-        [
-            position = 6832, 9180
-        ]
-
         junction Junction184 sp
         [
             position = 8744, 9496
         ]
 
-        junction Junction189 sp
-        [
-            position = 6648, 9028
-        ]
-
         junction Junction191 sp
         [
-            position = 7552, 8972
+            position = 7552, 8976
         ]
 
         junction Junction192 sp
         [
-            position = 7552, 8860
+            position = 7552, 8864
         ]
 
         junction Junction193 pe
@@ -1465,14 +1508,44 @@ out = fmod(in,two_pi);
             position = 8344, 9328
         ]
 
-        junction Junction196 sp
+        junction Junction198 sp
         [
-            position = 6648, 9156
+            position = 8640, 9776
         ]
 
-        junction Junction197 sp
+        junction Junction202 sp
         [
-            position = 7360, 9180
+            position = 7552, 9032
+        ]
+
+        junction Junction203 sp
+        [
+            position = 7552, 8920
+        ]
+
+        junction Junction204 sp
+        [
+            position = 7552, 8808
+        ]
+
+        junction Junction206 sp
+        [
+            position = 6832, 9180
+        ]
+
+        junction Junction207 sp
+        [
+            position = 6640, 9156
+        ]
+
+        junction Junction208 sp
+        [
+            position = 6620, 9156
+        ]
+
+        junction Junction209 sp
+        [
+            position = 7360, 9184
         ]
 
         connect Sc_top.D Junction123 as Connection1452
@@ -1540,10 +1613,6 @@ out = fmod(in,two_pi);
         [
             hide_name = True
         ]
-        connect "Low-Pass Filter2.out" Product6.in1 as Connection1887
-        [
-            breakpoints = 8644, 9776; 8644, 9748
-        ]
         connect Product5.out Junction170 as Connection1888
         connect Junction170 Pin.in as Connection1889
         connect Goto32 Junction170 as Connection1890
@@ -1555,7 +1624,6 @@ out = fmod(in,two_pi);
         ]
         connect Goto33 Junction171 as Connection1893
         connect Carrier.out Comparator1.in2 as Connection1930
-        connect Abs2.in From27 as Connection1964
         connect Abs2.out Sum1.in1 as Connection1965
         [
             hide_name = True
@@ -1564,27 +1632,13 @@ out = fmod(in,two_pi);
         [
             hide_name = True
         ]
-        connect Junction180 Gain1.in as Connection1980
-        connect Junction180 Err.in as Connection1988
-        [
-            breakpoints = 6832, 9136
-        ]
-        connect From28 "Low-Pass Filter3.in" as Connection2001
         connect "Low-Pass Filter3.out" Sum2.in1 as Connection2003
         connect Sum2.out "PID controller2.in" as Connection2004
         connect "Low-Pass Filter1.out" Junction184 as Connection2009
         connect Junction184 Product5.in as Connection2010
         connect Iin.in Junction184 as Connection2011
-        connect Sum2.in "PID controller1.out" as Connection2020
-        connect Sum1.out Junction180 as Connection2037
-        connect W_ref.in Junction189 as Connection2038
-        connect Sign1.in Junction189 as Connection2040
         connect Constant6.out BLDC3.load_in as Connection2041
-        connect Goto34 Sign1.out as Connection2042
         connect From29 "C function3.RotDirec" as Connection2043
-        connect Gain1.out Product13.in as Connection2044
-        connect Product13.out "PID controller1.in" as Connection2045
-        connect From30 Product13.in1 as Connection2046
         connect Ia3.n_node BLDC3.a_in as Connection2051
         [
             breakpoints = 8672, 9296; 8704, 9296
@@ -1595,17 +1649,8 @@ out = fmod(in,two_pi);
         connect Product14.out Goto16 as Connection2055
         connect Product16.in "C function3.Sc_top" as Connection2056
         connect Product16.out Goto20 as Connection2057
-        connect Comparator1.out Junction191 as Connection2059
-        [
-            breakpoints = 7552, 9232; 7552, 8972
-        ]
         connect Junction191 Product16.in1 as Connection2060
         connect Product15.in1 Junction192 as Connection2062
-        connect Junction192 Junction191 as Connection2063
-        connect Product14.in1 Junction192 as Connection2064
-        connect Goto17 "C function3.Sa_bot" as Connection2065
-        connect "C function3.Sb_bot" Goto19 as Connection2066
-        connect Goto21 "C function3.Sc_bot" as Connection2067
         connect Sc_bot.S Junction193 as Connection2069
         [
             breakpoints = 8524, 9532
@@ -1632,18 +1677,64 @@ out = fmod(in,two_pi);
         connect "Bus Split5.out" "C function3.HallA" as Connection2090
         connect "Bus Split5.out1" "C function3.HallB" as Connection2091
         connect "Bus Split5.out2" "C function3.HallC" as Connection2092
-        connect w-ref.out Junction196 as Connection2094
-        connect Junction196 Junction189 as Connection2095
+        connect Gain1.out "PID controller1.in" as Connection2101
+        connect "Low-Pass Filter2.out" Junction198 as Connection2102
+        connect Junction198 Product6.in1 as Connection2103
         [
-            breakpoints = 6648, 9156; 6648, 9072
+            breakpoints = 8644, 9776; 8644, 9748
         ]
-        connect Abs3.in Junction196 as Connection2096
-        connect PID.in Junction197 as Connection2098
-        connect Junction197 "PID controller2.out" as Connection2099
+        connect E_torq.in Junction198 as Connection2104
         [
-            breakpoints = 7360, 9180
+            breakpoints = 8644, 9804; 8644, 9776
         ]
-        connect Comparator1.in1 Junction197 as Connection2100
+        connect From28 "Low-Pass Filter3.in" as Connection2124
+        connect Product17.out Goto17 as Connection2125
+        connect Product18.out Goto19 as Connection2126
+        connect Goto21 Product19.out as Connection2127
+        connect "C function3.Sc_bot" Product19.in as Connection2128
+        connect Comparator1.out Junction202 as Connection2129
+        [
+            breakpoints = 7552, 9232
+        ]
+        connect Junction202 Junction191 as Connection2130
+        [
+            breakpoints = 7552, 8972
+        ]
+        connect Product19.in1 Junction202 as Connection2131
+        connect Junction192 Junction203 as Connection2132
+        connect Junction203 Junction191 as Connection2133
+        connect Product18.in1 Junction203 as Connection2134
+        connect Product14.in1 Junction204 as Connection2135
+        connect Junction204 Junction192 as Connection2136
+        connect Product17.in1 Junction204 as Connection2137
+        connect Product17.in "C function3.Sa_bot" as Connection2138
+        connect Product18.in "C function3.Sb_bot" as Connection2139
+        connect Gain1.in Junction206 as Connection2157
+        connect Junction206 Sum1.out as Connection2158
+        connect Err.in Junction206 as Connection2159
+        connect Constant10.out Step_Ramp.val as Connection2161
+        [
+            hide_name = True
+        ]
+        connect Constant11.out Step_Ramp.stepTime as Connection2162
+        [
+            hide_name = True
+        ]
+        connect Junction207 Abs3.in as Connection2164
+        connect Sign1.in Junction207 as Connection2165
+        connect Step_Ramp.out Junction208 as Connection2166
+        connect Junction208 Junction207 as Connection2167
+        connect W_ref.in Junction208 as Connection2168
+        connect Ramp1.out Step_Ramp.t as Connection2169
+        connect Abs2.in From27 as Connection2176
+        connect Goto34 Sign1.out as Connection2177
+        connect Sum2.in "PID controller1.out" as Connection2183
+        connect Comparator1.in1 Junction209 as Connection2184
+        connect Junction209 PID.in as Connection2185
+        [
+            breakpoints = 7360, 9180; 7360, 9140
+        ]
+        connect "PID controller2.out" Junction209 as Connection2186
     }
 
     logically_deleted {
@@ -1658,6 +1749,7 @@ out = fmod(in,two_pi);
 
         "core/Bus Join" {
             inputs = "2"
+            force_tml = "True"
             execution_rate = "inherit"
         }
 
@@ -1727,7 +1819,7 @@ out = fmod(in,two_pi);
         "core/Gain" {
             gain = "1"
             multiplication = "Element-wise(K.*u)"
-            tml_file = "gen_gain"
+            force_tml = "True"
             _tunable = "False"
             execution_rate = "inherit"
         }
@@ -1785,6 +1877,13 @@ out = fmod(in,two_pi);
             execution_rate = "inherit"
         }
 
+        "core/Ramp" {
+            slope = "1"
+            start_time = "0"
+            initial_output = "0"
+            execution_rate = "100e-6"
+        }
+
         "core/Relational operator" {
             relational_op = "=="
             execution_rate = "inherit"
@@ -1808,14 +1907,6 @@ out = fmod(in,two_pi);
             signal_type = "real"
             execution_rate = "100e-6"
             _tunable = "False"
-        }
-
-        "core/Step" {
-            step_time = "1"
-            initial_value = "0"
-            final_value = "1"
-            signal_type = "real"
-            execution_rate = "100e-6"
         }
 
         "core/Sum" {
@@ -1959,8 +2050,14 @@ out = fmod(in,two_pi);
             pwm_enable_inv = "active high"
             model_load_legacy = "0"
             losses_estimation = "False"
+            load_xml_en = "User tables"
             Import_igbt_xml = "not selected"
             Import_diode_xml = "not selected"
+            xml_data = "{}"
+            transistor_data = "{\'package_class\': \'IGBT\', \'variables\': {}, \'constants\': {}, \'custom_tables\': {}, \'turn_on_losses\': {\'type\': \'Table only\', \'formula\': None, \'current_axis\': [0.0, 400.0, 800.0, 1200.0], \'voltage_axis\': [0.0, 1800.0], \'temperature_axis\': [25.0, 125.0], \'energy\': [[[0.0, 0.0, 0.0, 0.0], [0.0, 0.4068, 1.001, 1.822]], [[0.0, 0.0, 0.0, 0.0], [0.0, 0.6317, 1.38, 1.784]]], \'parsed_formula\': \'E_turn_on_losses\'}, \'turn_off_losses\': {\'type\': \'Table only\', \'formula\': None, \'current_axis\': [0.0, 400.0, 800.0, 1200.0], \'voltage_axis\': [0.0, 1800.0], \'temperature_axis\': [25.0, 125.0], \'energy\': [[[0.0, 0.0, 0.0, 0.0], [0.0, 0.6, 0.88, 1.177]], [[0.0, 0.0, 0.0, 0.0], [0.0, 0.9094, 1.25, 1.784]]], \'parsed_formula\': \'E_turn_off_losses\'}, \'conduction_losses\': {\'type\': \'Table only\', \'formula\': None, \'current_axis\': [0.0, 100.0, 200.0, 400.0, 600.0, 700.0, 800.0, 900.0, 1000.0, 1200.0, 1400.0, 1600.0], \'temperature_axis\': [25.0, 125.0], \'voltage_drop\': [[0.0, 1.5, 1.8, 2.3, 2.69, 2.9, 3.1, 3.25, 3.41, 3.73, 4.0, 4.31], [0.0, 1.63, 2.09, 2.77, 3.37, 3.63, 3.8, 4.11, 4.37, 4.81, 5.29, 5.7]], \'parsed_formula\': \'v_conduction_losses\'}, \'c_function_code\': {\'output_fnc\': \'E_turn_on_losses = lookup3d(turn_on_losses_table, i, v, T, current_axis_turn_on_losses, voltage_axis_turn_on_losses, temperature_axis_turn_on_losses, 4, 2, 2);\nE_turn_off_losses = lookup3d(turn_off_losses_table, i, v, T,current_axis_turn_off_losses, voltage_axis_turn_off_losses, temperature_axis_turn_off_losses, 4, 2, 2);\nv_conduction_losses = lookup2d(conduction_losses_table, i, T,current_axis_conduction_losses, temperature_axis_conduction_losses, 12, 2);\ne_t_on = E_turn_on_losses;\ne_t_off = E_turn_off_losses;\nv_ce = v_conduction_losses;\n\', \'arb_defs\': \'real current_axis_turn_off_losses[4] = { 0.0, 400.0, 800.0, 1200.0 };\nreal voltage_axis_turn_off_losses[2] = { 0.0, 1800.0 };\nreal temperature_axis_turn_off_losses[2] = { 25.0, 125.0 };\nreal E_turn_off_losses;\nreal turn_off_losses_table[16] = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.6, 0.88, 1.177, 0.0, 0.0, 0.0, 0.0, 0.0, 0.9094, 1.25, 1.784 };\nreal current_axis_conduction_losses[12] = { 0.0, 100.0, 200.0, 400.0, 600.0, 700.0, 800.0, 900.0, 1000.0, 1200.0, 1400.0, 1600.0 };\nreal temperature_axis_conduction_losses[2] = { 25.0, 125.0 };\nreal v_conduction_losses;\nreal conduction_losses_table[24] = { 0.0, 1.5, 1.8, 2.3, 2.69, 2.9, 3.1, 3.25, 3.41, 3.73, 4.0, 4.31, 0.0, 1.63, 2.09, 2.77, 3.37, 3.63, 3.8, 4.11, 4.37, 4.81, 5.29, 5.7 };\nreal current_axis_turn_on_losses[4] = { 0.0, 400.0, 800.0, 1200.0 };\nreal voltage_axis_turn_on_losses[2] = { 0.0, 1800.0 };\nreal temperature_axis_turn_on_losses[2] = { 25.0, 125.0 };\nreal E_turn_on_losses;\nreal turn_on_losses_table[16] = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.4068, 1.001, 1.822, 0.0, 0.0, 0.0, 0.0, 0.0, 0.6317, 1.38, 1.784 };\n\'}}"
+            diode_data = "{\'package_class\': \'Diode\', \'variables\': {}, \'constants\': {}, \'custom_tables\': {}, \'turn_on_losses\': {\'type\': \'Table only\', \'formula\': None, \'current_axis\': [0.0, 400.0, 800.0, 1200.0], \'voltage_axis\': [0.0, 1800.0], \'temperature_axis\': [25.0, 125.0], \'energy\': [[[0.0, 0.0, 0.0, 0.0], [0.0, 0.4068, 1.001, 1.822]], [[0.0, 0.0, 0.0, 0.0], [0.0, 0.6317, 1.38, 1.784]]], \'parsed_formula\': \'E_turn_on_losses\'}, \'turn_off_losses\': {\'type\': \'Table only\', \'formula\': None, \'current_axis\': [0.0, 400.0, 800.0, 1200.0], \'voltage_axis\': [0.0, 1800.0], \'temperature_axis\': [25.0, 125.0], \'energy\': [[[0.0, 0.0, 0.0, 0.0], [0.0, 0.6, 0.88, 1.177]], [[0.0, 0.0, 0.0, 0.0], [0.0, 0.9094, 1.25, 1.784]]], \'parsed_formula\': \'E_turn_off_losses\'}, \'conduction_losses\': {\'type\': \'Table only\', \'formula\': None, \'current_axis\': [0.0, 100.0, 200.0, 400.0, 600.0, 700.0, 800.0, 900.0, 1000.0, 1200.0, 1400.0, 1600.0], \'temperature_axis\': [25.0, 125.0], \'voltage_drop\': [[0.0, 1.5, 1.8, 2.3, 2.69, 2.9, 3.1, 3.25, 3.41, 3.73, 4.0, 4.31], [0.0, 1.63, 2.09, 2.77, 3.37, 3.63, 3.8, 4.11, 4.37, 4.81, 5.29, 5.7]], \'parsed_formula\': \'v_conduction_losses\'}, \'c_function_code\': {\'output_fnc\': \'E_turn_on_losses = lookup3d(turn_on_losses_table, i, v, T, current_axis_turn_on_losses, voltage_axis_turn_on_losses, temperature_axis_turn_on_losses, 4, 2, 2);\nE_turn_off_losses = lookup3d(turn_off_losses_table, i, v, T,current_axis_turn_off_losses, voltage_axis_turn_off_losses, temperature_axis_turn_off_losses, 4, 2, 2);\nv_conduction_losses = lookup2d(conduction_losses_table, i, T,current_axis_conduction_losses, temperature_axis_conduction_losses, 12, 2);\ne_t_on = E_turn_on_losses;\ne_t_off = E_turn_off_losses;\nv_ce = v_conduction_losses;\n\', \'arb_defs\': \'real current_axis_turn_off_losses[4] = { 0.0, 400.0, 800.0, 1200.0 };\nreal voltage_axis_turn_off_losses[2] = { 0.0, 1800.0 };\nreal temperature_axis_turn_off_losses[2] = { 25.0, 125.0 };\nreal E_turn_off_losses;\nreal turn_off_losses_table[16] = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.6, 0.88, 1.177, 0.0, 0.0, 0.0, 0.0, 0.0, 0.9094, 1.25, 1.784 };\nreal current_axis_conduction_losses[12] = { 0.0, 100.0, 200.0, 400.0, 600.0, 700.0, 800.0, 900.0, 1000.0, 1200.0, 1400.0, 1600.0 };\nreal temperature_axis_conduction_losses[2] = { 25.0, 125.0 };\nreal v_conduction_losses;\nreal conduction_losses_table[24] = { 0.0, 1.5, 1.8, 2.3, 2.69, 2.9, 3.1, 3.25, 3.41, 3.73, 4.0, 4.31, 0.0, 1.63, 2.09, 2.77, 3.37, 3.63, 3.8, 4.11, 4.37, 4.81, 5.29, 5.7 };\nreal current_axis_turn_on_losses[4] = { 0.0, 400.0, 800.0, 1200.0 };\nreal voltage_axis_turn_on_losses[2] = { 0.0, 1800.0 };\nreal temperature_axis_turn_on_losses[2] = { 25.0, 125.0 };\nreal E_turn_on_losses;\nreal turn_on_losses_table[16] = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.4068, 1.001, 1.822, 0.0, 0.0, 0.0, 0.0, 0.0, 0.6317, 1.38, 1.784 };\n\'}}"
+            user_vars_transistor = "User variables transistor"
+            user_vars_diode = "User variables diode"
             i_sw = "[0.0, 6.0, 12.0, 18.0, 24.0]"
             v_sw = "[0.0, 600.0]"
             temp_sw = "[25.0, 50.0, 75.0, 100.0, 125.0]"
@@ -1969,6 +2066,7 @@ out = fmod(in,two_pi);
             et_on_table_out = "[[0.0, 0.0275e-3, 0.15e-3, 0.275e-3, 0.3e-3], [0.35*3.8e-3, 0.4*3.8e-3, 0.8*3.8e-3, 0.68*3.8e-3, 0.9*3.8e-3], [0.65*3.8e-3, 0.9*3.8e-3, 1.2*3.8e-3, 1.5*3.8e-3, 1.7*3.8e-3], [0.9*3.8e-3, 1.3*3.8e-3, 1.7*3.8e-3, 1.9*3.8e-3, 2.25*3.8e-3], [1.1*3.8e-3, 1.7*3.8e-3, 2.1*3.8e-3, 2.3*3.8e-3, 2.5*3.8e-3]]"
             et_off_table_out = "[[0.0, 0.0275e-3, 0.15e-3, 0.275e-3, 0.3e-3], [0.35*2.1e-3, 0.4*2.1e-3, 0.8*2.1e-3, 0.68*2.1e-3, 0.9*2.1e-3], [0.65*2.1e-3, 0.9*2.1e-3, 1.2*2.1e-3, 1.5*2.1e-3, 1.7*2.1e-3], [0.9*2.1e-3, 1.3*2.1e-3, 1.7*2.1e-3, 1.9*2.1e-3, 2.25*2.1e-3], [1.1*2.1e-3, 1.7*2.1e-3, 2.1*2.1e-3, 2.3*2.1e-3, 2.5*2.1e-3]]"
             ed_off_table_out = "[[0.0, 0.0275e-3, 0.15e-3, 0.275e-3, 0.3e-3], [0.35*2.2e-3, 0.4*2.2e-3, 0.8*2.2e-3, 0.68*2.2e-3, 0.9*2.2e-3], [0.65*2.2e-3, 0.9*2.2e-3, 1.2*2.2e-3, 1.5*2.2e-3, 1.7*2.2e-3], [0.9*2.2e-3, 1.3*2.2e-3, 1.7*2.2e-3, 1.9*2.2e-3, 2.25*2.2e-3], [1.1*2.2e-3, 1.7*2.2e-3, 2.1*2.2e-3, 2.3*2.2e-3, 2.5*2.2e-3]]"
+            load_switching_data_from_xml = "Import losses data from xml files"
             temp_estimation = "False"
             thermal_networks_type = "Foster"
             switch_Rth = "[0.159, 0.133, 0.120, 0.038]"
@@ -2001,6 +2099,6 @@ out = fmod(in,two_pi);
         g=9.81                      #gravity acceleration
         
         two_pi = 2*np.pi
-        Tau = 9.545
+        Tau = 5
     ENDCODE
 }

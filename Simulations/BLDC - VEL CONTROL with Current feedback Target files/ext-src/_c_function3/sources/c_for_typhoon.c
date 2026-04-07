@@ -99,3 +99,7 @@ void bldcHallSensor2phComLogic(
         }
     }
 }
+
+void rampStep (double gain, double stepTime, double t, double* out) {
+    *out = fabs(*out) < fabs(gain) ? gain/stepTime * t : gain;
+}
