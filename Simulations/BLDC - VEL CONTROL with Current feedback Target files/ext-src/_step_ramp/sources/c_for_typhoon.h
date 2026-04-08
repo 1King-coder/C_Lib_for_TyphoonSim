@@ -37,5 +37,6 @@ void bldcHallSensor2phComLogic (
 );
 
 void rampStep (double gain, double stepTime, double t, double* out);
+void staircase (double gain, double steps, double riseTime, double t, double* out);
 
 #endif // C_FOR_TYPHOON_LIBRARY_H

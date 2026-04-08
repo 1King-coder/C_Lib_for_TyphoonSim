@@ -105,6 +105,9 @@ void rampStep (double gain, double stepTime, double t, double* out) {
 }
 
 void staircase (double gain, double totalSteps, double riseTime, double t, double* out) {
-    int step = t / (riseTime / totalSteps);
-    *out = fabs(*out) < fabs(gain) ? gain/totalSteps * step : gain;
+    double stepSize = riseTime / totalSteps;
+    int step = t / stepSize;
+
+
+    *out = fabs(*out) < fabs(gain) ? gain/(totalSteps) * step : gain;
 }
