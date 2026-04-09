@@ -122,9 +122,43 @@ void rampStep (double ref, double startValue, double stepTime, double t, double*
 
 }
 
-// void rampLayers (double* layersRefs, double startValue, double* riseTimes, double t, double* out) {
-//
-// }
+void incrementVar (int* count) {
+    *count = *count + 1;
+}
+void decrementVar (int* count) {
+    *count = *count + 1;
+}
+
+int getIndex_double (const double* array, double value) {
+    size_t size = sizeof(array) / sizeof(*array);
+    for (int i = 0; i < size; i++) {
+        if (array[i] == value) {
+            return i;
+        }
+    }
+    return 0;
+}
+
+void rampLayers (double* layersRefs, double startValue, int numOfLayers, LAYERS_TIMES layersTimes, double t, double* out) {
+
+    if (numOfLayers == 1) {
+        rampStep(*layersRefs, startValue, *layersTimes.riseTime, t, out);
+    }
+
+    if (t >= *layersTimes.riseTime + *layersTimes.riseTime) {
+        if (getIndex_double(layersRefs, *layersRefs) == numOfLayers) {
+            *out = *layersRefs;
+            return;
+        }
+        startValue = *layersRefs;
+        *layersRefs = *(layersRefs + 1);
+        *layersTimes.riseTime = *(layersTimes.riseTime + 1);
+        *layersTimes.layerPeriod = *(layersTimes.layerPeriod + 1);
+    }
+    rampStep(*layersRefs, startValue, *layersTimes.riseTime, t, out);
+
+
+}
 
 void staircase (double gain, double totalSteps, double riseTime, double t, double* out) {
     int step = t / (riseTime / totalSteps);

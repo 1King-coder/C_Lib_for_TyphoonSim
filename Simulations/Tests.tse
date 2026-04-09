@@ -49,7 +49,7 @@ model "Tests" {
         cce_type_mapping_uint = "unsigned int"
         cce_type_mapping_int = "int"
         cce_term_var_location = "local"
-        cce_directory = ""
+        cce_directory = "C:/Users/vibar/OneDrive/Área de Trabalho"
         cce_custom_type_int = ""
         cce_custom_type_uint = ""
         cce_custom_type_real = ""
@@ -67,7 +67,7 @@ model "Tests" {
         solver_type = "DAE"
         integration_method = "BDF"
         max_sim_step = 1e-5
-        simulation_time = 0.3
+        simulation_time = 0.4
         abs_tol = 1e-3
         rel_tol = 1e-3
         init_sim_step = 1e-6
@@ -78,96 +78,27 @@ model "Tests" {
     }
 
     component Subsystem Root {
-        component "core/C function" "Staircase ref" {
-            add_src_path = "..\c_for_typhoon.c;..\c_for_typhoon.h"
-            add_src_path_full = "F:\Dev\C_Lib_for_TyphoonSim\c_for_typhoon.c;F:\Dev\C_Lib_for_TyphoonSim\c_for_typhoon.h"
-            arb_defs = "/*Begin code section*/
-
-/*End code section*/"
-            init_fnc = "/*Begin code section*/
-
-/*End code section*/"
-            input_terminals = "real gain;inherit numSteps;inherit riseTime;inherit t;"
-            input_terminals_dimensions = "inherit;inherit;inherit;inherit"
-            input_terminals_feedthrough = "True;True;True;True"
-            input_terminals_show_labels = "True;True;True;True"
-            output_fnc = "/*Begin code section*/
-staircase(gain, numSteps, riseTime, t, &out);
-/*End code section*/"
-            output_terminals_dimensions = "inherit"
-            output_terminals_feedthrough = "True"
-            output_terminals_show_labels = "False"
-            update_fnc = "/*Begin code section*/
-
-/*End code section*/"
-        }
-        [
-            position = 8500, 8184
-            size = 152, 192
-        ]
-
-        component "core/Ramp" Ramp1 {
-            execution_rate = "Ts"
-        }
-        [
-            position = 8352, 8252
-            hide_name = True
-        ]
-
-        component "core/Constant" Constant1 {
-            execution_rate = "Ts"
-            value = "10"
-        }
-        [
-            position = 8352, 8104
-            hide_name = True
-        ]
-
-        component "core/Constant" Constant2 {
-            execution_rate = "Ts"
-            value = "20"
-        }
-        [
-            position = 8352, 8160
-            hide_name = True
-        ]
-
-        component "core/Constant" Constant3 {
-            execution_rate = "Ts"
-            value = "0.2"
-        }
-        [
-            position = 8352, 8212
-            hide_name = True
-        ]
-
-        component "core/Probe" "Staircase Out" {
-        }
-        [
-            position = 8672, 8184
-        ]
-
         component "core/Probe" "Ramp-step Out" {
         }
         [
-            position = 9092, 8296
+            position = 8912, 8056
         ]
 
         component "core/Scope" Scope1 {
-            selected_signals = "[\'Ramp-step Out\']"
-            signals_data = "{\"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"black\", \"legend_visible\": true}, \"signals\": {\"Ramp-step Out\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}}"
+            selected_signals = "[\'Ramp-step-layered\']"
+            signals_data = "{\"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"black\", \"legend_visible\": true}, \"signals\": {\"Ramp-step-layered\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}}"
         }
         [
             position = 9236, 8180
         ]
 
-        component Subsystem Subsystem1 {
+        component Subsystem Ramp-step {
             layout = dynamic
             component "core/Ramp" Ramp1 {
-                execution_rate = "exec_rate"
+                execution_rate = "execution_rate"
             }
             [
-                position = 8040, 8192
+                position = 8032, 8268
                 hide_name = True
             ]
 
@@ -175,24 +106,21 @@ staircase(gain, numSteps, riseTime, t, &out);
                 add_src_path = "..\c_for_typhoon.c;..\c_for_typhoon.h"
                 add_src_path_full = "C:\dev\C-FOR-TYPHOON\c_for_typhoon.c;C:\dev\C-FOR-TYPHOON\c_for_typhoon.h"
                 arb_defs = "/*Begin code section*/
-val = ref;
-stepTime = rise_time;
-startVal = start_value;
+
 /*End code section*/"
                 init_fnc = "/*Begin code section*/
 
 /*End code section*/"
-                input_terminals = "real t;"
-                input_terminals_dimensions = "inherit"
-                input_terminals_feedthrough = "True"
-                input_terminals_show_labels = "True"
+                input_terminals = "inherit ref;inherit startVal;inherit stepTime;real t;"
+                input_terminals_dimensions = "inherit;inherit;inherit;inherit"
+                input_terminals_feedthrough = "True;True;True;True"
+                input_terminals_show_labels = "True;True;True;True"
                 output_fnc = "/*Begin code section*/
-rampStep(val, startVal, stepTime, t, &out);
+rampStep(ref, startVal, stepTime, t, &out);
 /*End code section*/"
                 output_terminals_dimensions = "inherit"
                 output_terminals_feedthrough = "True"
                 output_terminals_show_labels = "False"
-                parameters = "real start_value;real rise_time;real ref;"
                 update_fnc = "/*Begin code section*/
 
 /*End code section*/"
@@ -200,6 +128,33 @@ rampStep(val, startVal, stepTime, t, &out);
             [
                 position = 8192, 8192
                 size = 160, 176
+            ]
+
+            component "core/Constant" Constant1 {
+                execution_rate = "execution_rate"
+                value = "ref"
+            }
+            [
+                position = 8036, 8112
+                hide_name = True
+            ]
+
+            component "core/Constant" Constant2 {
+                execution_rate = "execution_rate"
+                value = "start_value"
+            }
+            [
+                position = 8032, 8160
+                hide_name = True
+            ]
+
+            component "core/Constant" Constant3 {
+                execution_rate = "execution_rate"
+                value = "rise_time"
+            }
+            [
+                position = 8032, 8216
+                hide_name = True
             ]
 
             port Output {
@@ -218,10 +173,11 @@ rampStep(val, startVal, stepTime, t, &out);
 
             connect Step_Ramp.out Output as Connection4
             connect Step_Ramp.t Ramp1.out as Connection7
+            connect Step_Ramp.ref Constant1.out as Connection8
+            connect Step_Ramp.startVal Constant2.out as Connection9
+            connect Step_Ramp.stepTime Constant3.out as Connection10
 
-            exec_rate = "Ts"
-            ref = "50"
-            rise_time = "0.2"
+            execution_rate = "Ts"
 
             mask {
                 description = "<html><head><meta name=\"qrichtext\" content=\"1\"></meta><meta charset=\"utf-8\"></meta><style type=\"text/css\">p, li { white-space: pre-wrap; }hr { height: 1px; border-width: 0; }li.unchecked::marker { content: \"\2610\"; }li.checked::marker { content: \"\2612\"; }</style></head><body style=\"\"><p style=\"margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Ramp-Step signal</p></body></html>"
@@ -230,7 +186,7 @@ rampStep(val, startVal, stepTime, t, &out);
                     label = "Reference"
                     widget = edit
                     type = real
-                    default_value = "0"
+                    default_value = "1"
                     group = "General:1"
                     context typhoonsim {
                     }
@@ -258,7 +214,8 @@ rampStep(val, startVal, stepTime, t, &out);
                     label = "Rise time"
                     widget = edit
                     type = real
-                    default_value = "0"
+                    default_value = "0.1"
+                    unit = "s"
                     group = "General:1"
                     context typhoonsim {
                     }
@@ -268,11 +225,12 @@ rampStep(val, startVal, stepTime, t, &out);
 
                 }
 
-                exec_rate {
+                execution_rate {
                     label = "Execution rate"
                     widget = edit
-                    type = generic
-                    default_value = "0"
+                    type = real
+                    default_value = "100e-6"
+                    unit = "s"
                     group = "General:1"
                     context typhoonsim {
                     }
@@ -302,64 +260,211 @@ rampStep(val, startVal, stepTime, t, &out);
             }
         }
         [
-            position = 8940, 8284
-            size = 96, 88
+            position = 8824, 8056
+            size = 48, 88
         ]
 
-        component "core/C function" Step_Ramp {
-            add_src_path = "..\c_for_typhoon.c;..\c_for_typhoon.h"
-            add_src_path_full = "C:\dev\C-FOR-TYPHOON\c_for_typhoon.c;C:\dev\C-FOR-TYPHOON\c_for_typhoon.h"
-            arb_defs = "/*Begin code section*/
-val = ref;
-stepTime = rise_time;
-startVal = start_value;
-/*End code section*/"
-            init_fnc = "/*Begin code section*/
+        component Subsystem ramp-layers {
+            layout = dynamic
+            component "core/Ramp" Ramp1 {
+                execution_rate = "execution_rate"
+            }
+            [
+                position = 8044, 8272
+                hide_name = True
+            ]
+
+            component "core/Constant" layers_periods {
+                execution_rate = "execution_rate"
+                value = "layers_periods"
+            }
+            [
+                position = 7940, 8264
+            ]
+
+            component "core/Constant" rise_times {
+                execution_rate = "execution_rate"
+                value = "rise_times"
+            }
+            [
+                position = 7940, 8208
+            ]
+
+            component "core/C function" "C function1" {
+                add_src_path = "..\c_for_typhoon.c;..\c_for_typhoon.h"
+                add_src_path_full = "C:\dev\C-FOR-TYPHOON\c_for_typhoon.c;C:\dev\C-FOR-TYPHOON\c_for_typhoon.h"
+                arb_defs = "/*Begin code section*/
 
 /*End code section*/"
-            input_terminals = "real t;"
-            input_terminals_dimensions = "inherit"
-            input_terminals_feedthrough = "True"
-            input_terminals_show_labels = "True"
-            output_fnc = "/*Begin code section*/
-rampStep(val, stepTime, stepTime, t, &out);
+                execution_rate = "execution_rate"
+                init_fnc = "/*Begin code section*/
+LAYERS_TIMES times = {
+    riseTimes,
+    layersPeriods
+};
 /*End code section*/"
-            output_terminals_dimensions = "inherit"
-            output_terminals_feedthrough = "True"
-            output_terminals_show_labels = "False"
-            update_fnc = "/*Begin code section*/
+                input_terminals = "real layersRefs;inherit startValue;inherit riseTimes;inherit layersPeriods;inherit t;"
+                input_terminals_dimensions = "inherit;inherit;inherit;inherit;inherit"
+                input_terminals_feedthrough = "True;True;True;True;True"
+                input_terminals_show_labels = "True;True;True;True;True"
+                output_fnc = "/*Begin code section*/
+rampLayers(layersRefs, startValue, times, t, &out);
+/*End code section*/"
+                output_terminals_dimensions = "1"
+                output_terminals_feedthrough = "True"
+                output_terminals_show_labels = "True"
+                update_fnc = "/*Begin code section*/
 
 /*End code section*/"
-        }
-        [
-            position = 8932, 8088
-            size = 160, 176
-        ]
+            }
+            [
+                position = 8192, 8192
+                size = 136, 136
+            ]
 
-        component "core/Ramp" Ramp2 {
+            component "core/Constant" refs {
+                execution_rate = "execution_rate"
+                value = "refs"
+            }
+            [
+                position = 7928, 8096
+            ]
+
+            component "core/Constant" start_value {
+                execution_rate = "execution_rate"
+                value = "start_value"
+            }
+            [
+                position = 7936, 8152
+            ]
+
+            port output {
+                position = right:1
+                kind = sp
+                direction =  in
+                sp_type {
+                    default = inherit
+                    readonly = True
+                }
+            }
+            [
+                position = 8312, 8192
+            ]
+
+            connect "C function1.out" output as Connection2
+            connect Ramp1.out "C function1.t" as Connection3
+            connect "C function1.layersRefs" refs.out as Connection4
+            connect "C function1.startValue" start_value.out as Connection5
+            connect "C function1.riseTimes" rise_times.out as Connection6
+            connect "C function1.layersPeriods" layers_periods.out as Connection7
+
             execution_rate = "Ts"
+            layers_periods = "[0.1, 0.1, 0.1]"
+            refs = "[1, 2, 3]"
+            rise_times = "[0.05, 0.05, 0.05]"
+
+            mask {
+                description = "<html><head><meta name=\"qrichtext\" content=\"1\"></meta><meta charset=\"utf-8\"></meta><style type=\"text/css\">p, li { white-space: pre-wrap; }hr { height: 1px; border-width: 0; }li.unchecked::marker { content: \"\2610\"; }li.checked::marker { content: \"\2612\"; }</style></head><body style=\"\"><p style=\"margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Layered ramp-steps signal</p></body></html>"
+
+                refs {
+                    label = "Layers steps"
+                    widget = edit
+                    type = real[]
+                    default_value = "0"
+                    group = "General:1"
+                    context typhoonsim {
+                    }
+
+                    context real_time {
+                    }
+
+                }
+
+                layers_periods {
+                    label = "Layers periods"
+                    widget = edit
+                    type = generic
+                    default_value = "0"
+                    group = "General:1"
+                    context typhoonsim {
+                    }
+
+                    context real_time {
+                    }
+
+                }
+
+                rise_times {
+                    label = "layers rise time"
+                    widget = edit
+                    type = generic
+                    default_value = "0"
+                    group = "General:1"
+                    context typhoonsim {
+                    }
+
+                    context real_time {
+                    }
+
+                }
+
+                start_value {
+                    label = "Start value"
+                    widget = edit
+                    type = generic
+                    default_value = "0"
+                    group = "General:1"
+                    context typhoonsim {
+                    }
+
+                    context real_time {
+                    }
+
+                }
+
+                execution_rate {
+                    label = "Execution rate"
+                    widget = edit
+                    type = generic
+                    default_value = "100e-6"
+                    group = "General:1"
+                    context typhoonsim {
+                    }
+
+                    context real_time {
+                    }
+
+                }
+
+                CODE open
+                    from typhoon.apps.schematic_editor.dialogs.component_property_dialogs.general import RegularComponentPropertiesDialog
+                
+                    dialog = RegularComponentPropertiesDialog(
+                        component=component,
+                        property_container=component.masks[-1],
+                        current_diagram=current_diagram
+                    )
+                    dialog.exec()
+                    
+                ENDCODE
+            }
         }
         [
-            position = 8764, 8096
-            hide_name = True
+            position = 8580, 8268
+            size = 48, 96
         ]
 
-        connect Ramp1.out "Staircase ref.t" as Connection1
+        component "core/Probe" Ramp-step-layered {
+        }
         [
-            hide_name = True
+            position = 8700, 8268
         ]
-        connect Constant3.out "Staircase ref.riseTime" as Connection2
-        connect Constant2.out "Staircase ref.numSteps" as Connection3
-        connect "Staircase ref.out" "Staircase Out.in" as Connection4
-        connect Constant1.out "Staircase ref.gain" as Connection5
-        connect Ramp2.out Step_Ramp.t as Connection7
-        connect "Ramp-step Out.in" Step_Ramp.out as Connection8
-        [
-        ]
-    }
 
-    logically_deleted {
-        "Subsystem1"
+        connect Ramp-step.Output "Ramp-step Out.in" as Connection8
+        [
+            breakpoints = 8848, 8056; 8864, 8056
+        ]
+        connect Ramp-step-layered.in ramp-layers.output as Connection9
     }
 
     default {

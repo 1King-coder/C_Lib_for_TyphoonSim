@@ -41,18 +41,15 @@ void bldcHallSensor2phComLogic (
 void rampStep (double ref, double startValue, double stepTime, double t, double* out);
 
 typedef struct {
-    double riseTime;
-    double layerPeriod;
+    double* riseTime;
+    double* layerPeriod;
 } LAYERS_TIMES;
 
-void rampLayers (double* layersRefs, double startValue, LAYERS_TIMES* layersTimes, double t, double* out);
+void rampLayers (double* layersRefs, double startValue, LAYERS_TIMES layersTimes, double t, double* out);
 
 void staircase (double gain, double steps, double riseTime, double t, double* out);
 
-typedef struct  {
-    double y1;
-    double x1;
-} PID_I;
+int getIndex_double (const double* array, double value);
 
 double P_Controller (double kp, double u);
 double I_Controller (double ki, double u, double* u1, double* y1);
