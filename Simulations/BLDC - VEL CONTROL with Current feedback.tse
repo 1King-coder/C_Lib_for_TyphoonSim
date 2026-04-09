@@ -1,7 +1,7 @@
 version = 4.2
 
 //
-// Saved by sw version: 2025.4
+// Saved by sw version: 2026.1 SP1
 //
 
 model "BLDC - VEL CONTROL with Current feedback" {
@@ -1011,12 +1011,12 @@ out = fmod(in,two_pi);
             init_fnc = "/*Begin code section*/
 
 /*End code section*/"
-            input_terminals = "real val;inherit stepTime;inherit t;"
-            input_terminals_dimensions = "inherit;inherit;inherit"
-            input_terminals_feedthrough = "True;True;True"
-            input_terminals_show_labels = "True;True;True"
+            input_terminals = "real val;inherit stepTime;inherit startVal;inherit t;"
+            input_terminals_dimensions = "inherit;inherit;inherit;inherit"
+            input_terminals_feedthrough = "True;True;True;True"
+            input_terminals_show_labels = "True;True;True;True"
             output_fnc = "/*Begin code section*/
-rampStep(val, stepTime, t, &out);
+rampStep(val, startVal, stepTime, t, &out);
 /*End code section*/"
             output_terminals_dimensions = "inherit"
             output_terminals_feedthrough = "True"
@@ -1044,7 +1044,7 @@ rampStep(val, stepTime, t, &out);
             value = "0.2"
         }
         [
-            position = 6096, 9156
+            position = 6092, 9140
             hide_name = True
         ]
 
@@ -1052,7 +1052,7 @@ rampStep(val, stepTime, t, &out);
             execution_rate = "Ts"
         }
         [
-            position = 6096, 9216
+            position = 6104, 9236
         ]
 
         component "core/Current Measurement" Ia {
@@ -1086,7 +1086,7 @@ rampStep(val, stepTime, t, &out);
             frequency = "10"
         }
         [
-            position = 8504, 9864
+            position = 7884, 9296
             hide_name = True
         ]
 
@@ -1094,7 +1094,7 @@ rampStep(val, stepTime, t, &out);
             frequency = "10"
         }
         [
-            position = 8504, 9908
+            position = 7884, 9340
             hide_name = True
         ]
 
@@ -1102,26 +1102,26 @@ rampStep(val, stepTime, t, &out);
             frequency = "10"
         }
         [
-            position = 8504, 9948
+            position = 7884, 9380
             hide_name = True
         ]
 
         component "core/Probe" Ia_bldc {
         }
         [
-            position = 8588, 9848
+            position = 7968, 9280
         ]
 
         component "core/Probe" Ib_bldc {
         }
         [
-            position = 8592, 9908
+            position = 7972, 9340
         ]
 
         component "core/Probe" Ic_bldc {
         }
         [
-            position = 8592, 9960
+            position = 7972, 9392
         ]
 
         component "core/C function" "Staircase ref" {
@@ -1203,8 +1203,8 @@ staircase(gain, numSteps, riseTime, t, &out);
         ]
 
         component "core/Scope" "Ctrl syst1" {
-            selected_signals = "[\'V_Sa_top\', \'V_Sa_bot\']"
-            signals_data = "{\"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"black\", \"legend_visible\": true}, \"signals\": {\"V_Sa_top\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}}, \"V_Sa_bot\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#FF0000\"}, \"display\": {\"2\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}}"
+            selected_signals = "[\'V_sa_top\', \'V_sb_bot\']"
+            signals_data = "{\"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"black\", \"legend_visible\": true}, \"signals\": {\"V_sa_top\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}}, \"V_sb_bot\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#FF0000\"}, \"display\": {\"2\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}}"
         }
         [
             position = 8116, 8980
@@ -1263,6 +1263,31 @@ PID(kp, ki, kd, &out, in);
         [
             position = 6632, 9496
             hide_name = True
+        ]
+
+        component "core/Constant" Constant18 {
+            execution_rate = "Ts"
+            value = "0"
+        }
+        [
+            position = 6088, 9184
+            hide_name = True
+        ]
+
+        component "core/Voltage Measurement" V_sa_top {
+        }
+        [
+            position = 8092, 9288
+            rotation = right
+            size = 64, 32
+        ]
+
+        component "core/Voltage Measurement" V_sb_bot {
+        }
+        [
+            position = 8268, 9388
+            rotation = right
+            size = 64, 32
         ]
 
         tag From17 {
@@ -1670,7 +1695,7 @@ PID(kp, ki, kd, &out, in);
             direction = out
         }
         [
-            position = 8384, 9868
+            position = 7764, 9300
             hide_name = True
             size = 60, 20
         ]
@@ -1682,7 +1707,7 @@ PID(kp, ki, kd, &out, in);
             direction = out
         }
         [
-            position = 8384, 9904
+            position = 7764, 9336
             hide_name = True
             size = 60, 20
         ]
@@ -1694,7 +1719,7 @@ PID(kp, ki, kd, &out, in);
             direction = out
         }
         [
-            position = 8384, 9944
+            position = 7764, 9376
             hide_name = True
             size = 60, 20
         ]
@@ -1799,14 +1824,34 @@ PID(kp, ki, kd, &out, in);
             position = 8344, 9328
         ]
 
-        junction Junction213 sp
-        [
-            position = 6620, 9156
-        ]
-
         junction Junction214 pe
         [
             position = 8160, 9296
+        ]
+
+        junction Junction215 sp
+        [
+            position = 6620, 9160
+        ]
+
+        junction Junction216 pe
+        [
+            position = 8092, 9156
+        ]
+
+        junction Junction217 pe
+        [
+            position = 8160, 9320
+        ]
+
+        junction Junction218 pe
+        [
+            position = 8344, 9352
+        ]
+
+        junction Junction219 pe
+        [
+            position = 8344, 9496
         ]
 
         connect Sc_top.D Junction123 as Connection1452
@@ -1906,7 +1951,6 @@ PID(kp, ki, kd, &out, in);
         [
             breakpoints = 8160, 9532
         ]
-        connect Sb_bot.S Junction193 as Connection2071
         connect rad_to_rpm2.out Junction194 as Connection2081
         connect Junction194 Goto25 as Connection2082
         [
@@ -1950,10 +1994,6 @@ PID(kp, ki, kd, &out, in);
         connect Gain1.in Junction206 as Connection2157
         connect Junction206 Sum1.out as Connection2158
         connect Err.in Junction206 as Connection2159
-        connect Constant10.out Step_Ramp.val as Connection2161
-        [
-            hide_name = True
-        ]
         connect Constant11.out Step_Ramp.stepTime as Connection2162
         [
             hide_name = True
@@ -1977,7 +2017,6 @@ PID(kp, ki, kd, &out, in);
         connect Ic.p_node Junction210 as Connection2192
         connect Ic.n_node BLDC3.c_in as Connection2193
         connect Ib.n_node BLDC3.b_in as Connection2194
-        connect Sb_bot.D Junction211 as Connection2195
         connect Junction211 Sb_top.S as Connection2196
         connect Ib.p_node Junction211 as Connection2197
         [
@@ -2000,21 +2039,7 @@ PID(kp, ki, kd, &out, in);
         connect Constant3.out "Staircase ref.riseTime" as Connection2
         connect Constant2.out "Staircase ref.numSteps" as Connection3
         connect Constant1.out "Staircase ref.gain" as Connection5
-        connect Junction207 Junction213 as Connection2216
-        connect Junction213 W_ref.in as Connection2217
-        [
-            breakpoints = 6620, 9156
-        ]
-        connect Step_Ramp.out Junction213 as Connection2218
-        [
-            breakpoints = 6360, 9156; 6620, 9156
-        ]
         connect Pmax.in Constant12.out as Connection2219
-        connect Junction146 Ia4.n_node as Connection2229
-        [
-            breakpoints = 7952, 9156
-        ]
-        connect Sa_bot.D Junction214 as Connection2231
         connect Junction214 Sa_top.S as Connection2232
         connect Ia.p_node Junction214 as Connection2233
         connect Constant13.out "C function4.kp" as Connection2234
@@ -2025,6 +2050,32 @@ PID(kp, ki, kd, &out, in);
         connect Constant15.out "C function4.kd" as Connection2236
         connect Gain1.out "PID controller1.in" as Connection2237
         connect "PID controller1.out" Sum2.in as Connection2238
+        connect Constant18.out Step_Ramp.startVal as Connection2250
+        connect Step_Ramp.val Constant10.out as Connection2254
+        [
+            breakpoints = 6136, 9092
+        ]
+        connect W_ref.in Junction215 as Connection2256
+        connect Junction215 Junction207 as Connection2257
+        [
+            breakpoints = 6620, 9152; 6620, 9156
+        ]
+        connect Step_Ramp.out Junction215 as Connection2258
+        connect Junction146 Junction216 as Connection2259
+        connect Junction216 Ia4.n_node as Connection2260
+        [
+            breakpoints = 7952, 9156
+        ]
+        connect V_sa_top.p_node Junction216 as Connection2261
+        connect Sa_bot.D Junction217 as Connection2262
+        connect Junction217 Junction214 as Connection2263
+        connect V_sa_top.n_node Junction217 as Connection2264
+        connect Sb_bot.D Junction218 as Connection2265
+        connect Junction218 Junction211 as Connection2266
+        connect V_sb_bot.p_node Junction218 as Connection2267
+        connect Sb_bot.S Junction219 as Connection2268
+        connect Junction219 Junction193 as Connection2269
+        connect V_sb_bot.n_node Junction219 as Connection2270
     }
 
     logically_deleted {
@@ -2035,14 +2086,14 @@ PID(kp, ki, kd, &out, in);
         "Constant1"
         "Constant2"
         "Constant3"
-        "Connection1"
-        "Connection2"
-        "Connection3"
-        "Connection5"
         "C function4"
         "Constant13"
         "Constant14"
         "Constant15"
+        "Connection1"
+        "Connection2"
+        "Connection3"
+        "Connection5"
         "Connection2234"
         "Connection2235"
         "Connection2236"
@@ -2055,6 +2106,7 @@ PID(kp, ki, kd, &out, in);
 
         "core/Bus Join" {
             inputs = "2"
+            force_tml = "True"
             execution_rate = "inherit"
         }
 
@@ -2124,7 +2176,7 @@ PID(kp, ki, kd, &out, in);
         "core/Gain" {
             gain = "1"
             multiplication = "Element-wise(K.*u)"
-            tml_file = "gen_gain"
+            force_tml = "True"
             _tunable = "False"
             execution_rate = "inherit"
         }
@@ -2355,8 +2407,14 @@ PID(kp, ki, kd, &out, in);
             pwm_enable_inv = "active high"
             model_load_legacy = "0"
             losses_estimation = "False"
+            load_xml_en = "User tables"
             Import_igbt_xml = "not selected"
             Import_diode_xml = "not selected"
+            xml_data = "{}"
+            transistor_data = "{\'package_class\': \'IGBT\', \'variables\': {}, \'constants\': {}, \'custom_tables\': {}, \'turn_on_losses\': {\'type\': \'Table only\', \'formula\': None, \'current_axis\': [0.0, 400.0, 800.0, 1200.0], \'voltage_axis\': [0.0, 1800.0], \'temperature_axis\': [25.0, 125.0], \'energy\': [[[0.0, 0.0, 0.0, 0.0], [0.0, 0.4068, 1.001, 1.822]], [[0.0, 0.0, 0.0, 0.0], [0.0, 0.6317, 1.38, 1.784]]], \'parsed_formula\': \'E_turn_on_losses\'}, \'turn_off_losses\': {\'type\': \'Table only\', \'formula\': None, \'current_axis\': [0.0, 400.0, 800.0, 1200.0], \'voltage_axis\': [0.0, 1800.0], \'temperature_axis\': [25.0, 125.0], \'energy\': [[[0.0, 0.0, 0.0, 0.0], [0.0, 0.6, 0.88, 1.177]], [[0.0, 0.0, 0.0, 0.0], [0.0, 0.9094, 1.25, 1.784]]], \'parsed_formula\': \'E_turn_off_losses\'}, \'conduction_losses\': {\'type\': \'Table only\', \'formula\': None, \'current_axis\': [0.0, 100.0, 200.0, 400.0, 600.0, 700.0, 800.0, 900.0, 1000.0, 1200.0, 1400.0, 1600.0], \'temperature_axis\': [25.0, 125.0], \'voltage_drop\': [[0.0, 1.5, 1.8, 2.3, 2.69, 2.9, 3.1, 3.25, 3.41, 3.73, 4.0, 4.31], [0.0, 1.63, 2.09, 2.77, 3.37, 3.63, 3.8, 4.11, 4.37, 4.81, 5.29, 5.7]], \'parsed_formula\': \'v_conduction_losses\'}, \'c_function_code\': {\'output_fnc\': \'E_turn_on_losses = lookup3d(turn_on_losses_table, i, v, T, current_axis_turn_on_losses, voltage_axis_turn_on_losses, temperature_axis_turn_on_losses, 4, 2, 2);\nE_turn_off_losses = lookup3d(turn_off_losses_table, i, v, T,current_axis_turn_off_losses, voltage_axis_turn_off_losses, temperature_axis_turn_off_losses, 4, 2, 2);\nv_conduction_losses = lookup2d(conduction_losses_table, i, T,current_axis_conduction_losses, temperature_axis_conduction_losses, 12, 2);\ne_t_on = E_turn_on_losses;\ne_t_off = E_turn_off_losses;\nv_ce = v_conduction_losses;\n\', \'arb_defs\': \'real current_axis_turn_off_losses[4] = { 0.0, 400.0, 800.0, 1200.0 };\nreal voltage_axis_turn_off_losses[2] = { 0.0, 1800.0 };\nreal temperature_axis_turn_off_losses[2] = { 25.0, 125.0 };\nreal E_turn_off_losses;\nreal turn_off_losses_table[16] = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.6, 0.88, 1.177, 0.0, 0.0, 0.0, 0.0, 0.0, 0.9094, 1.25, 1.784 };\nreal current_axis_conduction_losses[12] = { 0.0, 100.0, 200.0, 400.0, 600.0, 700.0, 800.0, 900.0, 1000.0, 1200.0, 1400.0, 1600.0 };\nreal temperature_axis_conduction_losses[2] = { 25.0, 125.0 };\nreal v_conduction_losses;\nreal conduction_losses_table[24] = { 0.0, 1.5, 1.8, 2.3, 2.69, 2.9, 3.1, 3.25, 3.41, 3.73, 4.0, 4.31, 0.0, 1.63, 2.09, 2.77, 3.37, 3.63, 3.8, 4.11, 4.37, 4.81, 5.29, 5.7 };\nreal current_axis_turn_on_losses[4] = { 0.0, 400.0, 800.0, 1200.0 };\nreal voltage_axis_turn_on_losses[2] = { 0.0, 1800.0 };\nreal temperature_axis_turn_on_losses[2] = { 25.0, 125.0 };\nreal E_turn_on_losses;\nreal turn_on_losses_table[16] = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.4068, 1.001, 1.822, 0.0, 0.0, 0.0, 0.0, 0.0, 0.6317, 1.38, 1.784 };\n\'}}"
+            diode_data = "{\'package_class\': \'Diode\', \'variables\': {}, \'constants\': {}, \'custom_tables\': {}, \'turn_on_losses\': {\'type\': \'Table only\', \'formula\': None, \'current_axis\': [0.0, 400.0, 800.0, 1200.0], \'voltage_axis\': [0.0, 1800.0], \'temperature_axis\': [25.0, 125.0], \'energy\': [[[0.0, 0.0, 0.0, 0.0], [0.0, 0.4068, 1.001, 1.822]], [[0.0, 0.0, 0.0, 0.0], [0.0, 0.6317, 1.38, 1.784]]], \'parsed_formula\': \'E_turn_on_losses\'}, \'turn_off_losses\': {\'type\': \'Table only\', \'formula\': None, \'current_axis\': [0.0, 400.0, 800.0, 1200.0], \'voltage_axis\': [0.0, 1800.0], \'temperature_axis\': [25.0, 125.0], \'energy\': [[[0.0, 0.0, 0.0, 0.0], [0.0, 0.6, 0.88, 1.177]], [[0.0, 0.0, 0.0, 0.0], [0.0, 0.9094, 1.25, 1.784]]], \'parsed_formula\': \'E_turn_off_losses\'}, \'conduction_losses\': {\'type\': \'Table only\', \'formula\': None, \'current_axis\': [0.0, 100.0, 200.0, 400.0, 600.0, 700.0, 800.0, 900.0, 1000.0, 1200.0, 1400.0, 1600.0], \'temperature_axis\': [25.0, 125.0], \'voltage_drop\': [[0.0, 1.5, 1.8, 2.3, 2.69, 2.9, 3.1, 3.25, 3.41, 3.73, 4.0, 4.31], [0.0, 1.63, 2.09, 2.77, 3.37, 3.63, 3.8, 4.11, 4.37, 4.81, 5.29, 5.7]], \'parsed_formula\': \'v_conduction_losses\'}, \'c_function_code\': {\'output_fnc\': \'E_turn_on_losses = lookup3d(turn_on_losses_table, i, v, T, current_axis_turn_on_losses, voltage_axis_turn_on_losses, temperature_axis_turn_on_losses, 4, 2, 2);\nE_turn_off_losses = lookup3d(turn_off_losses_table, i, v, T,current_axis_turn_off_losses, voltage_axis_turn_off_losses, temperature_axis_turn_off_losses, 4, 2, 2);\nv_conduction_losses = lookup2d(conduction_losses_table, i, T,current_axis_conduction_losses, temperature_axis_conduction_losses, 12, 2);\ne_t_on = E_turn_on_losses;\ne_t_off = E_turn_off_losses;\nv_ce = v_conduction_losses;\n\', \'arb_defs\': \'real current_axis_turn_off_losses[4] = { 0.0, 400.0, 800.0, 1200.0 };\nreal voltage_axis_turn_off_losses[2] = { 0.0, 1800.0 };\nreal temperature_axis_turn_off_losses[2] = { 25.0, 125.0 };\nreal E_turn_off_losses;\nreal turn_off_losses_table[16] = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.6, 0.88, 1.177, 0.0, 0.0, 0.0, 0.0, 0.0, 0.9094, 1.25, 1.784 };\nreal current_axis_conduction_losses[12] = { 0.0, 100.0, 200.0, 400.0, 600.0, 700.0, 800.0, 900.0, 1000.0, 1200.0, 1400.0, 1600.0 };\nreal temperature_axis_conduction_losses[2] = { 25.0, 125.0 };\nreal v_conduction_losses;\nreal conduction_losses_table[24] = { 0.0, 1.5, 1.8, 2.3, 2.69, 2.9, 3.1, 3.25, 3.41, 3.73, 4.0, 4.31, 0.0, 1.63, 2.09, 2.77, 3.37, 3.63, 3.8, 4.11, 4.37, 4.81, 5.29, 5.7 };\nreal current_axis_turn_on_losses[4] = { 0.0, 400.0, 800.0, 1200.0 };\nreal voltage_axis_turn_on_losses[2] = { 0.0, 1800.0 };\nreal temperature_axis_turn_on_losses[2] = { 25.0, 125.0 };\nreal E_turn_on_losses;\nreal turn_on_losses_table[16] = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.4068, 1.001, 1.822, 0.0, 0.0, 0.0, 0.0, 0.0, 0.6317, 1.38, 1.784 };\n\'}}"
+            user_vars_transistor = "User variables transistor"
+            user_vars_diode = "User variables diode"
             i_sw = "[0.0, 6.0, 12.0, 18.0, 24.0]"
             v_sw = "[0.0, 600.0]"
             temp_sw = "[25.0, 50.0, 75.0, 100.0, 125.0]"
@@ -2365,12 +2423,37 @@ PID(kp, ki, kd, &out, in);
             et_on_table_out = "[[0.0, 0.0275e-3, 0.15e-3, 0.275e-3, 0.3e-3], [0.35*3.8e-3, 0.4*3.8e-3, 0.8*3.8e-3, 0.68*3.8e-3, 0.9*3.8e-3], [0.65*3.8e-3, 0.9*3.8e-3, 1.2*3.8e-3, 1.5*3.8e-3, 1.7*3.8e-3], [0.9*3.8e-3, 1.3*3.8e-3, 1.7*3.8e-3, 1.9*3.8e-3, 2.25*3.8e-3], [1.1*3.8e-3, 1.7*3.8e-3, 2.1*3.8e-3, 2.3*3.8e-3, 2.5*3.8e-3]]"
             et_off_table_out = "[[0.0, 0.0275e-3, 0.15e-3, 0.275e-3, 0.3e-3], [0.35*2.1e-3, 0.4*2.1e-3, 0.8*2.1e-3, 0.68*2.1e-3, 0.9*2.1e-3], [0.65*2.1e-3, 0.9*2.1e-3, 1.2*2.1e-3, 1.5*2.1e-3, 1.7*2.1e-3], [0.9*2.1e-3, 1.3*2.1e-3, 1.7*2.1e-3, 1.9*2.1e-3, 2.25*2.1e-3], [1.1*2.1e-3, 1.7*2.1e-3, 2.1*2.1e-3, 2.3*2.1e-3, 2.5*2.1e-3]]"
             ed_off_table_out = "[[0.0, 0.0275e-3, 0.15e-3, 0.275e-3, 0.3e-3], [0.35*2.2e-3, 0.4*2.2e-3, 0.8*2.2e-3, 0.68*2.2e-3, 0.9*2.2e-3], [0.65*2.2e-3, 0.9*2.2e-3, 1.2*2.2e-3, 1.5*2.2e-3, 1.7*2.2e-3], [0.9*2.2e-3, 1.3*2.2e-3, 1.7*2.2e-3, 1.9*2.2e-3, 2.25*2.2e-3], [1.1*2.2e-3, 1.7*2.2e-3, 2.1*2.2e-3, 2.3*2.2e-3, 2.5*2.2e-3]]"
+            load_switching_data_from_xml = "Import losses data from xml files"
             temp_estimation = "False"
             thermal_networks_type = "Foster"
             switch_Rth = "[0.159, 0.133, 0.120, 0.038]"
             switch_Tth = "[1.1e-1, 1.56e-2, 1.35e-3, 1.51e-4]"
             switch_Cth = "[0.0029, 0.0097, 0.1068, 0.8500]"
             loss_exec_rate = "100e-6"
+        }
+
+        "core/Voltage Measurement" {
+            signal_access = "inherit"
+            bw_limit = "False"
+            frequency = "10e3"
+            comparator_enable = "False"
+            operator = "greater"
+            threshold = "0"
+            cmp_abs_value = "False"
+            feed_forward = "false"
+            sig_output = "False"
+            sig_output_filt_and_full_bw = "False"
+            execution_rate = "100e-6"
+            addr = "0"
+            nd_msr_estimation = "false"
+            dev_cpl_msr = "false"
+            host_device = "0"
+            output_to_device = "0"
+            dev_cpl_index = "0"
+            dev_cpl_var_nb = "0"
+            visible = "True"
+            override_signal_name = "False"
+            signal_name = ""
         }
     }
 

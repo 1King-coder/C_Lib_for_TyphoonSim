@@ -38,7 +38,15 @@ void bldcHallSensor2phComLogic (
     Rotation_Direction direction
 );
 
-void rampStep (double gain, double stepTime, double t, double* out);
+void rampStep (double ref, double startValue, double stepTime, double t, double* out);
+
+typedef struct {
+    double riseTime;
+    double layerPeriod;
+} LAYERS_TIMES;
+
+void rampLayers (double* layersRefs, double startValue, LAYERS_TIMES* layersTimes, double t, double* out);
+
 void staircase (double gain, double steps, double riseTime, double t, double* out);
 
 typedef struct  {

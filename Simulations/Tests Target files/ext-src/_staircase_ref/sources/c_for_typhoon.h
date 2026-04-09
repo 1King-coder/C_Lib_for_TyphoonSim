@@ -2,6 +2,8 @@
 #define C_FOR_TYPHOON_LIBRARY_H
 #include <stdint.h>
 
+#define samp_freq 5e-6
+
 typedef struct {
     unsigned char Sa_top;
     unsigned char Sa_bot;
@@ -36,7 +38,26 @@ void bldcHallSensor2phComLogic (
     Rotation_Direction direction
 );
 
-void rampStep (double gain, double stepTime, double t, double* out);
+void rampStep (double ref, double startValue, double stepTime, double t, double* out);
+
+typedef struct {
+    double riseTime;
+    double layerPeriod;
+} LAYERS_TIMES;
+
+void rampLayers (double* layersRefs, double startValue, LAYERS_TIMES* layersTimes, double t, double* out);
+
 void staircase (double gain, double steps, double riseTime, double t, double* out);
+
+typedef struct  {
+    double y1;
+    double x1;
+} PID_I;
+
+double P_Controller (double kp, double u);
+double I_Controller (double ki, double u, double* u1, double* y1);
+double D_Controller (double kd, double u, double* u1, double* y1);
+
+void PID (double kp, double ki, double kd, double* out, double in);
 
 #endif // C_FOR_TYPHOON_LIBRARY_H

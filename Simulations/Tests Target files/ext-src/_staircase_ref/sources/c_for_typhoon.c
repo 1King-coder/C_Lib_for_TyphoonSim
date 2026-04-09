@@ -100,14 +100,59 @@ void bldcHallSensor2phComLogic(
     }
 }
 
-void rampStep (double gain, double stepTime, double t, double* out) {
-    *out = fabs(*out) < fabs(gain) ? gain/stepTime * t : gain;
+void rampStep (double ref, double startValue, double stepTime, double t, double* out) {
+    int8_t sign = ref - startValue > 0 ? 1 : -1;
+
+    *out = *out == 0 ? startValue : *out;
+
+    switch (sign) {
+        case 1: {
+            *out = *out < ref ? startValue + sign * ref/stepTime * t : ref;
+            break;
+        }
+        case -1: {
+            *out = *out > ref ? startValue + sign * ref/stepTime * t : ref;
+            break;
+        }
+        default: {
+            *out = 0;
+            break;
+        }
+    }
+
 }
 
+// void rampLayers (double* layersRefs, double startValue, double* riseTimes, double t, double* out) {
+//
+// }
+
 void staircase (double gain, double totalSteps, double riseTime, double t, double* out) {
-    double stepSize = riseTime / totalSteps;
-    int step = t / stepSize;
+    int step = t / (riseTime / totalSteps);
+    *out = fabs(*out) < fabs(gain) ? gain/totalSteps * step : gain;
+}
 
+double P_Controller (double kp, double u) {
+    return kp*u;
+}
 
-    *out = fabs(*out) < fabs(gain) ? gain/(totalSteps) * step : gain;
+double I_Controller (double ki, double u, double* u1, double* y1) {
+    double out = 0.5 * (2*ki*samp_freq*(u + *u1) + 2* *y1);
+    *u1 = u;
+    *y1 = out;
+    return out;
+}
+
+double D_Controller (double kd, double u, double* u1, double* y1) {
+    double out = 1/samp_freq * (2*kd*(u - *u1) - *y1 * samp_freq);
+    *u1 = u;
+    *y1 = out;
+    return out;
+}
+
+void PID (double kp, double ki, double kd, double* out, double in) {
+    double u1, y1;
+    u1 = 0;
+    y1 = 0;
+
+    *out = P_Controller (kp, in) + ki !=0 ? I_Controller(ki, in, &u1, &y1) : 0 + kd !=0 ? D_Controller(kd, in, &u1, &y1) : 0;
 }

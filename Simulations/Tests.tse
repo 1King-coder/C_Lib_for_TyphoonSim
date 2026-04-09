@@ -1,7 +1,7 @@
 version = 4.2
 
 //
-// Saved by sw version: 2025.4
+// Saved by sw version: 2026.1 SP1
 //
 
 model "Tests" {
@@ -67,7 +67,7 @@ model "Tests" {
         solver_type = "DAE"
         integration_method = "BDF"
         max_sim_step = 1e-5
-        simulation_time = 0.2
+        simulation_time = 0.3
         abs_tol = 1e-3
         rel_tol = 1e-3
         init_sim_step = 1e-6
@@ -147,6 +147,203 @@ staircase(gain, numSteps, riseTime, t, &out);
             position = 8672, 8184
         ]
 
+        component "core/Probe" "Ramp-step Out" {
+        }
+        [
+            position = 9092, 8296
+        ]
+
+        component "core/Scope" Scope1 {
+            selected_signals = "[\'Ramp-step Out\']"
+            signals_data = "{\"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"black\", \"legend_visible\": true}, \"signals\": {\"Ramp-step Out\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}}"
+        }
+        [
+            position = 9236, 8180
+        ]
+
+        component Subsystem Subsystem1 {
+            layout = dynamic
+            component "core/Ramp" Ramp1 {
+                execution_rate = "exec_rate"
+            }
+            [
+                position = 8040, 8192
+                hide_name = True
+            ]
+
+            component "core/C function" Step_Ramp {
+                add_src_path = "..\c_for_typhoon.c;..\c_for_typhoon.h"
+                add_src_path_full = "C:\dev\C-FOR-TYPHOON\c_for_typhoon.c;C:\dev\C-FOR-TYPHOON\c_for_typhoon.h"
+                arb_defs = "/*Begin code section*/
+val = ref;
+stepTime = rise_time;
+startVal = start_value;
+/*End code section*/"
+                init_fnc = "/*Begin code section*/
+
+/*End code section*/"
+                input_terminals = "real t;"
+                input_terminals_dimensions = "inherit"
+                input_terminals_feedthrough = "True"
+                input_terminals_show_labels = "True"
+                output_fnc = "/*Begin code section*/
+rampStep(val, startVal, stepTime, t, &out);
+/*End code section*/"
+                output_terminals_dimensions = "inherit"
+                output_terminals_feedthrough = "True"
+                output_terminals_show_labels = "False"
+                parameters = "real start_value;real rise_time;real ref;"
+                update_fnc = "/*Begin code section*/
+
+/*End code section*/"
+            }
+            [
+                position = 8192, 8192
+                size = 160, 176
+            ]
+
+            port Output {
+                label = "output"
+                position = right:1
+                kind = sp
+                direction =  in
+                sp_type {
+                    default = inherit
+                    readonly = True
+                }
+            }
+            [
+                position = 8320, 8192
+            ]
+
+            connect Step_Ramp.out Output as Connection4
+            connect Step_Ramp.t Ramp1.out as Connection7
+
+            exec_rate = "Ts"
+            ref = "50"
+            rise_time = "0.2"
+
+            mask {
+                description = "<html><head><meta name=\"qrichtext\" content=\"1\"></meta><meta charset=\"utf-8\"></meta><style type=\"text/css\">p, li { white-space: pre-wrap; }hr { height: 1px; border-width: 0; }li.unchecked::marker { content: \"\2610\"; }li.checked::marker { content: \"\2612\"; }</style></head><body style=\"\"><p style=\"margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Ramp-Step signal</p></body></html>"
+
+                ref {
+                    label = "Reference"
+                    widget = edit
+                    type = real
+                    default_value = "0"
+                    group = "General:1"
+                    context typhoonsim {
+                    }
+
+                    context real_time {
+                    }
+
+                }
+
+                start_value {
+                    label = "Start value"
+                    widget = edit
+                    type = real
+                    default_value = "0"
+                    group = "General:1"
+                    context typhoonsim {
+                    }
+
+                    context real_time {
+                    }
+
+                }
+
+                rise_time {
+                    label = "Rise time"
+                    widget = edit
+                    type = real
+                    default_value = "0"
+                    group = "General:1"
+                    context typhoonsim {
+                    }
+
+                    context real_time {
+                    }
+
+                }
+
+                exec_rate {
+                    label = "Execution rate"
+                    widget = edit
+                    type = generic
+                    default_value = "0"
+                    group = "General:1"
+                    context typhoonsim {
+                    }
+
+                    context real_time {
+                    }
+
+                }
+
+                CODE open
+                    from typhoon.apps.schematic_editor.dialogs.component_property_dialogs.general import RegularComponentPropertiesDialog
+                
+                    dialog = RegularComponentPropertiesDialog(
+                        component=component,
+                        property_container=component.masks[-1],
+                        current_diagram=current_diagram
+                    )
+                    dialog.exec()
+                    
+                ENDCODE
+
+                CODE init
+                    start_value = start_value
+                    rise_time = rise_time
+                    ref = ref
+                ENDCODE
+            }
+        }
+        [
+            position = 8940, 8284
+            size = 96, 88
+        ]
+
+        component "core/C function" Step_Ramp {
+            add_src_path = "..\c_for_typhoon.c;..\c_for_typhoon.h"
+            add_src_path_full = "C:\dev\C-FOR-TYPHOON\c_for_typhoon.c;C:\dev\C-FOR-TYPHOON\c_for_typhoon.h"
+            arb_defs = "/*Begin code section*/
+val = ref;
+stepTime = rise_time;
+startVal = start_value;
+/*End code section*/"
+            init_fnc = "/*Begin code section*/
+
+/*End code section*/"
+            input_terminals = "real t;"
+            input_terminals_dimensions = "inherit"
+            input_terminals_feedthrough = "True"
+            input_terminals_show_labels = "True"
+            output_fnc = "/*Begin code section*/
+rampStep(val, stepTime, stepTime, t, &out);
+/*End code section*/"
+            output_terminals_dimensions = "inherit"
+            output_terminals_feedthrough = "True"
+            output_terminals_show_labels = "False"
+            update_fnc = "/*Begin code section*/
+
+/*End code section*/"
+        }
+        [
+            position = 8932, 8088
+            size = 160, 176
+        ]
+
+        component "core/Ramp" Ramp2 {
+            execution_rate = "Ts"
+        }
+        [
+            position = 8764, 8096
+            hide_name = True
+        ]
+
         connect Ramp1.out "Staircase ref.t" as Connection1
         [
             hide_name = True
@@ -155,6 +352,14 @@ staircase(gain, numSteps, riseTime, t, &out);
         connect Constant2.out "Staircase ref.numSteps" as Connection3
         connect "Staircase ref.out" "Staircase Out.in" as Connection4
         connect Constant1.out "Staircase ref.gain" as Connection5
+        connect Ramp2.out Step_Ramp.t as Connection7
+        connect "Ramp-step Out.in" Step_Ramp.out as Connection8
+        [
+        ]
+    }
+
+    logically_deleted {
+        "Subsystem1"
     }
 
     default {
@@ -219,6 +424,11 @@ staircase(gain, numSteps, riseTime, t, &out);
             initial_output = "0"
             execution_rate = "100e-6"
         }
+
+        "core/Scope" {
+            signals_data = "{}"
+            selected_signals = "[]"
+        }
     }
 
     CODE model_init
@@ -229,5 +439,8 @@ staircase(gain, numSteps, riseTime, t, &out);
         # To print information to the console, use info()
         
         Ts =5e-5
+        rise_time = 0.2
+        ref = 50
+        start_value = 0
     ENDCODE
 }

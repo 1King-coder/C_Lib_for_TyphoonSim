@@ -100,9 +100,31 @@ void bldcHallSensor2phComLogic(
     }
 }
 
-void rampStep (double gain, double stepTime, double t, double* out) {
-    *out = fabs(*out) < fabs(gain) ? gain/stepTime * t : gain;
+void rampStep (double ref, double startValue, double stepTime, double t, double* out) {
+    int8_t sign = ref - startValue > 0 ? 1 : -1;
+
+    *out = *out == 0 ? startValue : *out;
+
+    switch (sign) {
+        case 1: {
+            *out = *out < ref ? startValue + sign * ref/stepTime * t : ref;
+            break;
+        }
+        case -1: {
+            *out = *out > ref ? startValue + sign * ref/stepTime * t : ref;
+            break;
+        }
+        default: {
+            *out = 0;
+            break;
+        }
+    }
+
 }
+
+// void rampLayers (double* layersRefs, double startValue, double* riseTimes, double t, double* out) {
+//
+// }
 
 void staircase (double gain, double totalSteps, double riseTime, double t, double* out) {
     int step = t / (riseTime / totalSteps);
