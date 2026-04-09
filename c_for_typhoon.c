@@ -108,3 +108,29 @@ void staircase (double gain, double totalSteps, double riseTime, double t, doubl
     int step = t / (riseTime / totalSteps);
     *out = fabs(*out) < fabs(gain) ? gain/totalSteps * step : gain;
 }
+
+double P_Controller (double kp, double u) {
+    return kp*u;
+}
+
+double I_Controller (double ki, double u, double* u1, double* y1) {
+    double out = 0.5 * (2*ki*samp_freq*(u + *u1) + 2* *y1);
+    *u1 = u;
+    *y1 = out;
+    return out;
+}
+
+double D_Controller (double kd, double u, double* u1, double* y1) {
+    double out = 1/samp_freq * (2*kd*(u - *u1) - *y1 * samp_freq);
+    *u1 = u;
+    *y1 = out;
+    return out;
+}
+
+void PID (double kp, double ki, double kd, double* out, double in) {
+    double u1, y1;
+    u1 = 0;
+    y1 = 0;
+
+    *out = P_Controller (kp, in) + ki !=0 ? I_Controller(ki, in, &u1, &y1) : 0 + kd !=0 ? D_Controller(kd, in, &u1, &y1) : 0;
+}

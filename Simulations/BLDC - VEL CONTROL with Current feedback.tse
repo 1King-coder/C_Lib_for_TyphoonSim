@@ -49,7 +49,7 @@ model "BLDC - VEL CONTROL with Current feedback" {
         cce_type_mapping_uint = "unsigned int"
         cce_type_mapping_int = "int"
         cce_term_var_location = "local"
-        cce_directory = ""
+        cce_directory = "C:/Users/vibar/OneDrive/Área de Trabalho"
         cce_custom_type_int = ""
         cce_custom_type_uint = ""
         cce_custom_type_real = ""
@@ -67,7 +67,7 @@ model "BLDC - VEL CONTROL with Current feedback" {
         solver_type = "DAE"
         integration_method = "BDF"
         max_sim_step = 1e-4
-        simulation_time = 2
+        simulation_time = 1
         abs_tol = 1e-3
         rel_tol = 1e-3
         init_sim_step = 1e-6
@@ -827,7 +827,7 @@ out = fmod(in,two_pi);
             kp = "6"
         }
         [
-            position = 7056, 9180
+            position = 7004, 9184
             hide_name = True
         ]
 
@@ -1041,10 +1041,10 @@ rampStep(val, stepTime, t, &out);
 
         component "core/Constant" Constant11 {
             execution_rate = "Ts"
-            value = "0.1"
+            value = "0.2"
         }
         [
-            position = 6096, 9172
+            position = 6096, 9156
             hide_name = True
         ]
 
@@ -1052,7 +1052,7 @@ rampStep(val, stepTime, t, &out);
             execution_rate = "Ts"
         }
         [
-            position = 6096, 9212
+            position = 6096, 9216
         ]
 
         component "core/Current Measurement" Ia {
@@ -1148,7 +1148,7 @@ staircase(gain, numSteps, riseTime, t, &out);
 /*End code section*/"
         }
         [
-            position = 6260, 9368
+            position = 6208, 9644
             size = 152, 192
         ]
 
@@ -1156,7 +1156,7 @@ staircase(gain, numSteps, riseTime, t, &out);
             execution_rate = "Ts"
         }
         [
-            position = 6112, 9436
+            position = 6060, 9712
             hide_name = True
         ]
 
@@ -1165,7 +1165,7 @@ staircase(gain, numSteps, riseTime, t, &out);
             value = "188"
         }
         [
-            position = 6112, 9288
+            position = 6060, 9564
             hide_name = True
         ]
 
@@ -1174,7 +1174,7 @@ staircase(gain, numSteps, riseTime, t, &out);
             value = "100"
         }
         [
-            position = 6112, 9344
+            position = 6060, 9620
             hide_name = True
         ]
 
@@ -1183,13 +1183,13 @@ staircase(gain, numSteps, riseTime, t, &out);
             value = "0.1"
         }
         [
-            position = 6112, 9396
+            position = 6060, 9672
             hide_name = True
         ]
 
         component "core/Constant" Constant12 {
             execution_rate = "Ts"
-            value = "BLDC_Pnom"
+            value = "P_op"
         }
         [
             position = 9008, 9476
@@ -1200,6 +1200,69 @@ staircase(gain, numSteps, riseTime, t, &out);
         }
         [
             position = 9108, 9476
+        ]
+
+        component "core/Scope" "Ctrl syst1" {
+            selected_signals = "[\'V_Sa_top\', \'V_Sa_bot\']"
+            signals_data = "{\"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"black\", \"legend_visible\": true}, \"signals\": {\"V_Sa_top\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}}, \"V_Sa_bot\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#FF0000\"}, \"display\": {\"2\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}}"
+        }
+        [
+            position = 8116, 8980
+        ]
+
+        component "core/C function" "C function4" {
+            add_src_path = "..\c_for_typhoon.c;..\c_for_typhoon.h"
+            add_src_path_full = "F:\Dev\C_Lib_for_TyphoonSim\c_for_typhoon.c;F:\Dev\C_Lib_for_TyphoonSim\c_for_typhoon.h"
+            arb_defs = "/*Begin code section*/
+
+/*End code section*/"
+            init_fnc = "/*Begin code section*/
+
+/*End code section*/"
+            input_terminals = "real kp;real ki;real kd;real in;"
+            input_terminals_dimensions = "inherit;inherit;inherit;inherit"
+            input_terminals_feedthrough = "True;True;True;True"
+            input_terminals_show_labels = "True;True;True;True"
+            output_fnc = "/*Begin code section*/
+PID(kp, ki, kd, &out, in);
+/*End code section*/"
+            output_terminals_dimensions = "inherit"
+            output_terminals_feedthrough = "True"
+            output_terminals_show_labels = "False"
+            update_fnc = "/*Begin code section*/
+
+/*End code section*/"
+        }
+        [
+            position = 6804, 9432
+            size = 120, 128
+        ]
+
+        component "core/Constant" Constant13 {
+            execution_rate = "Ts"
+            value = "6"
+        }
+        [
+            position = 6628, 9396
+            hide_name = True
+        ]
+
+        component "core/Constant" Constant14 {
+            execution_rate = "Ts"
+            value = "26.23"
+        }
+        [
+            position = 6624, 9444
+            hide_name = True
+        ]
+
+        component "core/Constant" Constant15 {
+            execution_rate = "Ts"
+            value = "0"
+        }
+        [
+            position = 6632, 9496
+            hide_name = True
         ]
 
         tag From17 {
@@ -1736,14 +1799,14 @@ staircase(gain, numSteps, riseTime, t, &out);
             position = 8344, 9328
         ]
 
-        junction Junction212 pe
-        [
-            position = 8160, 9296
-        ]
-
         junction Junction213 sp
         [
             position = 6620, 9156
+        ]
+
+        junction Junction214 pe
+        [
+            position = 8160, 9296
         ]
 
         connect Sc_top.D Junction123 as Connection1452
@@ -1771,10 +1834,6 @@ staircase(gain, numSteps, riseTime, t, &out);
         connect Junction146 Junction123 as Connection1624
         [
             breakpoints = 8160, 9156; 8344, 9156
-        ]
-        connect Ia4.n_node Junction146 as Connection1625
-        [
-            breakpoints = 7952, 9156; 8160, 9156
         ]
         connect Ia4.out Goto27 as Connection1626
         connect gnd1.node Vs5.n_node as Connection1679
@@ -1857,7 +1916,6 @@ staircase(gain, numSteps, riseTime, t, &out);
         connect "Bus Split5.out" "C function3.HallA" as Connection2090
         connect "Bus Split5.out1" "C function3.HallB" as Connection2091
         connect "Bus Split5.out2" "C function3.HallC" as Connection2092
-        connect Gain1.out "PID controller1.in" as Connection2101
         connect "Low-Pass Filter2.out" Junction198 as Connection2102
         connect Junction198 Product6.in1 as Connection2103
         [
@@ -1905,13 +1963,15 @@ staircase(gain, numSteps, riseTime, t, &out);
         connect Ramp1.out Step_Ramp.t as Connection2169
         connect Abs2.in From27 as Connection2176
         connect Goto34 Sign1.out as Connection2177
-        connect Sum2.in "PID controller1.out" as Connection2183
         connect Comparator1.in1 Junction209 as Connection2184
         connect Junction209 PID.in as Connection2185
         [
             breakpoints = 7360, 9180; 7360, 9140
         ]
         connect "PID controller2.out" Junction209 as Connection2186
+        [
+            breakpoints = 7288, 9184; 7360, 9184
+        ]
         connect Sc_top.S Junction210 as Connection2190
         connect Junction210 Sc_bot.D as Connection2191
         connect Ic.p_node Junction210 as Connection2192
@@ -1924,9 +1984,6 @@ staircase(gain, numSteps, riseTime, t, &out);
             breakpoints = 8380, 9328; 8344, 9328
         ]
         connect Ia.n_node BLDC3.a_in as Connection2198
-        connect Sa_top.S Junction212 as Connection2199
-        connect Junction212 Sa_bot.D as Connection2200
-        connect Ia.p_node Junction212 as Connection2201
         connect Goto37 Ic.out as Connection2202
         connect Goto36 Ib.out as Connection2203
         connect Goto35 Ia.out as Connection2204
@@ -1953,6 +2010,21 @@ staircase(gain, numSteps, riseTime, t, &out);
             breakpoints = 6360, 9156; 6620, 9156
         ]
         connect Pmax.in Constant12.out as Connection2219
+        connect Junction146 Ia4.n_node as Connection2229
+        [
+            breakpoints = 7952, 9156
+        ]
+        connect Sa_bot.D Junction214 as Connection2231
+        connect Junction214 Sa_top.S as Connection2232
+        connect Ia.p_node Junction214 as Connection2233
+        connect Constant13.out "C function4.kp" as Connection2234
+        connect Constant14.out "C function4.ki" as Connection2235
+        [
+            breakpoints = 6656, 9432; 6728, 9432
+        ]
+        connect Constant15.out "C function4.kd" as Connection2236
+        connect Gain1.out "PID controller1.in" as Connection2237
+        connect "PID controller1.out" Sum2.in as Connection2238
     }
 
     logically_deleted {
@@ -1967,6 +2039,13 @@ staircase(gain, numSteps, riseTime, t, &out);
         "Connection2"
         "Connection3"
         "Connection5"
+        "C function4"
+        "Constant13"
+        "Constant14"
+        "Constant15"
+        "Connection2234"
+        "Connection2235"
+        "Connection2236"
     }
 
     default {
@@ -2318,10 +2397,11 @@ staircase(gain, numSteps, riseTime, t, &out);
         g=9.81                      #gravity acceleration
         
         two_pi = 2*np.pi
-        Tau = 9.545
+        Tau = 8.9
         efficiency = 0.78
         BLDC_Pnom = 250
-        Pmin = BLDC_Pnom * efficiency
-        w_max = Pmin/Tau * 60/(two_pi)
+        P_op = BLDC_Pnom
+        Pmax_out = P_op * efficiency
+        w_max = P_op/Tau * 60/(two_pi)
     ENDCODE
 }
