@@ -67,7 +67,7 @@ model "BLDC - VEL CONTROL with Current feedback" {
         solver_type = "DAE"
         integration_method = "BDF"
         max_sim_step = 1e-4
-        simulation_time = 1
+        simulation_time = 2
         abs_tol = 1e-3
         rel_tol = 1e-3
         init_sim_step = 1e-6
@@ -241,15 +241,6 @@ Sc_bot = switches.Sc_bot;
             rotation = down
             hide_name = True
             scale = -1, -1
-        ]
-
-        component "core/Constant" Constant6 {
-            execution_rate = "Ts"
-            value = "Tau"
-        }
-        [
-            position = 8720, 9156
-            hide_name = True
         ]
 
         component "core/Scope" "BLDC measures3" {
@@ -718,8 +709,8 @@ out = fmod(in,two_pi);
         ]
 
         component "core/Scope" "Torque and Power measures" {
-            selected_signals = "[\'E_torq\', \'Pin\', \'Pout\', \'Iin\', \'Pmax\']"
-            signals_data = "{\"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"white\", \"legend_visible\": true}, \"signals\": {\"E_torq\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}}, \"Pin\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#0099FF\"}, \"display\": {\"2\": \"solid\"}}, \"Pout\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#00CC00\"}, \"display\": {\"2\": \"solid\"}}, \"Iin\": {\"viewports\": [3], \"type\": \"analog\", \"color\": {\"3\": \"#FF0000\"}, \"display\": {\"3\": \"solid\"}}, \"Pmax\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#FF0000\"}, \"display\": {\"2\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}}"
+            selected_signals = "[\'E_torq\', \'Pin\', \'Pout\', \'Iin\', \'Pmax\', \'BLDC3.mechanical torque\']"
+            signals_data = "{\"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"white\", \"legend_visible\": true}, \"signals\": {\"E_torq\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}}, \"Pin\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#0099FF\"}, \"display\": {\"2\": \"solid\"}}, \"Pout\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#00CC00\"}, \"display\": {\"2\": \"solid\"}}, \"Iin\": {\"viewports\": [3], \"type\": \"analog\", \"color\": {\"3\": \"#FF0000\"}, \"display\": {\"3\": \"solid\"}}, \"Pmax\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#FF0000\"}, \"display\": {\"2\": \"solid\"}}, \"BLDC3.mechanical torque\": {\"viewports\": [4], \"type\": \"analog\", \"color\": {\"4\": \"#FF0000\"}, \"display\": {\"4\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}}"
         }
         [
             position = 7948, 8932
@@ -926,17 +917,17 @@ out = fmod(in,two_pi);
             frequency = "10"
         }
         [
-            position = 7064, 9260
+            position = 7056, 9296
             hide_name = True
         ]
 
         component "core/PID controller" "PID controller2" {
             filt_coef = "10"
-            ki = "700"
-            kp = "10"
+            ki = "174.9726"
+            kp = "4.9987"
         }
         [
-            position = 7248, 9180
+            position = 7244, 9224
             hide_name = True
         ]
 
@@ -944,7 +935,7 @@ out = fmod(in,two_pi);
             signs = "+-"
         }
         [
-            position = 7152, 9180
+            position = 7144, 9216
             hide_name = True
         ]
 
@@ -1207,7 +1198,7 @@ staircase(gain, numSteps, riseTime, t, &out);
             signals_data = "{\"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"black\", \"legend_visible\": true}, \"signals\": {\"V_sa_top\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}}, \"V_sb_bot\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#FF0000\"}, \"display\": {\"2\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}}"
         }
         [
-            position = 8116, 8980
+            position = 8084, 8944
         ]
 
         component "core/C function" "C function4" {
@@ -1288,6 +1279,73 @@ PID(kp, ki, kd, &out, in);
             position = 8268, 9388
             rotation = right
             size = 64, 32
+        ]
+
+        component "Utils_Vitor/Layered Ramp-Step" "Layered Ramp-Step1" {
+            execution_rate = "Ts"
+            layers_periods = "[0.1, 0.1, 0.1, 0.1, 0.1, 0.1]"
+            num_of_layers = "5"
+            refs = "[w_max * 0.2, w_max * 0.4, w_max * 0.6, w_max * 0.8, w_max]"
+            rise_times = "[0.1, 0.1, 0.1, 0.1, 0.1]"
+        }
+        [
+            position = 6476, 9000
+            hide_name = True
+            size = 112, 88
+        ]
+
+        component "core/C function" "C function5" {
+            add_src_path = "..\c_for_typhoon.c;..\c_for_typhoon.h"
+            add_src_path_full = "F:\Dev\C_Lib_for_TyphoonSim\c_for_typhoon.c;F:\Dev\C_Lib_for_TyphoonSim\c_for_typhoon.h"
+            arb_defs = "/*Begin code section*/
+
+/*End code section*/"
+            init_fnc = "/*Begin code section*/
+
+/*End code section*/"
+            input_terminals = "real omega;inherit omega_b;inherit omega_max;"
+            input_terminals_dimensions = "inherit;inherit;inherit"
+            input_terminals_feedthrough = "True;True;True"
+            input_terminals_show_labels = "True;True;True"
+            output_fnc = "/*Begin code section*/
+torque_motor_ebike(omega, omega_b, omega_max, &out);
+/*End code section*/"
+            output_terminals_dimensions = "inherit"
+            output_terminals_feedthrough = "True"
+            output_terminals_show_labels = "False"
+            update_fnc = "/*Begin code section*/
+
+/*End code section*/"
+        }
+        [
+            position = 8464, 8952
+            size = 200, 120
+        ]
+
+        component "core/Constant" Constant19 {
+            execution_rate = "Ts"
+            value = "w_max"
+        }
+        [
+            position = 8244, 9036
+        ]
+
+        component "core/Constant" Constant20 {
+            execution_rate = "Ts"
+            value = "w_max*0.5"
+        }
+        [
+            position = 8244, 8964
+        ]
+
+        component "Utils_Vitor/Ramp-Step" Ramp-Step1 {
+            execution_rate = "Ts"
+            ref = "w_max"
+            rise_time = "1"
+        }
+        [
+            position = 6464, 9132
+            size = 72, 88
         ]
 
         tag From17 {
@@ -1623,7 +1681,7 @@ PID(kp, ki, kd, &out, in);
             direction = out
         }
         [
-            position = 6992, 9260
+            position = 6984, 9296
             hide_name = True
             size = 60, 20
         ]
@@ -1724,6 +1782,18 @@ PID(kp, ki, kd, &out, in);
             size = 60, 20
         ]
 
+        tag From33 {
+            value = "mech_speed_rpm3"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 8264, 8916
+            hide_name = True
+            size = 124, 20
+        ]
+
         junction Junction123 pe
         [
             position = 8344, 9164
@@ -1804,16 +1874,6 @@ PID(kp, ki, kd, &out, in);
             position = 6832, 9180
         ]
 
-        junction Junction207 sp
-        [
-            position = 6640, 9156
-        ]
-
-        junction Junction209 sp
-        [
-            position = 7360, 9184
-        ]
-
         junction Junction210 pe
         [
             position = 8528, 9360
@@ -1827,11 +1887,6 @@ PID(kp, ki, kd, &out, in);
         junction Junction214 pe
         [
             position = 8160, 9296
-        ]
-
-        junction Junction215 sp
-        [
-            position = 6620, 9160
         ]
 
         junction Junction216 pe
@@ -1852,6 +1907,21 @@ PID(kp, ki, kd, &out, in);
         junction Junction219 pe
         [
             position = 8344, 9496
+        ]
+
+        junction Junction220 sp
+        [
+            position = 6640, 9156
+        ]
+
+        junction Junction224 sp
+        [
+            position = 7356, 9224
+        ]
+
+        junction Junction225 sp
+        [
+            position = 6624, 9152
         ]
 
         connect Sc_top.D Junction123 as Connection1452
@@ -1933,7 +2003,6 @@ PID(kp, ki, kd, &out, in);
         connect "Low-Pass Filter1.out" Junction184 as Connection2009
         connect Junction184 Product5.in as Connection2010
         connect Iin.in Junction184 as Connection2011
-        connect Constant6.out BLDC3.load_in as Connection2041
         connect From29 "C function3.RotDirec" as Connection2043
         connect Product14.in "C function3.Sa_top" as Connection2052
         connect Product15.in "C function3.Sb_top" as Connection2053
@@ -1998,20 +2067,9 @@ PID(kp, ki, kd, &out, in);
         [
             hide_name = True
         ]
-        connect Junction207 Abs3.in as Connection2164
-        connect Sign1.in Junction207 as Connection2165
         connect Ramp1.out Step_Ramp.t as Connection2169
         connect Abs2.in From27 as Connection2176
         connect Goto34 Sign1.out as Connection2177
-        connect Comparator1.in1 Junction209 as Connection2184
-        connect Junction209 PID.in as Connection2185
-        [
-            breakpoints = 7360, 9180; 7360, 9140
-        ]
-        connect "PID controller2.out" Junction209 as Connection2186
-        [
-            breakpoints = 7288, 9184; 7360, 9184
-        ]
         connect Sc_top.S Junction210 as Connection2190
         connect Junction210 Sc_bot.D as Connection2191
         connect Ic.p_node Junction210 as Connection2192
@@ -2049,18 +2107,11 @@ PID(kp, ki, kd, &out, in);
         ]
         connect Constant15.out "C function4.kd" as Connection2236
         connect Gain1.out "PID controller1.in" as Connection2237
-        connect "PID controller1.out" Sum2.in as Connection2238
         connect Constant18.out Step_Ramp.startVal as Connection2250
         connect Step_Ramp.val Constant10.out as Connection2254
         [
             breakpoints = 6136, 9092
         ]
-        connect W_ref.in Junction215 as Connection2256
-        connect Junction215 Junction207 as Connection2257
-        [
-            breakpoints = 6620, 9152; 6620, 9156
-        ]
-        connect Step_Ramp.out Junction215 as Connection2258
         connect Junction146 Junction216 as Connection2259
         connect Junction216 Ia4.n_node as Connection2260
         [
@@ -2076,11 +2127,40 @@ PID(kp, ki, kd, &out, in);
         connect Sb_bot.S Junction219 as Connection2268
         connect Junction219 Junction193 as Connection2269
         connect V_sb_bot.n_node Junction219 as Connection2270
+        connect Sign1.in Junction220 as Connection2273
+        connect Junction220 Abs3.in as Connection2274
+        [
+            breakpoints = 6640, 9156
+        ]
+        connect Constant19.out "C function5.omega_max" as Connection2279
+        connect Constant20.out "C function5.omega_b" as Connection2280
+        connect From33 "C function5.omega" as Connection2281
+        connect "PID controller1.out" Sum2.in as Connection2293
+        connect Comparator1.in1 Junction224 as Connection2294
+        connect Junction224 PID.in as Connection2295
+        [
+            breakpoints = 7356, 9224
+        ]
+        connect "PID controller2.out" Junction224 as Connection2296
+        connect "C function5.out" BLDC3.load_in as Connection2297
+        connect W_ref.in Junction225 as Connection2299
+        [
+            breakpoints = 6624, 9028
+        ]
+        connect Junction225 Junction220 as Connection2300
+        [
+            breakpoints = 6624, 9156
+        ]
+        connect "Layered Ramp-Step1.Layered ramp-step" Junction225 as Connection2301
     }
 
     logically_deleted {
         "Constant8"
         "Changing ref"
+        "Step_Ramp"
+        "Constant10"
+        "Constant11"
+        "Ramp1"
         "Staircase ref"
         "Ramp2"
         "Constant1"
@@ -2090,6 +2170,9 @@ PID(kp, ki, kd, &out, in);
         "Constant13"
         "Constant14"
         "Constant15"
+        "Constant18"
+        "Connection2162"
+        "Connection2169"
         "Connection1"
         "Connection2"
         "Connection3"
@@ -2097,6 +2180,9 @@ PID(kp, ki, kd, &out, in);
         "Connection2234"
         "Connection2235"
         "Connection2236"
+        "Connection2250"
+        "Connection2254"
+        "Ramp-Step1"
     }
 
     default {
@@ -2379,6 +2465,15 @@ PID(kp, ki, kd, &out, in);
             signal_name = ""
         }
 
+        "Utils_Vitor/Layered Ramp-Step" {
+            num_of_layers = "0"
+            refs = "0"
+            layers_periods = "0"
+            rise_times = "0"
+            start_value = "0"
+            execution_rate = "100e-6"
+        }
+
         "core/MOSFET" {
             signal_access = "inherit"
             switches_option = "False"
@@ -2432,6 +2527,13 @@ PID(kp, ki, kd, &out, in);
             loss_exec_rate = "100e-6"
         }
 
+        "Utils_Vitor/Ramp-Step" {
+            ref = "1"
+            start_value = "0"
+            rise_time = "0.1"
+            execution_rate = "100e-6"
+        }
+
         "core/Voltage Measurement" {
             signal_access = "inherit"
             bw_limit = "False"
@@ -2483,8 +2585,8 @@ PID(kp, ki, kd, &out, in);
         Tau = 8.9
         efficiency = 0.78
         BLDC_Pnom = 250
-        P_op = BLDC_Pnom
-        Pmax_out = P_op * efficiency
-        w_max = P_op/Tau * 60/(two_pi)
+        P_op = BLDC_Pnom 
+        Pmax_out = P_op * efficiency 
+        w_max = Pmax_out/Tau * 60/(two_pi)
     ENDCODE
 }

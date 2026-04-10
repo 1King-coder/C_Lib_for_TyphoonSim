@@ -1,10 +1,8 @@
-version = 4.2
-
 //
 // Saved by sw version: 2026.1 SP1
 //
 
-model "Tests" {
+library "Utils_Vitor" {
     configuration {
         hil_device = "VHIL+"
         hil_configuration_id = 1
@@ -49,25 +47,25 @@ model "Tests" {
         cce_type_mapping_uint = "unsigned int"
         cce_type_mapping_int = "int"
         cce_term_var_location = "local"
-        cce_directory = "C:/Users/vibar/OneDrive/Área de Trabalho"
+        cce_directory = ""
         cce_custom_type_int = ""
         cce_custom_type_uint = ""
         cce_custom_type_real = ""
         tunable_params = "component defined"
         sp_compiler_type = "C compiler"
         sig_stim = "off"
-        export_resource_list = ""
+        export_resource_list = "..\c_for_typhoon.h;..\c_for_typhoon.c"
         export_dependency_list = ""
         excluded_resource_list = ""
         excluded_component_from_locking_list = ""
-        export_out_file = ""
+        export_out_file = "Exported\Signals Custom Lib.atlib"
         export_lock_top_level = True
         export_encrypt_library = True
-        export_encrypt_resources = True
+        export_encrypt_resources = False
         solver_type = "DAE"
         integration_method = "BDF"
-        max_sim_step = 1e-5
-        simulation_time = 0.4
+        max_sim_step = 1e-4
+        simulation_time = 1.0
         abs_tol = 1e-3
         rel_tol = 1e-3
         init_sim_step = 1e-6
@@ -78,21 +76,7 @@ model "Tests" {
     }
 
     component Subsystem Root {
-        component "core/Probe" "Ramp-step Out" {
-        }
-        [
-            position = 8912, 8056
-        ]
-
-        component "core/Scope" Scope1 {
-            selected_signals = "[\'Ramp-step-layered\', \'Ramp-step Out\']"
-            signals_data = "{\"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"black\", \"legend_visible\": true}, \"signals\": {\"Ramp-step-layered\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}}, \"Ramp-step Out\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#00CC00\"}, \"display\": {\"1\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}}"
-        }
-        [
-            position = 9236, 8180
-        ]
-
-        component Subsystem Ramp-step {
+        component Subsystem Ramp-Step {
             layout = dynamic
             component "core/Ramp" Ramp1 {
                 execution_rate = "execution_rate"
@@ -260,11 +244,11 @@ rampStep(ref, startVal, stepTime, t, &out);
             }
         }
         [
-            position = 8812, 8056
+            position = 4412, 4416
             size = 72, 88
         ]
 
-        component Subsystem ramp-layers {
+        component Subsystem "Layered Ramp-Step" {
             layout = dynamic
             component "core/Ramp" time {
                 execution_rate = "execution_rate"
@@ -478,37 +462,30 @@ rampStepLayers(layersRefs, startValue, numOfLayers, times, t, &out);
             }
         }
         [
-            position = 8520, 8132
+            position = 4668, 4416
             size = 112, 88
         ]
 
-        component "core/Probe" Ramp-step-layered {
+        comment Comment1 START Consider using the Category component to better organize your library items in the tree. ENDCOMMENT 
+        [
+            position = 4192, 4192
+        ]
+
+        scheme_area Area1 {
+            title = <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">p, li { white-space: pre-wrap; }hr { height: 1px; border-width: 0; }li.unchecked::marker { content: "\2610"; }li.checked::marker { content: "\2612"; }</style></head><body style=" font-family:'Tahoma'; font-size:14pt; font-weight:100; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0;text-indent:0px;">Ramp-step</p></body></html>
         }
         [
-            position = 8700, 8268
+            position = 4412, 4408
+            size = 220, 216
         ]
 
-        component "Utils_Vitor/Layered Ramp-Step" "Layered Ramp-Step1" {
-            execution_rate = "Ts"
-            layers_periods = "[0.1, 0.1, 0.1, 0.1, 0.2, 0.1]"
-            num_of_layers = "6"
-            refs = "[1, 2, 3, 2, 1, 0]"
-            rise_times = "[0.05, 0.2, 0.05, 0.05, 0.05, 0.05]"
+        scheme_area Area2 {
+            title = <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">p, li { white-space: pre-wrap; }hr { height: 1px; border-width: 0; }li.unchecked::marker { content: "\2610"; }li.checked::marker { content: "\2612"; }</style></head><body style=" font-family:'Tahoma'; font-size:14pt; font-weight:100; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0;text-indent:0px;">Layered-ramp-step</p></body></html>
         }
         [
-            position = 8512, 8268
-            size = 112, 88
+            position = 4684, 4408
+            size = 220, 216
         ]
-
-        connect Ramp-step.Ramp-step "Ramp-step Out.in" as Connection8
-        [
-            breakpoints = 8848, 8056; 8864, 8056
-        ]
-        connect "Layered Ramp-Step1.Layered ramp-step" Ramp-step-layered.in as Connection9
-    }
-
-    logically_deleted {
-        "ramp-layers"
     }
 
     default {
@@ -556,49 +533,11 @@ rampStepLayers(layersRefs, startValue, numOfLayers, times, t, &out);
             _tunable = "False"
         }
 
-        "core/Probe" {
-            signal_access = "inherit"
-            addr = "0"
-            override_signal_name = "False"
-            signal_name = ""
-            signal_type = "generic"
-            streaming_en = "False"
-            streaming_er_idx = "0"
-            execution_rate = "inherit"
-        }
-
         "core/Ramp" {
             slope = "1"
             start_time = "0"
             initial_output = "0"
             execution_rate = "100e-6"
         }
-
-        "core/Scope" {
-            signals_data = "{}"
-            selected_signals = "[]"
-        }
-
-        "Utils_Vitor/Layered Ramp-Step" {
-            num_of_layers = "0"
-            refs = "0"
-            layers_periods = "0"
-            rise_times = "0"
-            start_value = "0"
-            execution_rate = "100e-6"
-        }
     }
-
-    CODE model_init
-        # Numpy module is imported as 'np'
-        # Scipy module is imported as 'sp'
-        # The Schematic API is imported as 'mdl'
-        # To get the model file path, use 'mdl.get_model_file_path()'
-        # To print information to the console, use info()
-        
-        Ts =5e-5
-        rise_time = 0.2
-        ref = 50
-        start_value = 0
-    ENDCODE
 }

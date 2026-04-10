@@ -45,12 +45,15 @@ typedef struct {
     double* layerPeriod;
 } LAYERS_TIMES;
 
-void rampLayers (double* layersRefs, double startValue, int numOfLayers, LAYERS_TIMES layersTimes, double t, double* out);
+int rampStepLayersIndex = 0;
+double rampStepLayersTimeAcc = 0;
 
-void staircase (double gain, double steps, double riseTime, double t, double* out);
+void rampStepLayers (double* layersRefs, double startValue, int numOfLayers, LAYERS_TIMES layersTimes, double t, double* out);
 
-int getIndex_double (const double* array, double value);
+void staircase (double gain, double totalSteps, double riseTime, double t, double* out);
 
+int getIndex_double (const double* array, double value, int size);
+void torque_motor_ebike (double omega, double omega_b, double omega_max, double *out);
 double P_Controller (double kp, double u);
 double I_Controller (double ki, double u, double* u1, double* y1);
 double D_Controller (double kd, double u, double* u1, double* y1);

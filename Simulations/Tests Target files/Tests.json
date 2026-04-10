@@ -2,7 +2,7 @@
     "ver": "1.0",
     "_cls": "Model",
     "name": "Tests",
-    "core_model_id": "da0ba8fc-3430-11f1-9293-b3a91e0d701a",
+    "core_model_id": "e4c7aaba-347e-11f1-a2e2-8cc315569b55",
     "vars": {
         "platform_id": "generic",
         "Ts": 5e-05,
@@ -19,38 +19,87 @@
             "dev_id": "0",
             "dev_settings": {
                 "hil_descr": {
+                    "io": {
+                        "pwr_rail_oc_ind": [
+                            []
+                        ],
+                        "analog_input_scale": [
+                            0.1
+                        ],
+                        "ai_ch_width": 16,
+                        "analog_outputs": 64,
+                        "ao_limit_en": false,
+                        "analog_input_range": [
+                            [
+                                -10,
+                                10
+                            ]
+                        ],
+                        "ao_latencies": 68,
+                        "ao_lane_num": 4,
+                        "ai_ch_per_lane": 1,
+                        "analog_inputs": 32,
+                        "loopback_gain": [
+                            1
+                        ],
+                        "analog_output_scale": [
+                            10.0
+                        ],
+                        "ao_ch_width": 16,
+                        "analog_output_range": [
+                            [
+                                -10,
+                                10
+                            ]
+                        ],
+                        "digital_inputs": 64,
+                        "digital_outputs": 64
+                    },
+                    "general": {
+                        "product_name": "VHIL+",
+                        "fw_mng_st_chk_time": 10,
+                        "can_bus_ports": 2,
+                        "comm_cpu_vars_in_ddr": true,
+                        "af_m0_num": 2,
+                        "standalone_boot": false,
+                        "comm_cpu": true,
+                        "active_fuses": false,
+                        "standalone boot di selection": false,
+                        "af_m1_oc_inv": false,
+                        "ssd_support": false,
+                        "uart_bus_port": 1,
+                        "post_load_init_time": 0,
+                        "gpio_width": 0,
+                        "can_fd_ports": 2,
+                        "af_m1_num": 4,
+                        "af_oc_delay": 8,
+                        "af_m1_en_delay": 300,
+                        "common_phys_baseaddr": 1073741824,
+                        "ptp_pps_support": false,
+                        "af_m1_inv": false,
+                        "pwm_ctrl_led_num": 1,
+                        "gps_pps_support": false,
+                        "pwm_ctrl_fan_num": 0,
+                        "host_os": "linux",
+                        "udc_name": "fe200000.usb",
+                        "fw_mng_update_time": 4,
+                        "sys_clk_freq": 400000000.0,
+                        "af_m0_en_delay": 300,
+                        "cmd_executor": true,
+                        "irig_b_support": false,
+                        "uart_bus_dio": 1,
+                        "driver_product_id": "0x025E",
+                        "min_sim_step": 1e-08,
+                        "hw_device": false,
+                        "ethercat_master_support": true,
+                        "ethercat_ports": 1,
+                        "zynq_gem_no": 4,
+                        "hw_platform": "zu",
+                        "uart_max_baudrate": 230400,
+                        "af_rst_cnt_width": 16,
+                        "calibration": true
+                    },
                     "sp_platform": {
-                        "user_sp_cpu": [
-                            {
-                                "cpu_type": "arm_a53",
-                                "os": "baremetal",
-                                "sys_intr": true,
-                                "timer_intr": 1,
-                                "cpu_cfg": "arm_a53_2",
-                                "exec_rates_no": 4,
-                                "indep_irq_per_er": true
-                            },
-                            {
-                                "cpu_type": "arm_a53",
-                                "os": "baremetal",
-                                "sys_intr": true,
-                                "timer_intr": 1,
-                                "cpu_cfg": "arm_a53_3",
-                                "exec_rates_no": 4,
-                                "indep_irq_per_er": true
-                            }
-                        ],
-                        "sys_sp_cpu": [
-                            {
-                                "cpu_type": "arm_a53",
-                                "os": "baremetal",
-                                "sys_intr": true,
-                                "timer_intr": 1,
-                                "cpu_cfg": "arm_a53_1",
-                                "exec_rates_no": 2,
-                                "indep_irq_per_er": true
-                            }
-                        ],
                         "host_cpu": [
                             {
                                 "cpu_type": "arm_a53_linux",
@@ -62,6 +111,17 @@
                                     null,
                                     null
                                 ]
+                            }
+                        ],
+                        "sys_sp_cpu": [
+                            {
+                                "cpu_type": "arm_a53",
+                                "os": "baremetal",
+                                "sys_intr": true,
+                                "timer_intr": 1,
+                                "cpu_cfg": "arm_a53_1",
+                                "exec_rates_no": 2,
+                                "indep_irq_per_er": true
                             }
                         ],
                         "comm_cpu": [
@@ -98,233 +158,173 @@
                                 "bytes_used_by_eth_ve_module": 2048,
                                 "cache_line_len": 16
                             }
+                        ],
+                        "user_sp_cpu": [
+                            {
+                                "cpu_type": "arm_a53",
+                                "os": "baremetal",
+                                "sys_intr": true,
+                                "timer_intr": 1,
+                                "cpu_cfg": "arm_a53_2",
+                                "exec_rates_no": 4,
+                                "indep_irq_per_er": true
+                            },
+                            {
+                                "cpu_type": "arm_a53",
+                                "os": "baremetal",
+                                "sys_intr": true,
+                                "timer_intr": 1,
+                                "cpu_cfg": "arm_a53_3",
+                                "exec_rates_no": 4,
+                                "indep_irq_per_er": true
+                            }
                         ]
-                    },
-                    "general": {
-                        "ethercat_ports": 1,
-                        "af_m1_inv": false,
-                        "active_fuses": false,
-                        "can_fd_ports": 2,
-                        "comm_cpu": true,
-                        "ethercat_master_support": true,
-                        "comm_cpu_vars_in_ddr": true,
-                        "product_name": "VHIL+",
-                        "ptp_pps_support": false,
-                        "standalone_boot": false,
-                        "af_m0_num": 2,
-                        "hw_device": false,
-                        "host_os": "linux",
-                        "driver_product_id": "0x025E",
-                        "cmd_executor": true,
-                        "min_sim_step": 1e-08,
-                        "af_oc_delay": 8,
-                        "udc_name": "fe200000.usb",
-                        "can_bus_ports": 2,
-                        "gps_pps_support": false,
-                        "af_m1_oc_inv": false,
-                        "gpio_width": 0,
-                        "zynq_gem_no": 4,
-                        "pwm_ctrl_led_num": 1,
-                        "af_m1_en_delay": 300,
-                        "uart_bus_dio": 1,
-                        "uart_bus_port": 1,
-                        "sys_clk_freq": 400000000.0,
-                        "uart_max_baudrate": 230400,
-                        "ssd_support": false,
-                        "common_phys_baseaddr": 1073741824,
-                        "post_load_init_time": 0,
-                        "irig_b_support": false,
-                        "standalone boot di selection": false,
-                        "af_rst_cnt_width": 16,
-                        "af_m0_en_delay": 300,
-                        "pwm_ctrl_fan_num": 0,
-                        "fw_mng_st_chk_time": 10,
-                        "fw_mng_update_time": 4,
-                        "af_m1_num": 4,
-                        "hw_platform": "zu",
-                        "calibration": true
                     },
                     "fpga_solver": {
-                        "mchn_mant_width": 41,
-                        "pwm_analyzer_num": 4,
-                        "ddcs_s_module_num": 2,
-                        "ssl_aurora_crc": false,
-                        "topology_selector": true,
-                        "pwm_max_freq": 500000,
-                        "ssl_sp_max_streams": 1,
-                        "plink_s_module_max_num": 8,
-                        "pwm_min_freq": 100,
-                        "mchn_dsp2mc_num": 1,
-                        "ssl_protocol_version": 1,
-                        "hssl": true,
-                        "mmem_size": 16777216,
-                        "sp_analog_mem_size": 10240,
-                        "gds_comp_latency": 8,
-                        "lut_mem_size": 512,
-                        "mac_num": 4,
-                        "plink_s_module_num": 4,
-                        "sg_ch_num": 16,
-                        "plink_s_demo": false,
-                        "spc_num": 16,
-                        "third_party_module_num": 4,
-                        "di_ch_num": 64,
-                        "dc_dc_solver_prep_slvr_pair_num": 3,
-                        "spc_high_res_do": true,
-                        "glb_sync_pi_shift_val": 20,
-                        "hssl_max_out_vars_per_dev": 16,
-                        "gds_per_fsm": 6,
-                        "hssl_in_vars_per_spc": 8,
-                        "pipe_latency_fixed": 19,
-                        "par_sync_clk_duty_cycle": 20,
-                        "lt_ch_num": 16,
-                        "mvm_mem_map_id": 3,
-                        "par_sync_dac_width": 12,
-                        "dma_desc_ts_size": 16,
-                        "dc_dc_solver_num": 16,
-                        "ssl_sp_vars_per_stream": 256,
-                        "sp_digital_mem_size": 512,
-                        "lut_channel_latency": 53,
-                        "ssl_lane_num": 2,
-                        "mchn_enc_cnt_width": 30,
-                        "gds_var_del_line_length": 32,
-                        "ssl_allowed_sp_vars_per_stream": 250,
-                        "gds_var_del_lut_width": 250,
-                        "ssl_out_vars_max": 16,
                         "forward_voltage_drop": true,
-                        "x_mant_width": 39,
-                        "par_sync_ki": 46,
-                        "ssl_high_speed_support": false,
-                        "ms_as_size": 16,
-                        "mchn_gp_regs_max_num": 512,
-                        "mchn_mech_latency": 48,
-                        "mchn_max_num": 64,
-                        "par_sync_clk_freq": 100,
-                        "scope_ds_ch_num": 32,
-                        "mchn_mech_w_ovf_limit": 20000.0,
-                        "gds_var_del": true,
-                        "hssl_resettable": true,
-                        "gds_var_del_max_decim": 1000,
-                        "plink_m_base_tick": 25,
-                        "ssl_num": 1,
-                        "time_cnt_width": 41,
-                        "mchn_mc2dsp_num": 6,
                         "ddcs_s_module_max_num": 8,
-                        "plink_m_module_num": 4,
-                        "mchn_enc_io_sig_num": 2,
-                        "cmp_per_spc": 6,
-                        "dma_support": false,
-                        "hssl_sp_max_streams": 16,
-                        "hssl_time_sync": true,
-                        "ddcs_m_module_num": 2,
-                        "fsms_per_ts": 6,
-                        "clk_freq": 50000000000.0,
-                        "glb_sync_kp": 230,
-                        "mchn_3d_lut_size": 64,
-                        "mm_mant_width": 31,
-                        "spc_lines": 4,
-                        "dc_ch_num": 128,
-                        "mchn_3d_lut": true,
-                        "hssl_max_devices": 16,
-                        "hssl_ext_reset": false,
-                        "hssl_sp": true,
-                        "sg_mem_size": 1024,
-                        "hssl_indp_lane_num": 2,
-                        "plink_m_module_max_num": 8,
-                        "pwr_loss_calc": true,
-                        "ctc_per_spc": 16,
-                        "gds_oversampling": true,
-                        "pwm_max_dead_time": 10,
-                        "spc_ts_max_no_of_modes": 2048,
-                        "dc_bus_update_period": 125,
-                        "sg_max_period": 16777216,
-                        "sp_sources_num": 16,
-                        "scope_buffer_size": 268435456,
-                        "glb_sync_ki": 46,
-                        "sg_channel_latency": 45,
-                        "mchn_dsp_ao_num": 8,
-                        "mchn_absenc": false,
-                        "dc_dc_mvm_in_width": 13,
-                        "mchn_mc_ao_num": 7,
+                        "di_ch_num": 64,
                         "mchn_gp_regs_num": 128,
-                        "dma_max_desc_num": 256,
-                        "mchn_ext_io": true,
-                        "mchn_3d_lut_latency_fixed": 61,
-                        "par_dtv_leg_num": 4,
-                        "streaming_buffer_size": 16777216,
-                        "scope_ch_num": 64,
-                        "mchn_pdsp_latency_fixed": 5,
+                        "ssl_high_speed_support": false,
+                        "plink_m_module_max_num": 8,
+                        "dc_bus_update_period": 125,
+                        "dma_desc_ts_size": 16,
+                        "pwm_min_freq": 100,
+                        "sg_channel_latency": 45,
+                        "lut_channel_latency": 53,
                         "par_sync_shift_width": 16,
-                        "pwm_modulator_num": 32,
-                        "ao_wr_decoder_internal": false,
-                        "signal_stim_msg_size": 1024,
-                        "mchn_mvm_out_num": 8,
-                        "mchn_num": 16,
-                        "ssl_in_vars_per_spc": 16,
-                        "third_party_module_max_num": 8,
-                        "ssl_egston_num": 0,
-                        "mchn_mvm_in_num": 8,
-                        "dma_desc_ta_size": 32,
-                        "mchn_div": true,
-                        "dtsm_per_spc": 64,
-                        "switch_level_gds_ovs": true,
-                        "par_dtv_num": 3,
+                        "mchn_dsp_ao_num": 8,
+                        "ssl_indp_lane_num": 2,
+                        "third_party_module_num": 4,
+                        "spc_num": 16,
                         "gds_var_del_width_per_fsm": 4,
                         "max_dc_dc_solver_num": 16,
+                        "plink_s_demo": false,
+                        "mchn_enc_cnt_width": 30,
+                        "dc_dc_mvm_in_width": 13,
+                        "pipe_latency_fixed": 19,
+                        "ssl_num": 1,
+                        "switch_level_gds_ovs": true,
+                        "mchn_3d_lut": true,
+                        "plink_m_base_tick": 25,
+                        "clk_freq": 50000000000.0,
+                        "par_dtv_leg_num": 4,
+                        "ssl_egston_num": 0,
+                        "lut_mem_size": 512,
+                        "gds_comp_latency": 8,
+                        "lt_ch_num": 16,
+                        "glb_sync_kp": 230,
+                        "hssl_sp_max_streams": 16,
+                        "gds_oversampling": true,
+                        "mchn_gp_regs_max_num": 512,
+                        "signal_stim_msg_size": 1024,
+                        "mvm_mem_map_id": 3,
+                        "ssl_protocol_version": 1,
+                        "mchn_3d_lut_latency_fixed": 61,
+                        "ssl_sp_max_streams": 1,
+                        "gds_per_fsm": 6,
+                        "scope_ch_num": 64,
+                        "dma_desc_ta_size": 32,
+                        "hssl_indp_lane_num": 2,
+                        "sp_sources_num": 16,
+                        "spc_high_res_do": true,
+                        "scope_ds_ch_num": 32,
+                        "par_sync_ki": 46,
+                        "dc_dc_solver_prep_slvr_pair_num": 3,
+                        "ao_wr_decoder_internal": false,
+                        "par_sync_pi_shift_val": 20,
+                        "plink_s_module_max_num": 8,
+                        "par_sync_clk_freq": 100,
+                        "hssl_sp": true,
+                        "pwm_max_dead_time": 10,
+                        "hssl_resettable": true,
+                        "par_sync_clk_duty_cycle": 20,
+                        "hssl_ext_reset": false,
+                        "hssl_max_devices": 16,
+                        "mac_num": 4,
+                        "mchn_enc_io_sig_num": 2,
+                        "signal_stim_comm_buffer_size": 262144,
+                        "abb_proprietary_protocols": false,
+                        "mchn_mvm_in_num": 8,
+                        "tve_per_spc": 32,
+                        "par_sync_dac_width": 12,
+                        "par_sync_kp": 230,
+                        "ssl_max_no_of_devices": 4,
+                        "mchn_mc_ao_num": 7,
+                        "sp_analog_mem_size": 10240,
+                        "hssl_max_out_vars_per_dev": 16,
+                        "dtsm_per_spc": 64,
+                        "ctc_per_spc": 16,
+                        "x_mant_width": 39,
+                        "hssl": true,
+                        "sg_max_period": 16777216,
+                        "pwm_max_freq": 500000,
+                        "mchn_mech_w_ovf_limit": 20000.0,
+                        "ms_ds_size": 4,
+                        "dma_max_desc_num": 256,
+                        "time_cnt_width": 41,
+                        "gds_var_del_line_length": 32,
+                        "mchn_mech_latency": 48,
+                        "ssl_sp_vars_per_stream": 256,
+                        "fsms_per_ts": 6,
+                        "sp_digital_mem_size": 512,
+                        "mchn_mc2dsp_num": 6,
+                        "mmem_size": 16777216,
+                        "scope_buffer_size": 268435456,
+                        "ssl_lane_num": 2,
+                        "ssl_in_vars_per_spc": 16,
+                        "sg_mem_size": 1024,
+                        "sg_ch_num": 16,
+                        "cmp_per_spc": 6,
+                        "pwm_analyzer_min_freq": 100,
+                        "pwr_loss_calc": true,
+                        "gds_var_del_max_decim": 1000,
+                        "mchn_mvm_out_num": 8,
+                        "spc_ts_max_no_of_modes": 2048,
                         "hssl_lane_num": 2,
                         "gds_var_del_max_lut_width": 256,
-                        "plink_m_demo": false,
-                        "par_sync_kp": 230,
-                        "tve_per_spc": 32,
-                        "ssl_aurora_bandwidth": 5.0,
-                        "pwm_analyzer_min_freq": 100,
-                        "par_sync_pi_shift_val": 20,
-                        "abb_proprietary_protocols": false,
-                        "ssl_max_no_of_devices": 4,
+                        "mchn_3d_lut_size": 64,
+                        "topology_selector": true,
+                        "dc_dc_solver_num": 16,
                         "hssl_sp_vars_per_stream": 16,
-                        "signal_stim_buffer_size": 4194304,
-                        "signal_stim_comm_buffer_size": 262144,
+                        "ms_as_size": 16,
+                        "ssl_aurora_crc": false,
+                        "mchn_ext_io": true,
+                        "ssl_allowed_sp_vars_per_stream": 250,
                         "ext_cpu_app_num": 8,
-                        "ms_ds_size": 4,
+                        "hssl_in_vars_per_spc": 8,
+                        "dc_ch_num": 128,
+                        "glb_sync_pi_shift_val": 20,
+                        "ddcs_s_module_num": 2,
+                        "ddcs_m_module_num": 2,
+                        "mchn_div": true,
+                        "plink_m_demo": false,
+                        "mm_mant_width": 31,
+                        "ssl_out_vars_max": 16,
+                        "spc_lines": 4,
+                        "par_dtv_num": 3,
+                        "gds_var_del_lut_width": 250,
+                        "signal_stim_buffer_size": 4194304,
+                        "mchn_pdsp_latency_fixed": 5,
+                        "mchn_mant_width": 41,
+                        "plink_s_module_num": 4,
+                        "mchn_dsp2mc_num": 1,
+                        "dma_support": false,
+                        "hssl_time_sync": true,
                         "ddcs_m_module_max_num": 8,
-                        "ssl_indp_lane_num": 2,
+                        "mchn_max_num": 64,
+                        "plink_m_module_num": 4,
+                        "mchn_num": 16,
+                        "mchn_absenc": false,
+                        "third_party_module_max_num": 8,
+                        "pwm_modulator_num": 32,
+                        "glb_sync_ki": 46,
+                        "ssl_aurora_bandwidth": 5.0,
+                        "streaming_buffer_size": 16777216,
+                        "gds_var_del": true,
+                        "pwm_analyzer_num": 4,
                         "dc_dc_mvm_out_width": 4,
                         "gds_ovs_period": 2.5e-09
-                    },
-                    "io": {
-                        "loopback_gain": [
-                            1
-                        ],
-                        "ao_latencies": 68,
-                        "analog_input_scale": [
-                            0.1
-                        ],
-                        "analog_inputs": 32,
-                        "analog_outputs": 64,
-                        "ao_limit_en": false,
-                        "ai_ch_width": 16,
-                        "ai_ch_per_lane": 1,
-                        "analog_output_range": [
-                            [
-                                -10,
-                                10
-                            ]
-                        ],
-                        "pwr_rail_oc_ind": [
-                            []
-                        ],
-                        "ao_ch_width": 16,
-                        "digital_inputs": 64,
-                        "ao_lane_num": 4,
-                        "digital_outputs": 64,
-                        "analog_output_scale": [
-                            10.0
-                        ],
-                        "analog_input_range": [
-                            [
-                                -10,
-                                10
-                            ]
-                        ]
                     }
                 },
                 "mem_map": {
@@ -1090,166 +1090,72 @@
             "nodes": [
                 {
                     "_cls": "Node",
-                    "id": 2292196518928,
+                    "id": 3080328368912,
                     "terminals": [
-                        2292184646288,
-                        2292195687632
+                        3080599925520,
+                        3080602991632,
+                        3080606636880
                     ]
                 },
                 {
                     "_cls": "Node",
-                    "id": 2292155521616,
+                    "id": 3080624916176,
                     "terminals": [
-                        2292190498832,
-                        2292195810320
+                        3080607253328,
+                        3080603928272
                     ]
                 },
                 {
                     "_cls": "Node",
-                    "id": 2292196518480,
+                    "id": 3080607672656,
                     "terminals": [
-                        2292188124944,
-                        2292184658384
+                        3080606646160,
+                        3080602617040
                     ]
                 },
                 {
                     "_cls": "Node",
-                    "id": 2292196508240,
+                    "id": 3080688759184,
                     "terminals": [
-                        2292190497552,
-                        2292195943248,
-                        2292195678096
+                        3080602515856,
+                        3080603938512
                     ]
                 },
                 {
                     "_cls": "Node",
-                    "id": 2292196519056,
+                    "id": 3080624925904,
                     "terminals": [
-                        2292195938960,
-                        2292196297808
+                        3080602628624,
+                        3080602621392
                     ]
                 },
                 {
                     "_cls": "Node",
-                    "id": 2292196520208,
+                    "id": 3080624929488,
                     "terminals": [
-                        2292195816464,
-                        2292195881296
-                    ]
-                },
-                {
-                    "_cls": "Node",
-                    "id": 2292196521232,
-                    "terminals": [
-                        2292187672720,
-                        2292195677072
-                    ]
-                },
-                {
-                    "_cls": "Node",
-                    "id": 2292196521808,
-                    "terminals": [
-                        2292187664976,
-                        2292196515408
-                    ]
-                },
-                {
-                    "_cls": "Node",
-                    "id": 2292196514128,
-                    "terminals": [
-                        2292184651408,
-                        2292188131536
-                    ]
-                },
-                {
-                    "_cls": "Node",
-                    "id": 2292196521360,
-                    "terminals": [
-                        2292190504976,
-                        2292195936656,
-                        2292187660624
-                    ]
-                },
-                {
-                    "_cls": "Node",
-                    "id": 2292196522384,
-                    "terminals": [
-                        2292195937424,
-                        2292195949008
+                        3080603928976,
+                        3080602629200
                     ]
                 }
             ],
             "components": [
                 {
                     "_cls": "Component",
-                    "id": 2292196523600,
-                    "name": "Ramp1",
+                    "id": 3080602617360,
+                    "name": "Layered Ramp-Step1",
                     "vars": {},
-                    "comp_type": "Ramp",
-                    "lib_fqn": "Signal Processing.Sources.Ramp",
-                    "resource_root": "C:\\dev\\C-FOR-TYPHOON\\Simulations",
-                    "core_type_name": "Ramp",
-                    "composite": false,
+                    "comp_type": "Utils_Vitor/Layered Ramp-Step",
+                    "lib_fqn": "Layered Ramp-Step",
+                    "resource_root": "F:\\Dev\\C_Lib_for_TyphoonSim\\TyphoonCustomLibs",
+                    "core_type_name": "Layered Ramp-Step",
+                    "composite": true,
                     "phase_number": null,
-                    "properties": [
-                        {
-                            "_cls": "Property",
-                            "name": "slope",
-                            "value": 1.0,
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "real",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "start_time",
-                            "value": 0.0,
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "real",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "execution_rate",
-                            "value": 5e-05,
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "real",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "initial_output",
-                            "value": 0.0,
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "real",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        }
-                    ],
+                    "properties": [],
                     "terminals": [
                         {
                             "_cls": "Terminal",
-                            "id": 2292196515408,
-                            "name": "out",
+                            "id": 3080602621392,
+                            "name": "Layered ramp-step",
                             "group": null,
                             "group_idx": null,
                             "group_cardinal_num": null,
@@ -1259,14 +1165,121 @@
                                 1
                             ],
                             "direction": "out",
-                            "sp_type": "real",
+                            "sp_type": null,
                             "feedthrough": true,
                             "unused": false
                         }
                     ],
                     "unused_terminals": [],
-                    "masks": [],
-                    "parent_comp_id": 2292190508240,
+                    "masks": [
+                        {
+                            "_cls": "Mask",
+                            "vars": {},
+                            "properties": [
+                                {
+                                    "_cls": "Property",
+                                    "name": "start_value",
+                                    "value": 0,
+                                    "min_value": null,
+                                    "max_value": null,
+                                    "specified_value": null,
+                                    "value_type": "generic",
+                                    "vector": false,
+                                    "calc_value": null,
+                                    "tunable": false,
+                                    "visible": true
+                                },
+                                {
+                                    "_cls": "Property",
+                                    "name": "rise_times",
+                                    "value": [
+                                        0.05,
+                                        0.2,
+                                        0.05,
+                                        0.05,
+                                        0.05,
+                                        0.05
+                                    ],
+                                    "min_value": null,
+                                    "max_value": null,
+                                    "specified_value": null,
+                                    "value_type": "real",
+                                    "vector": true,
+                                    "calc_value": null,
+                                    "tunable": false,
+                                    "visible": true
+                                },
+                                {
+                                    "_cls": "Property",
+                                    "name": "layers_periods",
+                                    "value": [
+                                        0.1,
+                                        0.1,
+                                        0.1,
+                                        0.1,
+                                        0.2,
+                                        0.1
+                                    ],
+                                    "min_value": null,
+                                    "max_value": null,
+                                    "specified_value": null,
+                                    "value_type": "real",
+                                    "vector": true,
+                                    "calc_value": null,
+                                    "tunable": false,
+                                    "visible": true
+                                },
+                                {
+                                    "_cls": "Property",
+                                    "name": "num_of_layers",
+                                    "value": 6,
+                                    "min_value": null,
+                                    "max_value": null,
+                                    "specified_value": null,
+                                    "value_type": "uint",
+                                    "vector": false,
+                                    "calc_value": null,
+                                    "tunable": false,
+                                    "visible": true
+                                },
+                                {
+                                    "_cls": "Property",
+                                    "name": "execution_rate",
+                                    "value": 5e-05,
+                                    "min_value": null,
+                                    "max_value": null,
+                                    "specified_value": null,
+                                    "value_type": "generic",
+                                    "vector": false,
+                                    "calc_value": null,
+                                    "tunable": false,
+                                    "visible": true
+                                },
+                                {
+                                    "_cls": "Property",
+                                    "name": "refs",
+                                    "value": [
+                                        1.0,
+                                        2.0,
+                                        3.0,
+                                        2.0,
+                                        1.0,
+                                        0.0
+                                    ],
+                                    "min_value": null,
+                                    "max_value": null,
+                                    "specified_value": null,
+                                    "value_type": "real",
+                                    "vector": true,
+                                    "calc_value": null,
+                                    "tunable": false,
+                                    "visible": true
+                                }
+                            ],
+                            "signals": []
+                        }
+                    ],
+                    "parent_comp_id": null,
                     "target_cpu": [
                         "user_sp_cpu",
                         0
@@ -1278,143 +1291,16 @@
                     ],
                     "signals": [],
                     "state_depends_on_input": false,
-                    "tml_file": "Ramp"
+                    "tml_file": null
                 },
                 {
                     "_cls": "Component",
-                    "id": 2292188119120,
-                    "name": "refs",
+                    "id": 3080607263760,
+                    "name": "Constant1",
                     "vars": {
                         "ERROR_PROPERTY_VALUE_INVALID": "Invalid property value",
                         "const_value": [
-                            1.0,
-                            2.0,
-                            3.0
-                        ],
-                        "const_value_shape": [
-                            3
-                        ],
-                        "value": {
-                            "_cls": "ndarray",
-                            "value": [
-                                1.0,
-                                2.0,
-                                3.0
-                            ]
-                        },
-                        "value_size": 3,
-                        "value_tunable": false,
-                        "out_type": "real",
-                        "sc_value": 1.0,
-                        "signal_type": "real"
-                    },
-                    "comp_type": "Constant",
-                    "lib_fqn": "Signal Processing.Sources.Constant",
-                    "resource_root": "C:\\dev\\C-FOR-TYPHOON\\Simulations",
-                    "core_type_name": "Constant",
-                    "composite": false,
-                    "phase_number": null,
-                    "properties": [
-                        {
-                            "_cls": "Property",
-                            "name": "_tunable",
-                            "value": false,
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "bool",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "signal_type",
-                            "value": "real",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "execution_rate",
-                            "value": 5e-05,
-                            "min_value": ".1e-9",
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "real",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "value",
-                            "value": [
-                                1.0,
-                                2.0,
-                                3.0
-                            ],
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "real",
-                            "vector": true,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        }
-                    ],
-                    "terminals": [
-                        {
-                            "_cls": "Terminal",
-                            "id": 2292188131536,
-                            "name": "out",
-                            "group": null,
-                            "group_idx": null,
-                            "group_cardinal_num": null,
-                            "uniform": true,
-                            "kind": "sp",
-                            "dimension": [
-                                3
-                            ],
-                            "direction": "out",
-                            "sp_type": "real",
-                            "feedthrough": true,
-                            "unused": false
-                        }
-                    ],
-                    "unused_terminals": [],
-                    "masks": [],
-                    "parent_comp_id": 2292190508240,
-                    "target_cpu": [
-                        "user_sp_cpu",
-                        0
-                    ],
-                    "selected_for_export": false,
-                    "root_for_export": false,
-                    "supported_platforms": [
-                        "generic"
-                    ],
-                    "signals": [],
-                    "state_depends_on_input": false,
-                    "tml_file": "Constant"
-                },
-                {
-                    "_cls": "Component",
-                    "id": 2292188125264,
-                    "name": "start_value",
-                    "vars": {
-                        "ERROR_PROPERTY_VALUE_INVALID": "Invalid property value",
-                        "const_value": [
-                            0.0
+                            1.0
                         ],
                         "const_value_shape": [
                             1
@@ -1422,18 +1308,18 @@
                         "value": {
                             "_cls": "ndarray",
                             "value": [
-                                0.0
+                                1.0
                             ]
                         },
                         "value_size": 1,
                         "value_tunable": false,
                         "out_type": "real",
-                        "sc_value": 0.0,
+                        "sc_value": 1.0,
                         "signal_type": "real"
                     },
                     "comp_type": "Constant",
                     "lib_fqn": "Signal Processing.Sources.Constant",
-                    "resource_root": "C:\\dev\\C-FOR-TYPHOON\\Simulations",
+                    "resource_root": "F:\\Dev\\C_Lib_for_TyphoonSim\\Simulations",
                     "core_type_name": "Constant",
                     "composite": false,
                     "phase_number": null,
@@ -1442,7 +1328,7 @@
                             "_cls": "Property",
                             "name": "value",
                             "value": [
-                                0.0
+                                1.0
                             ],
                             "min_value": null,
                             "max_value": null,
@@ -1455,12 +1341,12 @@
                         },
                         {
                             "_cls": "Property",
-                            "name": "execution_rate",
-                            "value": 5e-05,
-                            "min_value": ".1e-9",
+                            "name": "_tunable",
+                            "value": false,
+                            "min_value": null,
                             "max_value": null,
                             "specified_value": null,
-                            "value_type": "real",
+                            "value_type": "bool",
                             "vector": false,
                             "calc_value": null,
                             "tunable": false,
@@ -1481,12 +1367,12 @@
                         },
                         {
                             "_cls": "Property",
-                            "name": "_tunable",
-                            "value": false,
-                            "min_value": null,
+                            "name": "execution_rate",
+                            "value": 5e-05,
+                            "min_value": ".1e-9",
                             "max_value": null,
                             "specified_value": null,
-                            "value_type": "bool",
+                            "value_type": "real",
                             "vector": false,
                             "calc_value": null,
                             "tunable": false,
@@ -1496,7 +1382,7 @@
                     "terminals": [
                         {
                             "_cls": "Terminal",
-                            "id": 2292188124944,
+                            "id": 3080607253328,
                             "name": "out",
                             "group": null,
                             "group_idx": null,
@@ -1514,7 +1400,7 @@
                     ],
                     "unused_terminals": [],
                     "masks": [],
-                    "parent_comp_id": 2292190508240,
+                    "parent_comp_id": 3080604531984,
                     "target_cpu": [
                         "user_sp_cpu",
                         0
@@ -1530,134 +1416,7 @@
                 },
                 {
                     "_cls": "Component",
-                    "id": 2292195683920,
-                    "name": "layers_periods",
-                    "vars": {
-                        "ERROR_PROPERTY_VALUE_INVALID": "Invalid property value",
-                        "const_value": [
-                            0.1,
-                            0.1,
-                            0.1
-                        ],
-                        "const_value_shape": [
-                            3
-                        ],
-                        "value": {
-                            "_cls": "ndarray",
-                            "value": [
-                                0.1,
-                                0.1,
-                                0.1
-                            ]
-                        },
-                        "value_size": 3,
-                        "value_tunable": false,
-                        "out_type": "real",
-                        "sc_value": 0.1,
-                        "signal_type": "real"
-                    },
-                    "comp_type": "Constant",
-                    "lib_fqn": "Signal Processing.Sources.Constant",
-                    "resource_root": "C:\\dev\\C-FOR-TYPHOON\\Simulations",
-                    "core_type_name": "Constant",
-                    "composite": false,
-                    "phase_number": null,
-                    "properties": [
-                        {
-                            "_cls": "Property",
-                            "name": "value",
-                            "value": [
-                                0.1,
-                                0.1,
-                                0.1
-                            ],
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "real",
-                            "vector": true,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "signal_type",
-                            "value": "real",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "_tunable",
-                            "value": false,
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "bool",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "execution_rate",
-                            "value": 5e-05,
-                            "min_value": ".1e-9",
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "real",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        }
-                    ],
-                    "terminals": [
-                        {
-                            "_cls": "Terminal",
-                            "id": 2292195677072,
-                            "name": "out",
-                            "group": null,
-                            "group_idx": null,
-                            "group_cardinal_num": null,
-                            "uniform": true,
-                            "kind": "sp",
-                            "dimension": [
-                                3
-                            ],
-                            "direction": "out",
-                            "sp_type": "real",
-                            "feedthrough": true,
-                            "unused": false
-                        }
-                    ],
-                    "unused_terminals": [],
-                    "masks": [],
-                    "parent_comp_id": 2292190508240,
-                    "target_cpu": [
-                        "user_sp_cpu",
-                        0
-                    ],
-                    "selected_for_export": false,
-                    "root_for_export": false,
-                    "supported_platforms": [
-                        "generic"
-                    ],
-                    "signals": [],
-                    "state_depends_on_input": false,
-                    "tml_file": "Constant"
-                },
-                {
-                    "_cls": "Component",
-                    "id": 2292195948688,
+                    "id": 3080602615952,
                     "name": "Ramp-step-layered",
                     "vars": {
                         "ITEM_SIGNAL": "signal",
@@ -1670,15 +1429,28 @@
                     },
                     "comp_type": "Probe",
                     "lib_fqn": "Signal Processing.Sinks.Probe",
-                    "resource_root": "C:\\dev\\C-FOR-TYPHOON\\Simulations",
+                    "resource_root": "F:\\Dev\\C_Lib_for_TyphoonSim\\Simulations",
                     "core_type_name": "Probe",
                     "composite": false,
                     "phase_number": null,
                     "properties": [
                         {
                             "_cls": "Property",
+                            "name": "signal_type",
+                            "value": "generic",
+                            "min_value": null,
+                            "max_value": null,
+                            "specified_value": null,
+                            "value_type": "string",
+                            "vector": false,
+                            "calc_value": null,
+                            "tunable": false,
+                            "visible": true
+                        },
+                        {
+                            "_cls": "Property",
                             "name": "signal_name",
-                            "value": "Ramp-step Out",
+                            "value": "Ramp-step-layered",
                             "min_value": null,
                             "max_value": null,
                             "specified_value": null,
@@ -1690,25 +1462,25 @@
                         },
                         {
                             "_cls": "Property",
-                            "name": "streaming_er_idx",
-                            "value": 0,
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "uint",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": false
-                        },
-                        {
-                            "_cls": "Property",
                             "name": "override_signal_name",
                             "value": false,
                             "min_value": null,
                             "max_value": null,
                             "specified_value": null,
                             "value_type": "bool",
+                            "vector": false,
+                            "calc_value": null,
+                            "tunable": false,
+                            "visible": true
+                        },
+                        {
+                            "_cls": "Property",
+                            "name": "signal_access",
+                            "value": "inherit",
+                            "min_value": null,
+                            "max_value": null,
+                            "specified_value": null,
+                            "value_type": "signal_access",
                             "vector": false,
                             "calc_value": null,
                             "tunable": false,
@@ -1729,32 +1501,6 @@
                         },
                         {
                             "_cls": "Property",
-                            "name": "addr",
-                            "value": 0,
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "uint",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": false
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "signal_access",
-                            "value": "inherit",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "signal_access",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
                             "name": "execution_rate",
                             "value": 5e-05,
                             "min_value": null,
@@ -1768,22 +1514,35 @@
                         },
                         {
                             "_cls": "Property",
-                            "name": "signal_type",
-                            "value": "generic",
+                            "name": "streaming_er_idx",
+                            "value": 0,
                             "min_value": null,
                             "max_value": null,
                             "specified_value": null,
-                            "value_type": "string",
+                            "value_type": "uint",
                             "vector": false,
                             "calc_value": null,
                             "tunable": false,
-                            "visible": true
+                            "visible": false
+                        },
+                        {
+                            "_cls": "Property",
+                            "name": "addr",
+                            "value": 0,
+                            "min_value": null,
+                            "max_value": null,
+                            "specified_value": null,
+                            "value_type": "uint",
+                            "vector": false,
+                            "calc_value": null,
+                            "tunable": false,
+                            "visible": false
                         }
                     ],
                     "terminals": [
                         {
                             "_cls": "Terminal",
-                            "id": 2292195936656,
+                            "id": 3080602628624,
                             "name": "in",
                             "group": null,
                             "group_idx": null,
@@ -1812,302 +1571,19 @@
                         "generic"
                     ],
                     "signals": [
-                        2292189706576
+                        3081655370256
                     ],
                     "state_depends_on_input": false,
                     "tml_file": "Probe"
                 },
                 {
                     "_cls": "Component",
-                    "id": 2292195937936,
-                    "name": "Constant3",
-                    "vars": {
-                        "ERROR_PROPERTY_VALUE_INVALID": "Invalid property value",
-                        "const_value": [
-                            0.1
-                        ],
-                        "const_value_shape": [
-                            1
-                        ],
-                        "value": {
-                            "_cls": "ndarray",
-                            "value": [
-                                0.1
-                            ]
-                        },
-                        "value_size": 1,
-                        "value_tunable": false,
-                        "out_type": "real",
-                        "sc_value": 0.1,
-                        "signal_type": "real"
-                    },
-                    "comp_type": "Constant",
-                    "lib_fqn": "Signal Processing.Sources.Constant",
-                    "resource_root": "C:\\dev\\C-FOR-TYPHOON\\Simulations",
-                    "core_type_name": "Constant",
-                    "composite": false,
-                    "phase_number": null,
-                    "properties": [
-                        {
-                            "_cls": "Property",
-                            "name": "value",
-                            "value": [
-                                0.1
-                            ],
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "real",
-                            "vector": true,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "signal_type",
-                            "value": "real",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "_tunable",
-                            "value": false,
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "bool",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "execution_rate",
-                            "value": 5e-05,
-                            "min_value": ".1e-9",
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "real",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        }
-                    ],
-                    "terminals": [
-                        {
-                            "_cls": "Terminal",
-                            "id": 2292195937424,
-                            "name": "out",
-                            "group": null,
-                            "group_idx": null,
-                            "group_cardinal_num": null,
-                            "uniform": true,
-                            "kind": "sp",
-                            "dimension": [
-                                1
-                            ],
-                            "direction": "out",
-                            "sp_type": "real",
-                            "feedthrough": true,
-                            "unused": false
-                        }
-                    ],
-                    "unused_terminals": [],
-                    "masks": [],
-                    "parent_comp_id": 2292190495568,
-                    "target_cpu": [
-                        "user_sp_cpu",
-                        0
-                    ],
-                    "selected_for_export": false,
-                    "root_for_export": false,
-                    "supported_platforms": [
-                        "generic"
-                    ],
-                    "signals": [],
-                    "state_depends_on_input": false,
-                    "tml_file": "Constant"
-                },
-                {
-                    "_cls": "Component",
-                    "id": 2292195676816,
-                    "name": "Ramp-step Out",
-                    "vars": {
-                        "ITEM_SIGNAL": "signal",
-                        "out_size": 1,
-                        "rd_as": 13107200,
-                        "rd_as_probe": 32,
-                        "rd_probe": 12648448,
-                        "out_mem_size": 1024,
-                        "gl_addr": 12615680
-                    },
-                    "comp_type": "Probe",
-                    "lib_fqn": "Signal Processing.Sinks.Probe",
-                    "resource_root": "C:\\dev\\C-FOR-TYPHOON\\Simulations",
-                    "core_type_name": "Probe",
-                    "composite": false,
-                    "phase_number": null,
-                    "properties": [
-                        {
-                            "_cls": "Property",
-                            "name": "streaming_er_idx",
-                            "value": 0,
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "uint",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": false
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "signal_type",
-                            "value": "generic",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "override_signal_name",
-                            "value": false,
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "bool",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "streaming_en",
-                            "value": false,
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "bool",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "signal_name",
-                            "value": "Ramp-step Out",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "signal_name",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "execution_rate",
-                            "value": 5e-05,
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "real",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "signal_access",
-                            "value": "inherit",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "signal_access",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "addr",
-                            "value": 0,
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "uint",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": false
-                        }
-                    ],
-                    "terminals": [
-                        {
-                            "_cls": "Terminal",
-                            "id": 2292195678096,
-                            "name": "in",
-                            "group": null,
-                            "group_idx": null,
-                            "group_cardinal_num": null,
-                            "uniform": true,
-                            "kind": "sp",
-                            "dimension": [
-                                1
-                            ],
-                            "direction": "in",
-                            "sp_type": "real",
-                            "feedthrough": true,
-                            "unused": false
-                        }
-                    ],
-                    "unused_terminals": [],
-                    "masks": [],
-                    "parent_comp_id": null,
-                    "target_cpu": [
-                        "user_sp_cpu",
-                        0
-                    ],
-                    "selected_for_export": false,
-                    "root_for_export": false,
-                    "supported_platforms": [
-                        "generic"
-                    ],
-                    "signals": [
-                        2292190082000
-                    ],
-                    "state_depends_on_input": false,
-                    "tml_file": "Probe"
-                },
-                {
-                    "_cls": "Component",
-                    "id": 2292190501648,
+                    "id": 3080625910992,
                     "name": "Scope1",
                     "vars": {},
                     "comp_type": "Scope",
                     "lib_fqn": "TyphoonSim.Scope",
-                    "resource_root": "C:\\dev\\C-FOR-TYPHOON\\Simulations",
+                    "resource_root": "F:\\Dev\\C_Lib_for_TyphoonSim\\Simulations",
                     "core_type_name": "Scope",
                     "composite": false,
                     "phase_number": null,
@@ -2115,7 +1591,7 @@
                         {
                             "_cls": "Property",
                             "name": "signals_data",
-                            "value": "{\"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"black\", \"legend_visible\": true}, \"signals\": {\"Ramp-step-layered\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}}",
+                            "value": "{\"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"black\", \"legend_visible\": true}, \"signals\": {\"Ramp-step-layered\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}}, \"Ramp-step Out\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#00CC00\"}, \"display\": {\"1\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}}",
                             "min_value": null,
                             "max_value": null,
                             "specified_value": null,
@@ -2129,7 +1605,8 @@
                             "_cls": "Property",
                             "name": "selected_signals",
                             "value": [
-                                "Ramp-step-layered"
+                                "Ramp-step-layered",
+                                "Ramp-step Out"
                             ],
                             "min_value": null,
                             "max_value": null,
@@ -2157,602 +1634,7 @@
                 },
                 {
                     "_cls": "Component",
-                    "id": 2292187663632,
-                    "name": "C function1",
-                    "vars": {
-                        "result": [
-                            "",
-                            "{\n    LAYERS_TIMES  times = {  _ramp_layers_c_function1__riseTimes ,  _ramp_layers_c_function1__layersPeriods  };\n\n}\n",
-                            "{\n    rampLayers ( _ramp_layers_c_function1__layersRefs , _ramp_layers_c_function1__startValue , times , _ramp_layers_c_function1__t , & _ramp_layers_c_function1__out ) ;\n}\n",
-                            "{\n}\n"
-                        ],
-                        "arb_defs_transf": "",
-                        "init_fnc_transf": "{\n    LAYERS_TIMES  times = {  _ramp_layers_c_function1__riseTimes ,  _ramp_layers_c_function1__layersPeriods  };\n\n}\n",
-                        "output_fnc_transf": "{\n    rampLayers ( _ramp_layers_c_function1__layersRefs , _ramp_layers_c_function1__startValue , times , _ramp_layers_c_function1__t , & _ramp_layers_c_function1__out ) ;\n}\n",
-                        "update_fnc_transf": "{\n}\n",
-                        "hil_device": "VHIL+",
-                        "cpu_type": "arm_a53",
-                        "hfile": "",
-                        "dllfile": "",
-                        "a_file": "",
-                        "msg": "All functions used from additional .c files should be declared in .h file(s).\nImplicit function declarations may lead to unexpected function results.",
-                        "OFFLINE_SIMULATION_ACTION_NAME": "offline_simulation",
-                        "COMPILE_ACTION_NAME": "compile_model",
-                        "action": "offline_simulation"
-                    },
-                    "comp_type": "C function",
-                    "lib_fqn": "Signal Processing.Functions and Tables.C function",
-                    "resource_root": "C:\\dev\\C-FOR-TYPHOON\\Simulations",
-                    "core_type_name": "C function",
-                    "composite": false,
-                    "phase_number": null,
-                    "properties": [
-                        {
-                            "_cls": "Property",
-                            "name": "arb_defs",
-                            "value": "/*Begin code section*/\n\n/*End code section*/",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "convert_to_relative_src",
-                            "value": true,
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "bool",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": false
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "output_terminals_feedthrough",
-                            "value": "True",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "dll_file_path_full",
-                            "value": "",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": false
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "add_src_path_full",
-                            "value": "C:\\dev\\C-FOR-TYPHOON\\c_for_typhoon.c;C:\\dev\\C-FOR-TYPHOON\\c_for_typhoon.h",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": false
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "_supported_platforms",
-                            "value": "['generic']",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": true,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": false
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "arm_a53_file_path",
-                            "value": "",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "input_terminals_show_labels",
-                            "value": "True;True;True;True;True",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "generic",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "generate_for_hil",
-                            "value": true,
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "bool",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": false
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "output_terminals_show_labels",
-                            "value": "True",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "generic",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "output_terminals",
-                            "value": "real out;",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "output_terminals_dimensions",
-                            "value": "1",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "arm_a9_file_path",
-                            "value": "",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "input_terminals",
-                            "value": "real layersRefs;inherit startValue;inherit riseTimes;inherit layersPeriods;inherit t;",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "global_variables",
-                            "value": "",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": false
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "convert_to_relative_dll",
-                            "value": true,
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "bool",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": false
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "execution_rate",
-                            "value": 5e-05,
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "real",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "output_fnc",
-                            "value": "/*Begin code section*/\nrampLayers(layersRefs, startValue, times, t, &out);\n/*End code section*/",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "refresh",
-                            "value": "refresh",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "parameters",
-                            "value": "",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "input_terminals_dimensions",
-                            "value": "inherit;inherit;inherit;inherit;inherit",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "dll_file_path",
-                            "value": "",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "add_macros",
-                            "value": "",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": false
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "skip_pre_cmpl_check",
-                            "value": false,
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "bool",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": false
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "arm_a9_file_path_full",
-                            "value": "",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": false
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "h_file_path",
-                            "value": "",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "arm_a53_file_path_full",
-                            "value": "",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": false
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "input_terminals_feedthrough",
-                            "value": "True;True;True;True;True",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "add_src_path",
-                            "value": "..\\c_for_typhoon.c;..\\c_for_typhoon.h",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "init_fnc",
-                            "value": "/*Begin code section*/\nLAYERS_TIMES times = {\n    riseTimes,\n    layersPeriods\n};\n/*End code section*/",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "library_load_type",
-                            "value": "Compile-time load",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "h_file_path_full",
-                            "value": "",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": false
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "update_fnc",
-                            "value": "/*Begin code section*/\n\n/*End code section*/",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "convert_to_relative_a",
-                            "value": true,
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "bool",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": false
-                        }
-                    ],
-                    "terminals": [
-                        {
-                            "_cls": "Terminal",
-                            "id": 2292187664976,
-                            "name": "t",
-                            "group": null,
-                            "group_idx": null,
-                            "group_cardinal_num": null,
-                            "uniform": true,
-                            "kind": "sp",
-                            "dimension": [
-                                1
-                            ],
-                            "direction": "in",
-                            "sp_type": "real",
-                            "feedthrough": true,
-                            "unused": false
-                        },
-                        {
-                            "_cls": "Terminal",
-                            "id": 2292184651408,
-                            "name": "layersRefs",
-                            "group": null,
-                            "group_idx": null,
-                            "group_cardinal_num": null,
-                            "uniform": true,
-                            "kind": "sp",
-                            "dimension": [
-                                3
-                            ],
-                            "direction": "in",
-                            "sp_type": "real",
-                            "feedthrough": true,
-                            "unused": false
-                        },
-                        {
-                            "_cls": "Terminal",
-                            "id": 2292187672720,
-                            "name": "layersPeriods",
-                            "group": null,
-                            "group_idx": null,
-                            "group_cardinal_num": null,
-                            "uniform": true,
-                            "kind": "sp",
-                            "dimension": [
-                                3
-                            ],
-                            "direction": "in",
-                            "sp_type": "real",
-                            "feedthrough": true,
-                            "unused": false
-                        },
-                        {
-                            "_cls": "Terminal",
-                            "id": 2292184646288,
-                            "name": "riseTimes",
-                            "group": null,
-                            "group_idx": null,
-                            "group_cardinal_num": null,
-                            "uniform": true,
-                            "kind": "sp",
-                            "dimension": [
-                                3
-                            ],
-                            "direction": "in",
-                            "sp_type": "real",
-                            "feedthrough": true,
-                            "unused": false
-                        },
-                        {
-                            "_cls": "Terminal",
-                            "id": 2292187660624,
-                            "name": "out",
-                            "group": null,
-                            "group_idx": null,
-                            "group_cardinal_num": null,
-                            "uniform": true,
-                            "kind": "sp",
-                            "dimension": [
-                                1
-                            ],
-                            "direction": "out",
-                            "sp_type": "real",
-                            "feedthrough": true,
-                            "unused": false
-                        },
-                        {
-                            "_cls": "Terminal",
-                            "id": 2292184658384,
-                            "name": "startValue",
-                            "group": null,
-                            "group_idx": null,
-                            "group_cardinal_num": null,
-                            "uniform": true,
-                            "kind": "sp",
-                            "dimension": [
-                                1
-                            ],
-                            "direction": "in",
-                            "sp_type": "real",
-                            "feedthrough": true,
-                            "unused": false
-                        }
-                    ],
-                    "unused_terminals": [],
-                    "masks": [],
-                    "parent_comp_id": 2292190508240,
-                    "target_cpu": [
-                        "user_sp_cpu",
-                        0
-                    ],
-                    "selected_for_export": false,
-                    "root_for_export": false,
-                    "supported_platforms": [
-                        "generic"
-                    ],
-                    "signals": [],
-                    "state_depends_on_input": false,
-                    "tml_file": "C function"
-                },
-                {
-                    "_cls": "Component",
-                    "id": 2292190495056,
+                    "id": 3080332200656,
                     "name": "Constant2",
                     "vars": {
                         "ERROR_PROPERTY_VALUE_INVALID": "Invalid property value",
@@ -2776,24 +1658,11 @@
                     },
                     "comp_type": "Constant",
                     "lib_fqn": "Signal Processing.Sources.Constant",
-                    "resource_root": "C:\\dev\\C-FOR-TYPHOON\\Simulations",
+                    "resource_root": "F:\\Dev\\C_Lib_for_TyphoonSim\\Simulations",
                     "core_type_name": "Constant",
                     "composite": false,
                     "phase_number": null,
                     "properties": [
-                        {
-                            "_cls": "Property",
-                            "name": "_tunable",
-                            "value": false,
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "bool",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
                         {
                             "_cls": "Property",
                             "name": "signal_type",
@@ -2802,6 +1671,19 @@
                             "max_value": null,
                             "specified_value": null,
                             "value_type": "string",
+                            "vector": false,
+                            "calc_value": null,
+                            "tunable": false,
+                            "visible": true
+                        },
+                        {
+                            "_cls": "Property",
+                            "name": "_tunable",
+                            "value": false,
+                            "min_value": null,
+                            "max_value": null,
+                            "specified_value": null,
+                            "value_type": "bool",
                             "vector": false,
                             "calc_value": null,
                             "tunable": false,
@@ -2839,7 +1721,7 @@
                     "terminals": [
                         {
                             "_cls": "Terminal",
-                            "id": 2292190498832,
+                            "id": 3080602515856,
                             "name": "out",
                             "group": null,
                             "group_idx": null,
@@ -2857,7 +1739,7 @@
                     ],
                     "unused_terminals": [],
                     "masks": [],
-                    "parent_comp_id": 2292190495568,
+                    "parent_comp_id": 3080604531984,
                     "target_cpu": [
                         "user_sp_cpu",
                         0
@@ -2873,20 +1755,20 @@
                 },
                 {
                     "_cls": "Component",
-                    "id": 2292196300624,
+                    "id": 3080602625872,
                     "name": "Ramp1",
                     "vars": {},
                     "comp_type": "Ramp",
                     "lib_fqn": "Signal Processing.Sources.Ramp",
-                    "resource_root": "C:\\dev\\C-FOR-TYPHOON\\Simulations",
+                    "resource_root": "F:\\Dev\\C_Lib_for_TyphoonSim\\Simulations",
                     "core_type_name": "Ramp",
                     "composite": false,
                     "phase_number": null,
                     "properties": [
                         {
                             "_cls": "Property",
-                            "name": "slope",
-                            "value": 1.0,
+                            "name": "execution_rate",
+                            "value": 5e-05,
                             "min_value": null,
                             "max_value": null,
                             "specified_value": null,
@@ -2911,8 +1793,8 @@
                         },
                         {
                             "_cls": "Property",
-                            "name": "execution_rate",
-                            "value": 5e-05,
+                            "name": "start_time",
+                            "value": 0.0,
                             "min_value": null,
                             "max_value": null,
                             "specified_value": null,
@@ -2924,8 +1806,8 @@
                         },
                         {
                             "_cls": "Property",
-                            "name": "start_time",
-                            "value": 0.0,
+                            "name": "slope",
+                            "value": 1.0,
                             "min_value": null,
                             "max_value": null,
                             "specified_value": null,
@@ -2939,7 +1821,7 @@
                     "terminals": [
                         {
                             "_cls": "Terminal",
-                            "id": 2292196297808,
+                            "id": 3080602617040,
                             "name": "out",
                             "group": null,
                             "group_idx": null,
@@ -2957,7 +1839,7 @@
                     ],
                     "unused_terminals": [],
                     "masks": [],
-                    "parent_comp_id": 2292190495568,
+                    "parent_comp_id": 3080604531984,
                     "target_cpu": [
                         "user_sp_cpu",
                         0
@@ -2973,43 +1855,28 @@
                 },
                 {
                     "_cls": "Component",
-                    "id": 2292195681616,
-                    "name": "rise_times",
+                    "id": 3080602992464,
+                    "name": "Ramp-step Out",
                     "vars": {
-                        "ERROR_PROPERTY_VALUE_INVALID": "Invalid property value",
-                        "const_value": [
-                            0.05,
-                            0.05,
-                            0.05
-                        ],
-                        "const_value_shape": [
-                            3
-                        ],
-                        "value": {
-                            "_cls": "ndarray",
-                            "value": [
-                                0.05,
-                                0.05,
-                                0.05
-                            ]
-                        },
-                        "value_size": 3,
-                        "value_tunable": false,
-                        "out_type": "real",
-                        "sc_value": 0.05,
-                        "signal_type": "real"
+                        "ITEM_SIGNAL": "signal",
+                        "out_size": 1,
+                        "rd_as": 13107200,
+                        "rd_as_probe": 32,
+                        "rd_probe": 12648448,
+                        "out_mem_size": 1024,
+                        "gl_addr": 12615680
                     },
-                    "comp_type": "Constant",
-                    "lib_fqn": "Signal Processing.Sources.Constant",
-                    "resource_root": "C:\\dev\\C-FOR-TYPHOON\\Simulations",
-                    "core_type_name": "Constant",
+                    "comp_type": "Probe",
+                    "lib_fqn": "Signal Processing.Sinks.Probe",
+                    "resource_root": "F:\\Dev\\C_Lib_for_TyphoonSim\\Simulations",
+                    "core_type_name": "Probe",
                     "composite": false,
                     "phase_number": null,
                     "properties": [
                         {
                             "_cls": "Property",
                             "name": "signal_type",
-                            "value": "real",
+                            "value": "generic",
                             "min_value": null,
                             "max_value": null,
                             "specified_value": null,
@@ -3021,7 +1888,20 @@
                         },
                         {
                             "_cls": "Property",
-                            "name": "_tunable",
+                            "name": "signal_name",
+                            "value": "Ramp-step Out",
+                            "min_value": null,
+                            "max_value": null,
+                            "specified_value": null,
+                            "value_type": "signal_name",
+                            "vector": false,
+                            "calc_value": null,
+                            "tunable": false,
+                            "visible": true
+                        },
+                        {
+                            "_cls": "Property",
+                            "name": "streaming_en",
                             "value": false,
                             "min_value": null,
                             "max_value": null,
@@ -3034,117 +1914,7 @@
                         },
                         {
                             "_cls": "Property",
-                            "name": "value",
-                            "value": [
-                                0.05,
-                                0.05,
-                                0.05
-                            ],
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "real",
-                            "vector": true,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "execution_rate",
-                            "value": 5e-05,
-                            "min_value": ".1e-9",
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "real",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        }
-                    ],
-                    "terminals": [
-                        {
-                            "_cls": "Terminal",
-                            "id": 2292195687632,
-                            "name": "out",
-                            "group": null,
-                            "group_idx": null,
-                            "group_cardinal_num": null,
-                            "uniform": true,
-                            "kind": "sp",
-                            "dimension": [
-                                3
-                            ],
-                            "direction": "out",
-                            "sp_type": "real",
-                            "feedthrough": true,
-                            "unused": false
-                        }
-                    ],
-                    "unused_terminals": [],
-                    "masks": [],
-                    "parent_comp_id": 2292190508240,
-                    "target_cpu": [
-                        "user_sp_cpu",
-                        0
-                    ],
-                    "selected_for_export": false,
-                    "root_for_export": false,
-                    "supported_platforms": [
-                        "generic"
-                    ],
-                    "signals": [],
-                    "state_depends_on_input": false,
-                    "tml_file": "Constant"
-                },
-                {
-                    "_cls": "Component",
-                    "id": 2292195884432,
-                    "name": "Constant1",
-                    "vars": {
-                        "ERROR_PROPERTY_VALUE_INVALID": "Invalid property value",
-                        "const_value": [
-                            1.0
-                        ],
-                        "const_value_shape": [
-                            1
-                        ],
-                        "value": {
-                            "_cls": "ndarray",
-                            "value": [
-                                1.0
-                            ]
-                        },
-                        "value_size": 1,
-                        "value_tunable": false,
-                        "out_type": "real",
-                        "sc_value": 1.0,
-                        "signal_type": "real"
-                    },
-                    "comp_type": "Constant",
-                    "lib_fqn": "Signal Processing.Sources.Constant",
-                    "resource_root": "C:\\dev\\C-FOR-TYPHOON\\Simulations",
-                    "core_type_name": "Constant",
-                    "composite": false,
-                    "phase_number": null,
-                    "properties": [
-                        {
-                            "_cls": "Property",
-                            "name": "execution_rate",
-                            "value": 5e-05,
-                            "min_value": ".1e-9",
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "real",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "_tunable",
+                            "name": "override_signal_name",
                             "value": false,
                             "min_value": null,
                             "max_value": null,
@@ -3157,12 +1927,12 @@
                         },
                         {
                             "_cls": "Property",
-                            "name": "signal_type",
-                            "value": "real",
+                            "name": "execution_rate",
+                            "value": 5e-05,
                             "min_value": null,
                             "max_value": null,
                             "specified_value": null,
-                            "value_type": "string",
+                            "value_type": "real",
                             "vector": false,
                             "calc_value": null,
                             "tunable": false,
@@ -3170,25 +1940,49 @@
                         },
                         {
                             "_cls": "Property",
-                            "name": "value",
-                            "value": [
-                                1.0
-                            ],
+                            "name": "signal_access",
+                            "value": "inherit",
                             "min_value": null,
                             "max_value": null,
                             "specified_value": null,
-                            "value_type": "real",
-                            "vector": true,
+                            "value_type": "signal_access",
+                            "vector": false,
                             "calc_value": null,
                             "tunable": false,
                             "visible": true
+                        },
+                        {
+                            "_cls": "Property",
+                            "name": "addr",
+                            "value": 0,
+                            "min_value": null,
+                            "max_value": null,
+                            "specified_value": null,
+                            "value_type": "uint",
+                            "vector": false,
+                            "calc_value": null,
+                            "tunable": false,
+                            "visible": false
+                        },
+                        {
+                            "_cls": "Property",
+                            "name": "streaming_er_idx",
+                            "value": 0,
+                            "min_value": null,
+                            "max_value": null,
+                            "specified_value": null,
+                            "value_type": "uint",
+                            "vector": false,
+                            "calc_value": null,
+                            "tunable": false,
+                            "visible": false
                         }
                     ],
                     "terminals": [
                         {
                             "_cls": "Terminal",
-                            "id": 2292195881296,
-                            "name": "out",
+                            "id": 3080602991632,
+                            "name": "in",
                             "group": null,
                             "group_idx": null,
                             "group_cardinal_num": null,
@@ -3197,7 +1991,7 @@
                             "dimension": [
                                 1
                             ],
-                            "direction": "out",
+                            "direction": "in",
                             "sp_type": "real",
                             "feedthrough": true,
                             "unused": false
@@ -3205,7 +1999,7 @@
                     ],
                     "unused_terminals": [],
                     "masks": [],
-                    "parent_comp_id": 2292190495568,
+                    "parent_comp_id": null,
                     "target_cpu": [
                         "user_sp_cpu",
                         0
@@ -3215,13 +2009,15 @@
                     "supported_platforms": [
                         "generic"
                     ],
-                    "signals": [],
+                    "signals": [
+                        3080605592272
+                    ],
                     "state_depends_on_input": false,
-                    "tml_file": "Constant"
+                    "tml_file": "Probe"
                 },
                 {
                     "_cls": "Component",
-                    "id": 2292195944400,
+                    "id": 3080606635344,
                     "name": "Step_Ramp",
                     "vars": {
                         "result": [
@@ -3246,313 +2042,14 @@
                     },
                     "comp_type": "C function",
                     "lib_fqn": "Signal Processing.Functions and Tables.C function",
-                    "resource_root": "C:\\dev\\C-FOR-TYPHOON\\Simulations",
+                    "resource_root": "F:\\Dev\\C_Lib_for_TyphoonSim\\Simulations",
                     "core_type_name": "C function",
                     "composite": false,
                     "phase_number": null,
                     "properties": [
                         {
                             "_cls": "Property",
-                            "name": "input_terminals_show_labels",
-                            "value": "True;True;True;True",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "generic",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "output_terminals_show_labels",
-                            "value": "False",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "generic",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "h_file_path_full",
-                            "value": "",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": false
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "convert_to_relative_dll",
-                            "value": true,
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "bool",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": false
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "refresh",
-                            "value": "refresh",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "output_terminals",
-                            "value": "real out;",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "input_terminals_feedthrough",
-                            "value": "True;True;True;True",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "arm_a53_file_path",
-                            "value": "",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "global_variables",
-                            "value": "",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": false
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "generate_for_hil",
-                            "value": true,
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "bool",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": false
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "dll_file_path",
-                            "value": "",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "input_terminals",
-                            "value": "inherit ref;inherit startVal;inherit stepTime;real t;",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "output_terminals_feedthrough",
-                            "value": "True",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "_supported_platforms",
-                            "value": "['generic']",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": true,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": false
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "arm_a9_file_path_full",
-                            "value": "",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": false
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "convert_to_relative_src",
-                            "value": true,
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "bool",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": false
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "output_fnc",
-                            "value": "/*Begin code section*/\nrampStep(ref, startVal, stepTime, t, &out);\n/*End code section*/",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "arm_a53_file_path_full",
-                            "value": "",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": false
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "add_src_path_full",
-                            "value": "C:\\dev\\C-FOR-TYPHOON\\c_for_typhoon.c;C:\\dev\\C-FOR-TYPHOON\\c_for_typhoon.h",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": false
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "skip_pre_cmpl_check",
-                            "value": false,
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "bool",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": false
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "convert_to_relative_a",
-                            "value": true,
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "bool",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": false
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "library_load_type",
-                            "value": "Compile-time load",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "arb_defs",
-                            "value": "/*Begin code section*/\n\n/*End code section*/",
-                            "min_value": null,
-                            "max_value": null,
-                            "specified_value": null,
-                            "value_type": "string",
-                            "vector": false,
-                            "calc_value": null,
-                            "tunable": false,
-                            "visible": true
-                        },
-                        {
-                            "_cls": "Property",
-                            "name": "update_fnc",
+                            "name": "init_fnc",
                             "value": "/*Begin code section*/\n\n/*End code section*/",
                             "min_value": null,
                             "max_value": null,
@@ -3578,8 +2075,8 @@
                         },
                         {
                             "_cls": "Property",
-                            "name": "input_terminals_dimensions",
-                            "value": "inherit;inherit;inherit;inherit",
+                            "name": "output_terminals_dimensions",
+                            "value": "inherit",
                             "min_value": null,
                             "max_value": null,
                             "specified_value": null,
@@ -3604,8 +2101,8 @@
                         },
                         {
                             "_cls": "Property",
-                            "name": "output_terminals_dimensions",
-                            "value": "inherit",
+                            "name": "arm_a53_file_path_full",
+                            "value": "",
                             "min_value": null,
                             "max_value": null,
                             "specified_value": null,
@@ -3613,7 +2110,20 @@
                             "vector": false,
                             "calc_value": null,
                             "tunable": false,
-                            "visible": true
+                            "visible": false
+                        },
+                        {
+                            "_cls": "Property",
+                            "name": "h_file_path_full",
+                            "value": "",
+                            "min_value": null,
+                            "max_value": null,
+                            "specified_value": null,
+                            "value_type": "string",
+                            "vector": false,
+                            "calc_value": null,
+                            "tunable": false,
+                            "visible": false
                         },
                         {
                             "_cls": "Property",
@@ -3630,7 +2140,150 @@
                         },
                         {
                             "_cls": "Property",
-                            "name": "h_file_path",
+                            "name": "output_terminals_show_labels",
+                            "value": "False",
+                            "min_value": null,
+                            "max_value": null,
+                            "specified_value": null,
+                            "value_type": "generic",
+                            "vector": false,
+                            "calc_value": null,
+                            "tunable": false,
+                            "visible": true
+                        },
+                        {
+                            "_cls": "Property",
+                            "name": "arb_defs",
+                            "value": "/*Begin code section*/\n\n/*End code section*/",
+                            "min_value": null,
+                            "max_value": null,
+                            "specified_value": null,
+                            "value_type": "string",
+                            "vector": false,
+                            "calc_value": null,
+                            "tunable": false,
+                            "visible": true
+                        },
+                        {
+                            "_cls": "Property",
+                            "name": "output_fnc",
+                            "value": "/*Begin code section*/\nrampStep(ref, startVal, stepTime, t, &out);\n/*End code section*/",
+                            "min_value": null,
+                            "max_value": null,
+                            "specified_value": null,
+                            "value_type": "string",
+                            "vector": false,
+                            "calc_value": null,
+                            "tunable": false,
+                            "visible": true
+                        },
+                        {
+                            "_cls": "Property",
+                            "name": "refresh",
+                            "value": "refresh",
+                            "min_value": null,
+                            "max_value": null,
+                            "specified_value": null,
+                            "value_type": "string",
+                            "vector": false,
+                            "calc_value": null,
+                            "tunable": false,
+                            "visible": true
+                        },
+                        {
+                            "_cls": "Property",
+                            "name": "input_terminals",
+                            "value": "inherit ref;inherit startVal;inherit stepTime;real t;",
+                            "min_value": null,
+                            "max_value": null,
+                            "specified_value": null,
+                            "value_type": "string",
+                            "vector": false,
+                            "calc_value": null,
+                            "tunable": false,
+                            "visible": true
+                        },
+                        {
+                            "_cls": "Property",
+                            "name": "generate_for_hil",
+                            "value": true,
+                            "min_value": null,
+                            "max_value": null,
+                            "specified_value": null,
+                            "value_type": "bool",
+                            "vector": false,
+                            "calc_value": null,
+                            "tunable": false,
+                            "visible": false
+                        },
+                        {
+                            "_cls": "Property",
+                            "name": "input_terminals_feedthrough",
+                            "value": "True;True;True;True",
+                            "min_value": null,
+                            "max_value": null,
+                            "specified_value": null,
+                            "value_type": "string",
+                            "vector": false,
+                            "calc_value": null,
+                            "tunable": false,
+                            "visible": true
+                        },
+                        {
+                            "_cls": "Property",
+                            "name": "library_load_type",
+                            "value": "Compile-time load",
+                            "min_value": null,
+                            "max_value": null,
+                            "specified_value": null,
+                            "value_type": "string",
+                            "vector": false,
+                            "calc_value": null,
+                            "tunable": false,
+                            "visible": true
+                        },
+                        {
+                            "_cls": "Property",
+                            "name": "output_terminals_feedthrough",
+                            "value": "True",
+                            "min_value": null,
+                            "max_value": null,
+                            "specified_value": null,
+                            "value_type": "string",
+                            "vector": false,
+                            "calc_value": null,
+                            "tunable": false,
+                            "visible": true
+                        },
+                        {
+                            "_cls": "Property",
+                            "name": "convert_to_relative_src",
+                            "value": true,
+                            "min_value": null,
+                            "max_value": null,
+                            "specified_value": null,
+                            "value_type": "bool",
+                            "vector": false,
+                            "calc_value": null,
+                            "tunable": false,
+                            "visible": false
+                        },
+                        {
+                            "_cls": "Property",
+                            "name": "input_terminals_show_labels",
+                            "value": "True;True;True;True",
+                            "min_value": null,
+                            "max_value": null,
+                            "specified_value": null,
+                            "value_type": "generic",
+                            "vector": false,
+                            "calc_value": null,
+                            "tunable": false,
+                            "visible": true
+                        },
+                        {
+                            "_cls": "Property",
+                            "name": "arm_a53_file_path",
                             "value": "",
                             "min_value": null,
                             "max_value": null,
@@ -3643,8 +2296,8 @@
                         },
                         {
                             "_cls": "Property",
-                            "name": "init_fnc",
-                            "value": "/*Begin code section*/\n\n/*End code section*/",
+                            "name": "dll_file_path",
+                            "value": "",
                             "min_value": null,
                             "max_value": null,
                             "specified_value": null,
@@ -3653,6 +2306,19 @@
                             "calc_value": null,
                             "tunable": false,
                             "visible": true
+                        },
+                        {
+                            "_cls": "Property",
+                            "name": "add_src_path_full",
+                            "value": "F:\\Dev\\C_Lib_for_TyphoonSim\\c_for_typhoon.c;F:\\Dev\\C_Lib_for_TyphoonSim\\c_for_typhoon.h",
+                            "min_value": null,
+                            "max_value": null,
+                            "specified_value": null,
+                            "value_type": "string",
+                            "vector": false,
+                            "calc_value": null,
+                            "tunable": false,
+                            "visible": false
                         },
                         {
                             "_cls": "Property",
@@ -3669,6 +2335,84 @@
                         },
                         {
                             "_cls": "Property",
+                            "name": "convert_to_relative_a",
+                            "value": true,
+                            "min_value": null,
+                            "max_value": null,
+                            "specified_value": null,
+                            "value_type": "bool",
+                            "vector": false,
+                            "calc_value": null,
+                            "tunable": false,
+                            "visible": false
+                        },
+                        {
+                            "_cls": "Property",
+                            "name": "input_terminals_dimensions",
+                            "value": "inherit;inherit;inherit;inherit",
+                            "min_value": null,
+                            "max_value": null,
+                            "specified_value": null,
+                            "value_type": "string",
+                            "vector": false,
+                            "calc_value": null,
+                            "tunable": false,
+                            "visible": true
+                        },
+                        {
+                            "_cls": "Property",
+                            "name": "arm_a9_file_path_full",
+                            "value": "",
+                            "min_value": null,
+                            "max_value": null,
+                            "specified_value": null,
+                            "value_type": "string",
+                            "vector": false,
+                            "calc_value": null,
+                            "tunable": false,
+                            "visible": false
+                        },
+                        {
+                            "_cls": "Property",
+                            "name": "global_variables",
+                            "value": "",
+                            "min_value": null,
+                            "max_value": null,
+                            "specified_value": null,
+                            "value_type": "string",
+                            "vector": false,
+                            "calc_value": null,
+                            "tunable": false,
+                            "visible": false
+                        },
+                        {
+                            "_cls": "Property",
+                            "name": "skip_pre_cmpl_check",
+                            "value": false,
+                            "min_value": null,
+                            "max_value": null,
+                            "specified_value": null,
+                            "value_type": "bool",
+                            "vector": false,
+                            "calc_value": null,
+                            "tunable": false,
+                            "visible": false
+                        },
+                        {
+                            "_cls": "Property",
+                            "name": "h_file_path",
+                            "value": "",
+                            "min_value": null,
+                            "max_value": null,
+                            "specified_value": null,
+                            "value_type": "string",
+                            "vector": false,
+                            "calc_value": null,
+                            "tunable": false,
+                            "visible": true
+                        },
+                        {
+                            "_cls": "Property",
                             "name": "add_src_path",
                             "value": "..\\c_for_typhoon.c;..\\c_for_typhoon.h",
                             "min_value": null,
@@ -3682,6 +2426,45 @@
                         },
                         {
                             "_cls": "Property",
+                            "name": "update_fnc",
+                            "value": "/*Begin code section*/\n\n/*End code section*/",
+                            "min_value": null,
+                            "max_value": null,
+                            "specified_value": null,
+                            "value_type": "string",
+                            "vector": false,
+                            "calc_value": null,
+                            "tunable": false,
+                            "visible": true
+                        },
+                        {
+                            "_cls": "Property",
+                            "name": "_supported_platforms",
+                            "value": "['generic']",
+                            "min_value": null,
+                            "max_value": null,
+                            "specified_value": null,
+                            "value_type": "string",
+                            "vector": true,
+                            "calc_value": null,
+                            "tunable": false,
+                            "visible": false
+                        },
+                        {
+                            "_cls": "Property",
+                            "name": "convert_to_relative_dll",
+                            "value": true,
+                            "min_value": null,
+                            "max_value": null,
+                            "specified_value": null,
+                            "value_type": "bool",
+                            "vector": false,
+                            "calc_value": null,
+                            "tunable": false,
+                            "visible": false
+                        },
+                        {
+                            "_cls": "Property",
                             "name": "execution_rate",
                             "value": 5e-05,
                             "min_value": null,
@@ -3692,12 +2475,25 @@
                             "calc_value": null,
                             "tunable": false,
                             "visible": true
+                        },
+                        {
+                            "_cls": "Property",
+                            "name": "output_terminals",
+                            "value": "real out;",
+                            "min_value": null,
+                            "max_value": null,
+                            "specified_value": null,
+                            "value_type": "string",
+                            "vector": false,
+                            "calc_value": null,
+                            "tunable": false,
+                            "visible": true
                         }
                     ],
                     "terminals": [
                         {
                             "_cls": "Terminal",
-                            "id": 2292195816464,
+                            "id": 3080603928272,
                             "name": "ref",
                             "group": null,
                             "group_idx": null,
@@ -3714,7 +2510,7 @@
                         },
                         {
                             "_cls": "Terminal",
-                            "id": 2292195810320,
+                            "id": 3080603938512,
                             "name": "startVal",
                             "group": null,
                             "group_idx": null,
@@ -3731,24 +2527,7 @@
                         },
                         {
                             "_cls": "Terminal",
-                            "id": 2292195938960,
-                            "name": "t",
-                            "group": null,
-                            "group_idx": null,
-                            "group_cardinal_num": null,
-                            "uniform": true,
-                            "kind": "sp",
-                            "dimension": [
-                                1
-                            ],
-                            "direction": "in",
-                            "sp_type": "real",
-                            "feedthrough": true,
-                            "unused": false
-                        },
-                        {
-                            "_cls": "Terminal",
-                            "id": 2292195943248,
+                            "id": 3080606636880,
                             "name": "out",
                             "group": null,
                             "group_idx": null,
@@ -3765,8 +2544,25 @@
                         },
                         {
                             "_cls": "Terminal",
-                            "id": 2292195949008,
+                            "id": 3080603928976,
                             "name": "stepTime",
+                            "group": null,
+                            "group_idx": null,
+                            "group_cardinal_num": null,
+                            "uniform": true,
+                            "kind": "sp",
+                            "dimension": [
+                                1
+                            ],
+                            "direction": "in",
+                            "sp_type": "real",
+                            "feedthrough": true,
+                            "unused": false
+                        },
+                        {
+                            "_cls": "Terminal",
+                            "id": 3080606646160,
+                            "name": "t",
                             "group": null,
                             "group_idx": null,
                             "group_cardinal_num": null,
@@ -3783,7 +2579,7 @@
                     ],
                     "unused_terminals": [],
                     "masks": [],
-                    "parent_comp_id": 2292190495568,
+                    "parent_comp_id": 3080604531984,
                     "target_cpu": [
                         "user_sp_cpu",
                         0
@@ -3796,17 +2592,138 @@
                     "signals": [],
                     "state_depends_on_input": false,
                     "tml_file": "C function"
+                },
+                {
+                    "_cls": "Component",
+                    "id": 3080602618832,
+                    "name": "Constant3",
+                    "vars": {
+                        "ERROR_PROPERTY_VALUE_INVALID": "Invalid property value",
+                        "const_value": [
+                            0.1
+                        ],
+                        "const_value_shape": [
+                            1
+                        ],
+                        "value": {
+                            "_cls": "ndarray",
+                            "value": [
+                                0.1
+                            ]
+                        },
+                        "value_size": 1,
+                        "value_tunable": false,
+                        "out_type": "real",
+                        "sc_value": 0.1,
+                        "signal_type": "real"
+                    },
+                    "comp_type": "Constant",
+                    "lib_fqn": "Signal Processing.Sources.Constant",
+                    "resource_root": "F:\\Dev\\C_Lib_for_TyphoonSim\\Simulations",
+                    "core_type_name": "Constant",
+                    "composite": false,
+                    "phase_number": null,
+                    "properties": [
+                        {
+                            "_cls": "Property",
+                            "name": "signal_type",
+                            "value": "real",
+                            "min_value": null,
+                            "max_value": null,
+                            "specified_value": null,
+                            "value_type": "string",
+                            "vector": false,
+                            "calc_value": null,
+                            "tunable": false,
+                            "visible": true
+                        },
+                        {
+                            "_cls": "Property",
+                            "name": "_tunable",
+                            "value": false,
+                            "min_value": null,
+                            "max_value": null,
+                            "specified_value": null,
+                            "value_type": "bool",
+                            "vector": false,
+                            "calc_value": null,
+                            "tunable": false,
+                            "visible": true
+                        },
+                        {
+                            "_cls": "Property",
+                            "name": "execution_rate",
+                            "value": 5e-05,
+                            "min_value": ".1e-9",
+                            "max_value": null,
+                            "specified_value": null,
+                            "value_type": "real",
+                            "vector": false,
+                            "calc_value": null,
+                            "tunable": false,
+                            "visible": true
+                        },
+                        {
+                            "_cls": "Property",
+                            "name": "value",
+                            "value": [
+                                0.1
+                            ],
+                            "min_value": null,
+                            "max_value": null,
+                            "specified_value": null,
+                            "value_type": "real",
+                            "vector": true,
+                            "calc_value": null,
+                            "tunable": false,
+                            "visible": true
+                        }
+                    ],
+                    "terminals": [
+                        {
+                            "_cls": "Terminal",
+                            "id": 3080602629200,
+                            "name": "out",
+                            "group": null,
+                            "group_idx": null,
+                            "group_cardinal_num": null,
+                            "uniform": true,
+                            "kind": "sp",
+                            "dimension": [
+                                1
+                            ],
+                            "direction": "out",
+                            "sp_type": "real",
+                            "feedthrough": true,
+                            "unused": false
+                        }
+                    ],
+                    "unused_terminals": [],
+                    "masks": [],
+                    "parent_comp_id": 3080604531984,
+                    "target_cpu": [
+                        "user_sp_cpu",
+                        0
+                    ],
+                    "selected_for_export": false,
+                    "root_for_export": false,
+                    "supported_platforms": [
+                        "generic"
+                    ],
+                    "signals": [],
+                    "state_depends_on_input": false,
+                    "tml_file": "Constant"
                 }
             ],
             "parent_components": [
                 {
                     "_cls": "Component",
-                    "id": 2292190495568,
+                    "id": 3080604531984,
                     "name": "Ramp-step",
                     "vars": {},
                     "comp_type": null,
                     "lib_fqn": null,
-                    "resource_root": "C:\\dev\\C-FOR-TYPHOON\\Simulations",
+                    "resource_root": "F:\\Dev\\C_Lib_for_TyphoonSim\\Simulations",
                     "core_type_name": null,
                     "composite": true,
                     "phase_number": null,
@@ -3814,8 +2731,8 @@
                     "terminals": [
                         {
                             "_cls": "Terminal",
-                            "id": 2292190497552,
-                            "name": "Output",
+                            "id": 3080599925520,
+                            "name": "Ramp-step",
                             "group": null,
                             "group_idx": null,
                             "group_cardinal_num": null,
@@ -3835,16 +2752,29 @@
                         {
                             "_cls": "Mask",
                             "vars": {
-                                "ref": 50.0,
+                                "ref": 1.0,
                                 "start_value": 0.0,
-                                "rise_time": 0.2,
-                                "exec_rate": "Ts"
+                                "rise_time": 0.1,
+                                "execution_rate": "Ts"
                             },
                             "properties": [
                                 {
                                     "_cls": "Property",
                                     "name": "start_value",
                                     "value": 0.0,
+                                    "min_value": null,
+                                    "max_value": null,
+                                    "specified_value": null,
+                                    "value_type": "real",
+                                    "vector": false,
+                                    "calc_value": null,
+                                    "tunable": false,
+                                    "visible": true
+                                },
+                                {
+                                    "_cls": "Property",
+                                    "name": "rise_time",
+                                    "value": 0.1,
                                     "min_value": null,
                                     "max_value": null,
                                     "specified_value": null,
@@ -3879,151 +2809,6 @@
                                     "calc_value": null,
                                     "tunable": false,
                                     "visible": true
-                                },
-                                {
-                                    "_cls": "Property",
-                                    "name": "rise_time",
-                                    "value": 0.1,
-                                    "min_value": null,
-                                    "max_value": null,
-                                    "specified_value": null,
-                                    "value_type": "real",
-                                    "vector": false,
-                                    "calc_value": null,
-                                    "tunable": false,
-                                    "visible": true
-                                }
-                            ],
-                            "signals": []
-                        }
-                    ],
-                    "parent_comp_id": null,
-                    "target_cpu": [
-                        "user_sp_cpu",
-                        0
-                    ],
-                    "selected_for_export": true,
-                    "root_for_export": false,
-                    "supported_platforms": [
-                        "generic"
-                    ],
-                    "signals": [],
-                    "state_depends_on_input": false,
-                    "tml_file": null
-                },
-                {
-                    "_cls": "Component",
-                    "id": 2292190508240,
-                    "name": "ramp-layers",
-                    "vars": {},
-                    "comp_type": null,
-                    "lib_fqn": null,
-                    "resource_root": "C:\\dev\\C-FOR-TYPHOON\\Simulations",
-                    "core_type_name": null,
-                    "composite": true,
-                    "phase_number": null,
-                    "properties": [],
-                    "terminals": [
-                        {
-                            "_cls": "Terminal",
-                            "id": 2292190504976,
-                            "name": "output",
-                            "group": null,
-                            "group_idx": null,
-                            "group_cardinal_num": null,
-                            "uniform": true,
-                            "kind": "sp",
-                            "dimension": [
-                                1
-                            ],
-                            "direction": "out",
-                            "sp_type": null,
-                            "feedthrough": true,
-                            "unused": false
-                        }
-                    ],
-                    "unused_terminals": [],
-                    "masks": [
-                        {
-                            "_cls": "Mask",
-                            "vars": {},
-                            "properties": [
-                                {
-                                    "_cls": "Property",
-                                    "name": "rise_times",
-                                    "value": [
-                                        0.05,
-                                        0.05,
-                                        0.05
-                                    ],
-                                    "min_value": null,
-                                    "max_value": null,
-                                    "specified_value": null,
-                                    "value_type": "generic",
-                                    "vector": false,
-                                    "calc_value": null,
-                                    "tunable": false,
-                                    "visible": true
-                                },
-                                {
-                                    "_cls": "Property",
-                                    "name": "refs",
-                                    "value": [
-                                        1.0,
-                                        2.0,
-                                        3.0
-                                    ],
-                                    "min_value": null,
-                                    "max_value": null,
-                                    "specified_value": null,
-                                    "value_type": "real[]",
-                                    "vector": false,
-                                    "calc_value": null,
-                                    "tunable": false,
-                                    "visible": true
-                                },
-                                {
-                                    "_cls": "Property",
-                                    "name": "start_value",
-                                    "value": 0,
-                                    "min_value": null,
-                                    "max_value": null,
-                                    "specified_value": null,
-                                    "value_type": "generic",
-                                    "vector": false,
-                                    "calc_value": null,
-                                    "tunable": false,
-                                    "visible": true
-                                },
-                                {
-                                    "_cls": "Property",
-                                    "name": "layers_periods",
-                                    "value": [
-                                        0.1,
-                                        0.1,
-                                        0.1
-                                    ],
-                                    "min_value": null,
-                                    "max_value": null,
-                                    "specified_value": null,
-                                    "value_type": "generic",
-                                    "vector": false,
-                                    "calc_value": null,
-                                    "tunable": false,
-                                    "visible": true
-                                },
-                                {
-                                    "_cls": "Property",
-                                    "name": "execution_rate",
-                                    "value": 5e-05,
-                                    "min_value": null,
-                                    "max_value": null,
-                                    "specified_value": null,
-                                    "value_type": "generic",
-                                    "vector": false,
-                                    "calc_value": null,
-                                    "tunable": false,
-                                    "visible": true
                                 }
                             ],
                             "signals": []
@@ -4047,35 +2832,12 @@
             "core_couplings": [],
             "core_partitions": [],
             "signals": {
-                "2292189706576": {
+                "3080605592272": {
                     "_cls": "Signal",
                     "name": "value",
                     "address": null,
                     "signal_type": "analog",
-                    "_id": "78a73ffc-343d-11f1-abe4-b3a91e0d701a",
-                    "nonvisible": false,
-                    "physical_type": null,
-                    "fqn": "Ramp-step-layered.value",
-                    "display_name": "Ramp-step-layered",
-                    "reference_to": null,
-                    "referenced_by": null,
-                    "previous_names": [
-                        "Ramp-step-layered"
-                    ],
-                    "exclusive_data": null,
-                    "signal_access": "public",
-                    "restriction_level": {
-                        "_cls": "SignalRestrictionLevel",
-                        "value": 3
-                    },
-                    "core_model_id": 2292189706576
-                },
-                "2292190082000": {
-                    "_cls": "Signal",
-                    "name": "value",
-                    "address": null,
-                    "signal_type": "analog",
-                    "_id": "78a766ea-343d-11f1-811e-b3a91e0d701a",
+                    "_id": "ef727369-347e-11f1-8d20-8cc315569b55",
                     "nonvisible": false,
                     "physical_type": null,
                     "fqn": "Ramp-step Out.value",
@@ -4091,13 +2853,36 @@
                         "_cls": "SignalRestrictionLevel",
                         "value": 3
                     },
-                    "core_model_id": 2292190082000
+                    "core_model_id": 3080605592272
+                },
+                "3081655370256": {
+                    "_cls": "Signal",
+                    "name": "value",
+                    "address": null,
+                    "signal_type": "analog",
+                    "_id": "ef72736a-347e-11f1-87bd-8cc315569b55",
+                    "nonvisible": false,
+                    "physical_type": null,
+                    "fqn": "Ramp-step-layered.value",
+                    "display_name": "Ramp-step-layered",
+                    "reference_to": null,
+                    "referenced_by": null,
+                    "previous_names": [
+                        "Ramp-step-layered"
+                    ],
+                    "exclusive_data": null,
+                    "signal_access": "public",
+                    "restriction_level": {
+                        "_cls": "SignalRestrictionLevel",
+                        "value": 3
+                    },
+                    "core_model_id": 3081655370256
                 }
             },
             "name_registry": {}
         }
     ],
     "interface_descr": null,
-    "tml_gen_code_dir": "C:\\Users\\vibar\\AppData\\Local\\Temp\\tmpacj38aop",
+    "tml_gen_code_dir": "C:\\Users\\vibar\\AppData\\Local\\Temp\\tmp7u4svr55",
     "name_registry": {}
 }
