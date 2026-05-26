@@ -175,7 +175,7 @@ void rampStepLayers (
 }
 
 void torque_motor_ebike (double omega, double omega_b, double omega_max, double *out) {
-    double T_max = 8.9;
+    double T_max = 9.545;
 
     if (omega < 0) {
         *out = 0;
@@ -186,7 +186,7 @@ void torque_motor_ebike (double omega, double omega_b, double omega_max, double 
         return;
     };
     if (omega_b < omega && omega <= omega_max) {
-        *out = T_max ;
+        *out = T_max * (omega_max - omega) / (omega_max - omega_b);
 
         return;
     };

@@ -4,7 +4,7 @@ version = 4.2
 // Saved by sw version: 2026.1 SP1
 //
 
-model "BLDC - VEL CONTROL with Current feedback" {
+model "BLDC - Vel control with Current control" {
     configuration {
         hil_device = "VHIL+"
         hil_configuration_id = 1
@@ -67,7 +67,7 @@ model "BLDC - VEL CONTROL with Current feedback" {
         solver_type = "DAE"
         integration_method = "BDF"
         max_sim_step = 1e-4
-        simulation_time = 2
+        simulation_time = 0.5
         abs_tol = 1e-3
         rel_tol = 1e-3
         init_sim_step = 1e-6
@@ -244,8 +244,8 @@ Sc_bot = switches.Sc_bot;
         ]
 
         component "core/Scope" "BLDC measures3" {
-            selected_signals = "[\'BLDC3.mechanical angle\', \'mech_speed_rpm3\', \'BLDC3.e_a\', \'BLDC3.e_b\', \'BLDC3.e_c\', \'Ia_bldc\', \'Ib_bldc\', \'Ic_bldc\', \'W_ref\', \'Iin\']"
-            signals_data = "{\"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"black\", \"legend_visible\": true}, \"signals\": {\"BLDC3.mechanical angle\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#FF0000\"}, \"display\": {\"2\": \"solid\"}}, \"mech_speed_rpm3\": {\"viewports\": [3], \"type\": \"analog\", \"color\": {\"3\": \"#FF0000\"}, \"display\": {\"3\": \"solid\"}}, \"BLDC3.e_a\": {\"viewports\": [4], \"type\": \"analog\", \"color\": {\"4\": \"#FF0000\"}, \"display\": {\"4\": \"solid\"}}, \"BLDC3.e_b\": {\"viewports\": [4], \"type\": \"analog\", \"color\": {\"4\": \"#00CC00\"}, \"display\": {\"4\": \"solid\"}}, \"BLDC3.e_c\": {\"viewports\": [4], \"type\": \"analog\", \"color\": {\"4\": \"#0099FF\"}, \"display\": {\"4\": \"solid\"}}, \"Ia_bldc\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}}, \"Ib_bldc\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#00CC00\"}, \"display\": {\"1\": \"solid\"}}, \"Ic_bldc\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#0099FF\"}, \"display\": {\"1\": \"solid\"}}, \"W_ref\": {\"viewports\": [3], \"type\": \"analog\", \"color\": {\"3\": \"#00CC00\"}, \"display\": {\"3\": \"solid\"}}, \"Iin\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FFCC00\"}, \"display\": {\"1\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}}"
+            selected_signals = "[\'BLDC3.mechanical angle\', \'mech_speed_rpm3\', \'BLDC3.e_a\', \'BLDC3.e_b\', \'BLDC3.e_c\', \'Ia_bldc\', \'Ib_bldc\', \'Ic_bldc\', \'Iin\']"
+            signals_data = "{\"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"black\", \"legend_visible\": true}, \"signals\": {\"BLDC3.mechanical angle\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#FF0000\"}, \"display\": {\"2\": \"solid\"}}, \"mech_speed_rpm3\": {\"viewports\": [3], \"type\": \"analog\", \"color\": {\"3\": \"#FF0000\"}, \"display\": {\"3\": \"solid\"}}, \"BLDC3.e_a\": {\"viewports\": [4], \"type\": \"analog\", \"color\": {\"4\": \"#FF0000\"}, \"display\": {\"4\": \"solid\"}}, \"BLDC3.e_b\": {\"viewports\": [4], \"type\": \"analog\", \"color\": {\"4\": \"#00CC00\"}, \"display\": {\"4\": \"solid\"}}, \"BLDC3.e_c\": {\"viewports\": [4], \"type\": \"analog\", \"color\": {\"4\": \"#0099FF\"}, \"display\": {\"4\": \"solid\"}}, \"Ia_bldc\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}}, \"Ib_bldc\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#00CC00\"}, \"display\": {\"1\": \"solid\"}}, \"Ic_bldc\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#0099FF\"}, \"display\": {\"1\": \"solid\"}}, \"Iin\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FFCC00\"}, \"display\": {\"1\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}}"
         }
         [
             position = 7948, 8836
@@ -818,7 +818,7 @@ out = fmod(in,two_pi);
             kp = "6"
         }
         [
-            position = 7004, 9184
+            position = 6840, 9004
             hide_name = True
         ]
 
@@ -826,7 +826,7 @@ out = fmod(in,two_pi);
             signs = "+-"
         }
         [
-            position = 6784, 9180
+            position = 6620, 9000
             hide_name = True
         ]
 
@@ -834,13 +834,13 @@ out = fmod(in,two_pi);
             gain = "1/w_max"
         }
         [
-            position = 6888, 9180
+            position = 6724, 9000
             hide_name = True
         ]
 
         component "core/Triangular Wave Source" Carrier {
             execution_rate = "Ts"
-            frequency = "50000"
+            frequency = "20000"
             max_val = "1"
             min_val = "-1"
         }
@@ -855,33 +855,23 @@ out = fmod(in,two_pi);
             hide_name = True
         ]
 
-        component "core/Square Wave Source" "Changing ref" {
-            execution_rate = "Ts"
-            frequency = "1"
-            hs_output = "100"
-            ls_output = "50"
-        }
-        [
-            position = 6212, 9000
-        ]
-
         component "core/Sign" Sign1 {
         }
         [
-            position = 6716, 9028
+            position = 6552, 8848
             hide_name = True
         ]
 
         component "core/Probe" W_ref {
         }
         [
-            position = 6588, 9028
+            position = 6424, 8848
             rotation = down
         ]
 
         component "core/Scope" "Ctrl syst" {
-            selected_signals = "[\'PID\', \'Err\']"
-            signals_data = "{\"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"black\", \"legend_visible\": true}, \"signals\": {\"PID\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}}, \"Err\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#FF0000\"}, \"display\": {\"2\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}}"
+            selected_signals = "[\'PID\']"
+            signals_data = "{\"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"black\", \"legend_visible\": true}, \"signals\": {\"PID\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}}"
         }
         [
             position = 8072, 8840
@@ -890,14 +880,14 @@ out = fmod(in,two_pi);
         component "core/Abs" Abs2 {
         }
         [
-            position = 6692, 9244
+            position = 6528, 9064
             hide_name = True
         ]
 
         component "core/Abs" Abs3 {
         }
         [
-            position = 6692, 9156
+            position = 6532, 8976
             hide_name = True
         ]
 
@@ -910,11 +900,11 @@ out = fmod(in,two_pi);
         component "core/Probe" Err {
         }
         [
-            position = 6884, 9108
+            position = 6720, 8928
         ]
 
         component "core/Low-Pass Filter" "Low-Pass Filter3" {
-            frequency = "10"
+            frequency = "10000"
         }
         [
             position = 7056, 9296
@@ -923,8 +913,8 @@ out = fmod(in,two_pi);
 
         component "core/PID controller" "PID controller2" {
             filt_coef = "10"
-            ki = "174.9726"
-            kp = "4.9987"
+            ki = "14025.86"
+            kp = "0.123"
         }
         [
             position = 7244, 9224
@@ -943,27 +933,6 @@ out = fmod(in,two_pi);
         }
         [
             position = 8912, 9496
-        ]
-
-        component "core/Product" Product14 {
-        }
-        [
-            position = 7600, 8744
-            hide_name = True
-        ]
-
-        component "core/Product" Product15 {
-        }
-        [
-            position = 7600, 8856
-            hide_name = True
-        ]
-
-        component "core/Product" Product16 {
-        }
-        [
-            position = 7600, 8968
-            hide_name = True
         ]
 
         component "core/Probe" E_torq {
@@ -991,59 +960,6 @@ out = fmod(in,two_pi);
         [
             position = 7600, 9024
             hide_name = True
-        ]
-
-        component "core/C function" Step_Ramp {
-            add_src_path = "..\c_for_typhoon.c;..\c_for_typhoon.h"
-            add_src_path_full = "C:\dev\C-FOR-TYPHOON\c_for_typhoon.c;C:\dev\C-FOR-TYPHOON\c_for_typhoon.h"
-            arb_defs = "/*Begin code section*/
-
-/*End code section*/"
-            init_fnc = "/*Begin code section*/
-
-/*End code section*/"
-            input_terminals = "real val;inherit stepTime;inherit startVal;inherit t;"
-            input_terminals_dimensions = "inherit;inherit;inherit;inherit"
-            input_terminals_feedthrough = "True;True;True;True"
-            input_terminals_show_labels = "True;True;True;True"
-            output_fnc = "/*Begin code section*/
-rampStep(val, startVal, stepTime, t, &out);
-/*End code section*/"
-            output_terminals_dimensions = "inherit"
-            output_terminals_feedthrough = "True"
-            output_terminals_show_labels = "False"
-            update_fnc = "/*Begin code section*/
-
-/*End code section*/"
-        }
-        [
-            position = 6264, 9156
-            size = 160, 176
-        ]
-
-        component "core/Constant" Constant10 {
-            execution_rate = "Ts"
-            value = "w_max"
-        }
-        [
-            position = 6092, 9092
-            hide_name = True
-        ]
-
-        component "core/Constant" Constant11 {
-            execution_rate = "Ts"
-            value = "0.2"
-        }
-        [
-            position = 6092, 9140
-            hide_name = True
-        ]
-
-        component "core/Ramp" Ramp1 {
-            execution_rate = "Ts"
-        }
-        [
-            position = 6104, 9236
         ]
 
         component "core/Current Measurement" Ia {
@@ -1115,69 +1031,6 @@ rampStep(val, startVal, stepTime, t, &out);
             position = 7972, 9392
         ]
 
-        component "core/C function" "Staircase ref" {
-            add_src_path = "..\c_for_typhoon.c;..\c_for_typhoon.h"
-            add_src_path_full = "F:\Dev\C_Lib_for_TyphoonSim\c_for_typhoon.c;F:\Dev\C_Lib_for_TyphoonSim\c_for_typhoon.h"
-            arb_defs = "/*Begin code section*/
-
-/*End code section*/"
-            init_fnc = "/*Begin code section*/
-
-/*End code section*/"
-            input_terminals = "real gain;inherit numSteps;inherit riseTime;inherit t;"
-            input_terminals_dimensions = "inherit;inherit;inherit;inherit"
-            input_terminals_feedthrough = "True;True;True;True"
-            input_terminals_show_labels = "True;True;True;True"
-            output_fnc = "/*Begin code section*/
-staircase(gain, numSteps, riseTime, t, &out);
-/*End code section*/"
-            output_terminals_dimensions = "inherit"
-            output_terminals_feedthrough = "True"
-            output_terminals_show_labels = "False"
-            update_fnc = "/*Begin code section*/
-
-/*End code section*/"
-        }
-        [
-            position = 6208, 9644
-            size = 152, 192
-        ]
-
-        component "core/Ramp" Ramp2 {
-            execution_rate = "Ts"
-        }
-        [
-            position = 6060, 9712
-            hide_name = True
-        ]
-
-        component "core/Constant" Constant1 {
-            execution_rate = "Ts"
-            value = "188"
-        }
-        [
-            position = 6060, 9564
-            hide_name = True
-        ]
-
-        component "core/Constant" Constant2 {
-            execution_rate = "Ts"
-            value = "100"
-        }
-        [
-            position = 6060, 9620
-            hide_name = True
-        ]
-
-        component "core/Constant" Constant3 {
-            execution_rate = "Ts"
-            value = "0.1"
-        }
-        [
-            position = 6060, 9672
-            hide_name = True
-        ]
-
         component "core/Constant" Constant12 {
             execution_rate = "Ts"
             value = "P_op"
@@ -1191,78 +1044,6 @@ staircase(gain, numSteps, riseTime, t, &out);
         }
         [
             position = 9108, 9476
-        ]
-
-        component "core/Scope" "Ctrl syst1" {
-            selected_signals = "[\'V_sa_top\', \'V_sb_bot\']"
-            signals_data = "{\"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"black\", \"legend_visible\": true}, \"signals\": {\"V_sa_top\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}}, \"V_sb_bot\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#FF0000\"}, \"display\": {\"2\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}}"
-        }
-        [
-            position = 8084, 8944
-        ]
-
-        component "core/C function" "C function4" {
-            add_src_path = "..\c_for_typhoon.c;..\c_for_typhoon.h"
-            add_src_path_full = "F:\Dev\C_Lib_for_TyphoonSim\c_for_typhoon.c;F:\Dev\C_Lib_for_TyphoonSim\c_for_typhoon.h"
-            arb_defs = "/*Begin code section*/
-
-/*End code section*/"
-            init_fnc = "/*Begin code section*/
-
-/*End code section*/"
-            input_terminals = "real kp;real ki;real kd;real in;"
-            input_terminals_dimensions = "inherit;inherit;inherit;inherit"
-            input_terminals_feedthrough = "True;True;True;True"
-            input_terminals_show_labels = "True;True;True;True"
-            output_fnc = "/*Begin code section*/
-PID(kp, ki, kd, &out, in);
-/*End code section*/"
-            output_terminals_dimensions = "inherit"
-            output_terminals_feedthrough = "True"
-            output_terminals_show_labels = "False"
-            update_fnc = "/*Begin code section*/
-
-/*End code section*/"
-        }
-        [
-            position = 6804, 9432
-            size = 120, 128
-        ]
-
-        component "core/Constant" Constant13 {
-            execution_rate = "Ts"
-            value = "6"
-        }
-        [
-            position = 6628, 9396
-            hide_name = True
-        ]
-
-        component "core/Constant" Constant14 {
-            execution_rate = "Ts"
-            value = "26.23"
-        }
-        [
-            position = 6624, 9444
-            hide_name = True
-        ]
-
-        component "core/Constant" Constant15 {
-            execution_rate = "Ts"
-            value = "0"
-        }
-        [
-            position = 6632, 9496
-            hide_name = True
-        ]
-
-        component "core/Constant" Constant18 {
-            execution_rate = "Ts"
-            value = "0"
-        }
-        [
-            position = 6088, 9184
-            hide_name = True
         ]
 
         component "core/Voltage Measurement" V_sa_top {
@@ -1331,8 +1112,61 @@ torque_motor_ebike(omega, omega_b, omega_max, &out);
             rise_time = "0.2"
         }
         [
-            position = 6508, 9140
+            position = 6344, 8960
             size = 72, 88
+        ]
+
+        component "core/Constant" Constant21 {
+            execution_rate = "Ts"
+            value = "5"
+        }
+        [
+            position = 7000, 9208
+            hide_name = True
+        ]
+
+        component "core/Constant" Constant22 {
+            execution_rate = "Ts"
+            value = "8"
+        }
+        [
+            position = 8740, 9076
+        ]
+
+        component "core/Gain" Gain2 {
+            gain = "1/36"
+        }
+        [
+            position = 7392, 9224
+        ]
+
+        component "core/Product" Product20 {
+        }
+        [
+            position = 7600, 8744
+            hide_name = True
+        ]
+
+        component "core/Product" Product21 {
+        }
+        [
+            position = 7600, 8856
+            hide_name = True
+        ]
+
+        component "core/Product" Product22 {
+        }
+        [
+            position = 7600, 8968
+            hide_name = True
+        ]
+
+        component "core/Sum" Sum3 {
+            signs = "+-"
+        }
+        [
+            position = 7320, 9232
+            hide_name = True
         ]
 
         tag From17 {
@@ -1656,7 +1490,7 @@ torque_motor_ebike(omega, omega_b, omega_max, &out);
             direction = out
         }
         [
-            position = 6564, 9244
+            position = 6400, 9064
             hide_name = True
             size = 124, 20
         ]
@@ -1680,7 +1514,7 @@ torque_motor_ebike(omega, omega_b, omega_max, &out);
             direction = in
         }
         [
-            position = 6816, 9028
+            position = 6652, 8848
             hide_name = True
             size = 60, 20
         ]
@@ -1781,6 +1615,18 @@ torque_motor_ebike(omega, omega_b, omega_max, &out);
             size = 124, 20
         ]
 
+        tag From34 {
+            value = "EmfA"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 7236, 9288
+            hide_name = True
+            size = 60, 20
+        ]
+
         junction Junction123 pe
         [
             position = 8344, 9164
@@ -1816,16 +1662,6 @@ torque_motor_ebike(omega, omega_b, omega_max, &out);
             position = 8744, 9496
         ]
 
-        junction Junction191 sp
-        [
-            position = 7552, 8976
-        ]
-
-        junction Junction192 sp
-        [
-            position = 7552, 8864
-        ]
-
         junction Junction193 pe
         [
             position = 8344, 9532
@@ -1851,14 +1687,9 @@ torque_motor_ebike(omega, omega_b, omega_max, &out);
             position = 7552, 8920
         ]
 
-        junction Junction204 sp
-        [
-            position = 7552, 8808
-        ]
-
         junction Junction206 sp
         [
-            position = 6832, 9180
+            position = 6668, 9000
         ]
 
         junction Junction210 pe
@@ -1898,17 +1729,32 @@ torque_motor_ebike(omega, omega_b, omega_max, &out);
 
         junction Junction220 sp
         [
-            position = 6640, 9156
-        ]
-
-        junction Junction224 sp
-        [
-            position = 7356, 9224
+            position = 6476, 8976
         ]
 
         junction Junction225 sp
         [
-            position = 6624, 9156
+            position = 6460, 8976
+        ]
+
+        junction Junction227 sp
+        [
+            position = 7552, 8868
+        ]
+
+        junction Junction228 sp
+        [
+            position = 7552, 8808
+        ]
+
+        junction Junction229 sp
+        [
+            position = 7552, 8976
+        ]
+
+        junction Junction230 sp
+        [
+            position = 7424, 9224
         ]
 
         connect Sc_top.D Junction123 as Connection1452
@@ -1990,15 +1836,6 @@ torque_motor_ebike(omega, omega_b, omega_max, &out);
         connect "Low-Pass Filter1.out" Junction184 as Connection2009
         connect Junction184 Product5.in as Connection2010
         connect Iin.in Junction184 as Connection2011
-        connect From29 "C function3.RotDirec" as Connection2043
-        connect Product14.in "C function3.Sa_top" as Connection2052
-        connect Product15.in "C function3.Sb_top" as Connection2053
-        connect Product15.out Goto18 as Connection2054
-        connect Product14.out Goto16 as Connection2055
-        connect Product16.in "C function3.Sc_top" as Connection2056
-        connect Product16.out Goto20 as Connection2057
-        connect Junction191 Product16.in1 as Connection2060
-        connect Product15.in1 Junction192 as Connection2062
         connect Sc_bot.S Junction193 as Connection2069
         [
             breakpoints = 8524, 9532
@@ -2034,27 +1871,13 @@ torque_motor_ebike(omega, omega_b, omega_max, &out);
         [
             breakpoints = 7552, 9232
         ]
-        connect Junction202 Junction191 as Connection2130
-        [
-            breakpoints = 7552, 8972
-        ]
         connect Product19.in1 Junction202 as Connection2131
-        connect Junction192 Junction203 as Connection2132
-        connect Junction203 Junction191 as Connection2133
         connect Product18.in1 Junction203 as Connection2134
-        connect Product14.in1 Junction204 as Connection2135
-        connect Junction204 Junction192 as Connection2136
-        connect Product17.in1 Junction204 as Connection2137
         connect Product17.in "C function3.Sa_bot" as Connection2138
         connect Product18.in "C function3.Sb_bot" as Connection2139
         connect Gain1.in Junction206 as Connection2157
         connect Junction206 Sum1.out as Connection2158
         connect Err.in Junction206 as Connection2159
-        connect Constant11.out Step_Ramp.stepTime as Connection2162
-        [
-            hide_name = True
-        ]
-        connect Ramp1.out Step_Ramp.t as Connection2169
         connect Abs2.in From27 as Connection2176
         connect Goto34 Sign1.out as Connection2177
         connect Sc_top.S Junction210 as Connection2190
@@ -2077,28 +1900,10 @@ torque_motor_ebike(omega, omega_b, omega_max, &out);
         connect "Low-Pass Filter5.out" Ib_bldc.in as Connection2208
         connect "Low-Pass Filter4.out" Ia_bldc.in as Connection2209
         connect "Low-Pass Filter6.out" Ic_bldc.in as Connection2210
-        connect Ramp2.out "Staircase ref.t" as Connection1
-        [
-            hide_name = True
-        ]
-        connect Constant3.out "Staircase ref.riseTime" as Connection2
-        connect Constant2.out "Staircase ref.numSteps" as Connection3
-        connect Constant1.out "Staircase ref.gain" as Connection5
         connect Pmax.in Constant12.out as Connection2219
         connect Junction214 Sa_top.S as Connection2232
         connect Ia.p_node Junction214 as Connection2233
-        connect Constant13.out "C function4.kp" as Connection2234
-        connect Constant14.out "C function4.ki" as Connection2235
-        [
-            breakpoints = 6656, 9432; 6728, 9432
-        ]
-        connect Constant15.out "C function4.kd" as Connection2236
         connect Gain1.out "PID controller1.in" as Connection2237
-        connect Constant18.out Step_Ramp.startVal as Connection2250
-        connect Step_Ramp.val Constant10.out as Connection2254
-        [
-            breakpoints = 6136, 9092
-        ]
         connect Junction146 Junction216 as Connection2259
         connect Junction216 Ia4.n_node as Connection2260
         [
@@ -2117,58 +1922,89 @@ torque_motor_ebike(omega, omega_b, omega_max, &out);
         connect Sign1.in Junction220 as Connection2273
         connect Junction220 Abs3.in as Connection2274
         [
-            breakpoints = 6640, 9156
+            breakpoints = 6476, 8976
         ]
         connect Constant19.out "C function5.omega_max" as Connection2279
         connect Constant20.out "C function5.omega_b" as Connection2280
         connect From33 "C function5.omega" as Connection2281
-        connect "PID controller1.out" Sum2.in as Connection2293
-        connect Comparator1.in1 Junction224 as Connection2294
-        connect Junction224 PID.in as Connection2295
-        [
-            breakpoints = 7356, 9224
-        ]
-        connect "PID controller2.out" Junction224 as Connection2296
-        connect "C function5.out" BLDC3.load_in as Connection2297
         connect Junction220 Junction225 as Connection2303
         connect Junction225 W_ref.in as Connection2304
         [
-            breakpoints = 6624, 9156; 6624, 9028
+            breakpoints = 6460, 8976; 6460, 8848
         ]
         connect Ramp-Step1.Ramp-step Junction225 as Connection2305
         [
-            breakpoints = 6560, 9156; 6624, 9156
+            breakpoints = 6396, 8976; 6460, 8976
         ]
+        connect Sum2.in Constant21.out as Connection2312
+        connect Constant8.out "C function3.RotDirec" as Connection2313
+        connect Constant22.out BLDC3.load_in as Connection2314
+        connect Product22.in "C function3.Sc_top" as Connection2320
+        connect Goto20 Product22.out as Connection2321
+        connect Goto16 Product20.out as Connection2322
+        connect Junction203 Junction227 as Connection2323
+        connect Product21.in1 Junction227 as Connection2325
+        connect Goto18 Product21.out as Connection2326
+        connect Product20.in "C function3.Sa_top" as Connection2327
+        connect Product21.in "C function3.Sb_top" as Connection2328
+        connect Junction227 Junction228 as Connection2329
+        connect Junction228 Product17.in1 as Connection2330
+        [
+            breakpoints = 7552, 8808
+        ]
+        connect Product20.in1 Junction228 as Connection2331
+        connect Junction202 Junction229 as Connection2332
+        connect Junction229 Junction203 as Connection2333
+        [
+            breakpoints = 7552, 8972
+        ]
+        connect Product22.in1 Junction229 as Connection2334
+        connect Gain2.out Junction230 as Connection2336
+        connect Junction230 Comparator1.in1 as Connection2337
+        connect PID.in Junction230 as Connection2338
+        connect From34 Sum3.in1 as Connection2341
+        connect Gain2.in "PID controller2.out" as Connection2342
     }
 
     logically_deleted {
-        "Constant8"
-        "Changing ref"
-        "Step_Ramp"
-        "Constant10"
-        "Constant11"
-        "Ramp1"
-        "Staircase ref"
-        "Ramp2"
-        "Constant1"
-        "Constant2"
-        "Constant3"
-        "C function4"
-        "Constant13"
-        "Constant14"
-        "Constant15"
-        "Constant18"
-        "Connection2162"
-        "Connection2169"
-        "Connection1"
-        "Connection2"
-        "Connection3"
-        "Connection5"
-        "Connection2234"
-        "Connection2235"
-        "Connection2236"
-        "Connection2250"
-        "Connection2254"
+        "PID controller1"
+        "Sum1"
+        "Gain1"
+        "Sign1"
+        "W_ref"
+        "Abs2"
+        "Abs3"
+        "Err"
+        "C function5"
+        "Constant19"
+        "Constant20"
+        "Ramp-Step1"
+        "From27"
+        "Goto34"
+        "From29"
+        "From33"
+        "Junction206"
+        "Junction220"
+        "Junction225"
+        "Connection1965"
+        "Connection1973"
+        "Connection2157"
+        "Connection2158"
+        "Connection2159"
+        "Connection2176"
+        "Connection2177"
+        "Connection2237"
+        "Connection2273"
+        "Connection2274"
+        "Connection2279"
+        "Connection2280"
+        "Connection2281"
+        "Connection2303"
+        "Connection2304"
+        "Connection2305"
+        "Sum3"
+        "From34"
+        "Connection2341"
     }
 
     default {
@@ -2306,13 +2142,6 @@ torque_motor_ebike(omega, omega_b, omega_max, &out);
             execution_rate = "inherit"
         }
 
-        "core/Ramp" {
-            slope = "1"
-            start_time = "0"
-            initial_output = "0"
-            execution_rate = "100e-6"
-        }
-
         "core/Relational operator" {
             relational_op = "=="
             execution_rate = "inherit"
@@ -2325,17 +2154,6 @@ torque_motor_ebike(omega, omega_b, omega_max, &out);
 
         "core/Sign" {
             execution_rate = "inherit"
-        }
-
-        "core/Square Wave Source" {
-            hs_output = "1"
-            ls_output = "0"
-            frequency = "50"
-            duty_cycle = "0.5"
-            phase = "0"
-            signal_type = "real"
-            execution_rate = "100e-6"
-            _tunable = "False"
         }
 
         "core/Sum" {
