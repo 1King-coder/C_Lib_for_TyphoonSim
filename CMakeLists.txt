@@ -5,4 +5,6 @@ set(CMAKE_C_STANDARD 11)
 
 add_library(C_FOR_TYPHOON SHARED c_for_typhoon.c
         BLDC/include/BLDC.h
+        BLDC/source/BLDC.c
+        BLDC/include/BLDC.h
         BLDC/source/BLDC.c)

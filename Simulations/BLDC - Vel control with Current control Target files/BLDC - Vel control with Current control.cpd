@@ -1,0 +1,1604 @@
+
+<model_description>
+    <sw_version>2026.2</sw_version>
+    <hw_properties>
+        <revision>3</revision>
+        <product_id>VHIL+</product_id>
+        <configuration_id>1</configuration_id>
+        <device_ao_limit_enable>False</device_ao_limit_enable>
+        <device_id>0</device_id>
+        <spc_out_mem_size>1024</spc_out_mem_size>
+        <fw_support_limit>132776977</fw_support_limit>
+        <vhil_adio_loopback>False</vhil_adio_loopback>
+    </hw_properties>
+    <sim_setup>
+        <sim_time_step>1e-07</sim_time_step>
+    </sim_setup>
+    <pesb>
+        <cell>
+            <name>Sa_bot</name>
+            <type>dtsm</type>
+            <scm_comp_type>igbt</scm_comp_type>
+            <site>0</site>
+            <switches_override_settings>False</switches_override_settings>
+            <switches>
+                <cell>
+                    <name>S1</name>
+                    <weights>[0]</weights>
+                    <previous_name></previous_name>
+                    <init_sw_override>False</init_sw_override>
+                    <init_sw_override_value>0</init_sw_override_value>
+
+                </cell>
+            </switches>
+        </cell>
+        <cell>
+            <name>Sa_top</name>
+            <type>dtsm</type>
+            <scm_comp_type>igbt</scm_comp_type>
+            <site>0</site>
+            <switches_override_settings>False</switches_override_settings>
+            <switches>
+                <cell>
+                    <name>S1</name>
+                    <weights>[1]</weights>
+                    <previous_name></previous_name>
+                    <init_sw_override>False</init_sw_override>
+                    <init_sw_override_value>0</init_sw_override_value>
+
+                </cell>
+            </switches>
+        </cell>
+        <cell>
+            <name>Sb_bot</name>
+            <type>dtsm</type>
+            <scm_comp_type>igbt</scm_comp_type>
+            <site>0</site>
+            <switches_override_settings>False</switches_override_settings>
+            <switches>
+                <cell>
+                    <name>S1</name>
+                    <weights>[2]</weights>
+                    <previous_name></previous_name>
+                    <init_sw_override>False</init_sw_override>
+                    <init_sw_override_value>0</init_sw_override_value>
+
+                </cell>
+            </switches>
+        </cell>
+        <cell>
+            <name>Sb_top</name>
+            <type>dtsm</type>
+            <scm_comp_type>igbt</scm_comp_type>
+            <site>0</site>
+            <switches_override_settings>False</switches_override_settings>
+            <switches>
+                <cell>
+                    <name>S1</name>
+                    <weights>[3]</weights>
+                    <previous_name></previous_name>
+                    <init_sw_override>False</init_sw_override>
+                    <init_sw_override_value>0</init_sw_override_value>
+
+                </cell>
+            </switches>
+        </cell>
+        <cell>
+            <name>Sc_bot</name>
+            <type>dtsm</type>
+            <scm_comp_type>igbt</scm_comp_type>
+            <site>0</site>
+            <switches_override_settings>False</switches_override_settings>
+            <switches>
+                <cell>
+                    <name>S1</name>
+                    <weights>[4]</weights>
+                    <previous_name></previous_name>
+                    <init_sw_override>False</init_sw_override>
+                    <init_sw_override_value>0</init_sw_override_value>
+
+                </cell>
+            </switches>
+        </cell>
+        <cell>
+            <name>Sc_top</name>
+            <type>dtsm</type>
+            <scm_comp_type>igbt</scm_comp_type>
+            <site>0</site>
+            <switches_override_settings>False</switches_override_settings>
+            <switches>
+                <cell>
+                    <name>S1</name>
+                    <weights>[5]</weights>
+                    <previous_name></previous_name>
+                    <init_sw_override>False</init_sw_override>
+                    <init_sw_override_value>0</init_sw_override_value>
+
+                </cell>
+            </switches>
+        </cell>
+    </pesb>
+    <analog_variables>
+        <cell>
+            <name>BLDC3.Stator.i_a</name>
+            <address>2</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+            <previous_names>
+                <previous_name>i_a</previous_name>
+                <previous_name>BLDC3_i_a</previous_name>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>i_a</name>
+            <address>2</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>BLDC3_i_a</name>
+            <address>2</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Ia</name>
+            <address>5</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+            <previous_names>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>BLDC3.Stator.Ls_c</name>
+            <address>1</address>
+            <type>current</type>
+            <initial_condition>0.0</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>S1.i</name>
+            <address>9</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+            <previous_names>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>Ic</name>
+            <address>8</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+            <previous_names>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>BLDC3.Stator.i_b</name>
+            <address>3</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+            <previous_names>
+                <previous_name>i_b</previous_name>
+                <previous_name>BLDC3_i_b</previous_name>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>i_b</name>
+            <address>3</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>BLDC3_i_b</name>
+            <address>3</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>BLDC3.Stator.i_c</name>
+            <address>4</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+            <previous_names>
+                <previous_name>i_c</previous_name>
+                <previous_name>BLDC3_i_c</previous_name>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>i_c</name>
+            <address>4</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>BLDC3_i_c</name>
+            <address>4</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Ib</name>
+            <address>7</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+            <previous_names>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>BLDC3.Stator.Ls_b</name>
+            <address>0</address>
+            <type>current</type>
+            <initial_condition>0.0</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Ia4</name>
+            <address>6</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+            <previous_names>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>Vs5</name>
+            <address>66560</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>BLDC3.e_a</name>
+            <address>65536</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+            <previous_names>
+                <previous_name>e_a</previous_name>
+                <previous_name>BLDC3_e_a</previous_name>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>e_a</name>
+            <address>65536</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>BLDC3_e_a</name>
+            <address>65536</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>BLDC3.e_b</name>
+            <address>65537</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+            <previous_names>
+                <previous_name>e_b</previous_name>
+                <previous_name>BLDC3_e_b</previous_name>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>e_b</name>
+            <address>65537</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>BLDC3_e_b</name>
+            <address>65537</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>BLDC3.e_c</name>
+            <address>65538</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+            <previous_names>
+                <previous_name>e_c</previous_name>
+                <previous_name>BLDC3_e_c</previous_name>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>e_c</name>
+            <address>65538</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>BLDC3_e_c</name>
+            <address>65538</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>BLDC3.psi_a</name>
+            <address>65539</address>
+            <type>flux</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+            <previous_names>
+                <previous_name>psi_a</previous_name>
+                <previous_name>BLDC3_psi_a</previous_name>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>psi_a</name>
+            <address>65539</address>
+            <type>flux</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>BLDC3_psi_a</name>
+            <address>65539</address>
+            <type>flux</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>BLDC3.psi_b</name>
+            <address>65540</address>
+            <type>flux</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+            <previous_names>
+                <previous_name>psi_b</previous_name>
+                <previous_name>BLDC3_psi_b</previous_name>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>psi_b</name>
+            <address>65540</address>
+            <type>flux</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>BLDC3_psi_b</name>
+            <address>65540</address>
+            <type>flux</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>BLDC3.psi_c</name>
+            <address>65541</address>
+            <type>flux</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+            <previous_names>
+                <previous_name>psi_c</previous_name>
+                <previous_name>BLDC3_psi_c</previous_name>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>psi_c</name>
+            <address>65541</address>
+            <type>flux</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>BLDC3_psi_c</name>
+            <address>65541</address>
+            <type>flux</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>BLDC3.is_a</name>
+            <address>65542</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+            <previous_names>
+                <previous_name>is_a</previous_name>
+                <previous_name>BLDC3_is_a</previous_name>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>is_a</name>
+            <address>65542</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>BLDC3_is_a</name>
+            <address>65542</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>BLDC3.is_b</name>
+            <address>65543</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+            <previous_names>
+                <previous_name>is_b</previous_name>
+                <previous_name>BLDC3_is_b</previous_name>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>is_b</name>
+            <address>65543</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>BLDC3_is_b</name>
+            <address>65543</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>BLDC3.electrical torque</name>
+            <address>65544</address>
+            <type>torque</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+            <previous_names>
+                <previous_name>machine electrical torque</previous_name>
+                <previous_name>BLDC3_machine electrical torque</previous_name>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>machine electrical torque</name>
+            <address>65544</address>
+            <type>torque</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>BLDC3_machine electrical torque</name>
+            <address>65544</address>
+            <type>torque</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>BLDC3.mechanical torque</name>
+            <address>65545</address>
+            <type>torque</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+            <previous_names>
+                <previous_name>machine mechanical torque</previous_name>
+                <previous_name>BLDC3_machine mechanical torque</previous_name>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>machine mechanical torque</name>
+            <address>65545</address>
+            <type>torque</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>BLDC3_machine mechanical torque</name>
+            <address>65545</address>
+            <type>torque</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>BLDC3.mechanical speed</name>
+            <address>65546</address>
+            <type>angular speed</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+            <previous_names>
+                <previous_name>machine mechanical speed</previous_name>
+                <previous_name>BLDC3_machine mechanical speed</previous_name>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>machine mechanical speed</name>
+            <address>65546</address>
+            <type>angular speed</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>BLDC3_machine mechanical speed</name>
+            <address>65546</address>
+            <type>angular speed</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>BLDC3.mechanical angle</name>
+            <address>65547</address>
+            <type>angle</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+            <previous_names>
+                <previous_name>machine mechanical angle</previous_name>
+                <previous_name>BLDC3_machine mechanical angle</previous_name>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>machine mechanical angle</name>
+            <address>65547</address>
+            <type>angle</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>BLDC3_machine mechanical angle</name>
+            <address>65547</address>
+            <type>angle</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>BLDC3.sine encoder A</name>
+            <address>65548</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+            <previous_names>
+                <previous_name>machine sine encoder A</previous_name>
+                <previous_name>BLDC3_machine sine encoder A</previous_name>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>machine sine encoder A</name>
+            <address>65548</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>BLDC3_machine sine encoder A</name>
+            <address>65548</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>BLDC3.sine encoder B</name>
+            <address>65549</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+            <previous_names>
+                <previous_name>machine sine encoder B</previous_name>
+                <previous_name>BLDC3_machine sine encoder B</previous_name>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>machine sine encoder B</name>
+            <address>65549</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>BLDC3_machine sine encoder B</name>
+            <address>65549</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>BLDC3.resolver A</name>
+            <address>65550</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+            <previous_names>
+                <previous_name>machine resolver A</previous_name>
+                <previous_name>BLDC3_machine resolver A</previous_name>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>machine resolver A</name>
+            <address>65550</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>BLDC3_machine resolver A</name>
+            <address>65550</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>BLDC3.resolver B</name>
+            <address>65551</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+            <previous_names>
+                <previous_name>machine resolver B</previous_name>
+                <previous_name>BLDC3_machine resolver B</previous_name>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>machine resolver B</name>
+            <address>65551</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>BLDC3_machine resolver B</name>
+            <address>65551</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>const_0V</name>
+            <address>68608</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 1</name>
+            <address>69632</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 2</name>
+            <address>69633</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 3</name>
+            <address>69634</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 4</name>
+            <address>69635</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 5</name>
+            <address>69636</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 6</name>
+            <address>69637</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 7</name>
+            <address>69638</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 8</name>
+            <address>69639</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 9</name>
+            <address>69640</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 10</name>
+            <address>69641</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 11</name>
+            <address>69642</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 12</name>
+            <address>69643</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 13</name>
+            <address>69644</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 14</name>
+            <address>69645</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 15</name>
+            <address>69646</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 16</name>
+            <address>69647</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 17</name>
+            <address>69648</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 18</name>
+            <address>69649</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 19</name>
+            <address>69650</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 20</name>
+            <address>69651</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 21</name>
+            <address>69652</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 22</name>
+            <address>69653</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 23</name>
+            <address>69654</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 24</name>
+            <address>69655</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 25</name>
+            <address>69656</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 26</name>
+            <address>69657</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 27</name>
+            <address>69658</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 28</name>
+            <address>69659</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 29</name>
+            <address>69660</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 30</name>
+            <address>69661</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 31</name>
+            <address>69662</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 32</name>
+            <address>69663</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+    </analog_variables>
+    <digital_variables>
+        <cell>
+            <name>const_0</name>
+            <address>1</address>
+            </cell>
+        <cell>
+            <name>HIL0 AO flag</name>
+            <address>8</address>
+            </cell>
+        <cell>
+            <name>HIL0 DTV flag</name>
+            <address>9</address>
+            </cell>
+        <cell>
+            <name>HIL0 Capture or Scope Trigger</name>
+            <address>16</address>
+                <previous_names>
+                        <previous_name>HIL0 Capture/Scope Trigger</previous_name>
+                    </previous_names>
+            </cell>
+        <cell>
+            <name>HIL0 Capture/Scope Trigger</name>
+            <address>16</address>
+            </cell>
+        <cell>
+            <name>BLDC3.encoder A</name>
+            <address>256</address>
+                <previous_names>
+                        <previous_name>machine encoder A</previous_name>
+                        <previous_name>BLDC3_machine encoder A</previous_name>
+                    </previous_names>
+            </cell>
+        <cell>
+            <name>machine encoder A</name>
+            <address>256</address>
+            </cell>
+        <cell>
+            <name>BLDC3_machine encoder A</name>
+            <address>256</address>
+            </cell>
+        <cell>
+            <name>BLDC3.encoder B</name>
+            <address>257</address>
+                <previous_names>
+                        <previous_name>machine encoder B</previous_name>
+                        <previous_name>BLDC3_machine encoder B</previous_name>
+                    </previous_names>
+            </cell>
+        <cell>
+            <name>machine encoder B</name>
+            <address>257</address>
+            </cell>
+        <cell>
+            <name>BLDC3_machine encoder B</name>
+            <address>257</address>
+            </cell>
+        <cell>
+            <name>BLDC3.encoder Z</name>
+            <address>258</address>
+                <previous_names>
+                        <previous_name>machine encoder Z</previous_name>
+                        <previous_name>BLDC3_machine encoder Z</previous_name>
+                    </previous_names>
+            </cell>
+        <cell>
+            <name>machine encoder Z</name>
+            <address>258</address>
+            </cell>
+        <cell>
+            <name>BLDC3_machine encoder Z</name>
+            <address>258</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 1</name>
+            <address>128</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 2</name>
+            <address>129</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 3</name>
+            <address>130</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 4</name>
+            <address>131</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 5</name>
+            <address>132</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 6</name>
+            <address>133</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 7</name>
+            <address>134</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 8</name>
+            <address>135</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 9</name>
+            <address>136</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 10</name>
+            <address>137</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 11</name>
+            <address>138</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 12</name>
+            <address>139</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 13</name>
+            <address>140</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 14</name>
+            <address>141</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 15</name>
+            <address>142</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 16</name>
+            <address>143</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 17</name>
+            <address>144</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 18</name>
+            <address>145</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 19</name>
+            <address>146</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 20</name>
+            <address>147</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 21</name>
+            <address>148</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 22</name>
+            <address>149</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 23</name>
+            <address>150</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 24</name>
+            <address>151</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 25</name>
+            <address>152</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 26</name>
+            <address>153</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 27</name>
+            <address>154</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 28</name>
+            <address>155</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 29</name>
+            <address>156</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 30</name>
+            <address>157</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 31</name>
+            <address>158</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 32</name>
+            <address>159</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 33</name>
+            <address>160</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 34</name>
+            <address>161</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 35</name>
+            <address>162</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 36</name>
+            <address>163</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 37</name>
+            <address>164</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 38</name>
+            <address>165</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 39</name>
+            <address>166</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 40</name>
+            <address>167</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 41</name>
+            <address>168</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 42</name>
+            <address>169</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 43</name>
+            <address>170</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 44</name>
+            <address>171</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 45</name>
+            <address>172</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 46</name>
+            <address>173</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 47</name>
+            <address>174</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 48</name>
+            <address>175</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 49</name>
+            <address>176</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 50</name>
+            <address>177</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 51</name>
+            <address>178</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 52</name>
+            <address>179</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 53</name>
+            <address>180</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 54</name>
+            <address>181</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 55</name>
+            <address>182</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 56</name>
+            <address>183</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 57</name>
+            <address>184</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 58</name>
+            <address>185</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 59</name>
+            <address>186</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 60</name>
+            <address>187</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 61</name>
+            <address>188</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 62</name>
+            <address>189</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 63</name>
+            <address>190</address>
+            </cell>
+        <cell>
+            <name>HIL0 digital input 64</name>
+            <address>191</address>
+            </cell>
+        <cell>
+            <name>S1.Sa</name>
+            <address>129</address>
+                <previous_names>
+                    </previous_names>
+            </cell>
+        <cell>
+            <name>S1.feedback</name>
+            <address>1024</address>
+                <previous_names>
+                        <previous_name>S1_fb</previous_name>
+                    </previous_names>
+            </cell>
+        <cell>
+            <name>S1_fb</name>
+            <address>1024</address>
+            </cell>
+    </digital_variables>
+    <sources>
+        <cell>
+            <name>Vs5</name>
+            <type>1phase</type>
+            <address>[0]</address>
+            <unit>V</unit>
+            <init_settings>['Constant', 36.0]</init_settings>
+        </cell>
+    </sources>
+    <machines>
+        <cell>
+            <name>BLDC3</name>
+            <load_ctrl>True</load_ctrl>
+            <ext_mdl_load_type>torque</ext_mdl_load_type>
+            <site>0</site>
+            <init>
+                <friction_coef>0.0005</friction_coef>
+                <mew_ratio>0.1</mew_ratio>
+                <enc_ppr>1024</enc_ppr>
+                <res_pole_pairs>1</res_pole_pairs>
+                <constants>
+                </constants>
+                <lut_angle1_max>0.6283185307179586</lut_angle1_max>
+                <lut_angle2_max>0.6283185307179586</lut_angle2_max>
+                <gp_regs_reset>[]</gp_regs_reset>
+                <lut2dsp_regs_reset>[]</lut2dsp_regs_reset>
+            </init>
+            <mch_speed>machine mechanical speed</mch_speed>
+            <mch_torque>machine electrical torque</mch_torque>
+        </cell>
+    </machines>
+    <pv_panels>
+    </pv_panels>
+    <batteries>
+    </batteries>
+    <contactors>
+    <cell>
+        <name>S1</name>
+        <type>ideal_contactor</type>
+        <weight>[0]</weight>
+        <site>[0]</site>
+        <scm_comp_type>one_phase_breaker</scm_comp_type>
+   </cell>
+    </contactors>
+    <dtsms>
+        </dtsms>
+    <analog_output_settings>
+    </analog_output_settings>
+    <digital_output_settings>
+    </digital_output_settings>
+    <dtv>
+        <spc_dtv>
+        </spc_dtv>
+        <par_dtv>
+        </par_dtv>
+    </dtv>
+
+<!-- ******* SP DATA ******** -->
+
+    <model_properties>
+        <execution_rates>[[[5e-06], [], []]]</execution_rates>
+        <sys_real_type_precision>double</sys_real_type_precision>
+        <user_real_type_precision>double</user_real_type_precision>
+        <sig_stim>off</sig_stim>
+    </model_properties>
+
+    <analog_variables>
+        <cell>
+            <name>Ia_bldc</name>
+            <type>generic</type>
+            <address>32770</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Ib_bldc</name>
+            <type>generic</type>
+            <address>32771</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>mech_speed_rpm3</name>
+            <type>generic</type>
+            <address>32779</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>W_ref</name>
+            <type>generic</type>
+            <address>32778</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>PID</name>
+            <type>generic</type>
+            <address>32774</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Pin</name>
+            <type>generic</type>
+            <address>32775</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Ic_bldc</name>
+            <type>generic</type>
+            <address>32772</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Iin</name>
+            <type>generic</type>
+            <address>32773</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>E_torq</name>
+            <type>generic</type>
+            <address>32768</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Pout</name>
+            <type>generic</type>
+            <address>32777</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Hall Effect Sensor3.theta_e</name>
+            <type>generic</type>
+            <address>32769</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Pmax</name>
+            <type>generic</type>
+            <address>32776</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+    </analog_variables>
+
+    <digital_variables>
+        <cell>
+            <name>Hall Effect Sensor3.Hall.h_C</name>
+            <address>2050</address>
+        </cell>
+        <cell>
+            <name>Hall Effect Sensor3.Hall.h_A</name>
+            <address>2048</address>
+        </cell>
+        <cell>
+            <name>Hall Effect Sensor3.Hall.h_B</name>
+            <address>2049</address>
+        </cell>
+    </digital_variables>
+<digital_variables>
+    </digital_variables>
+
+    <tunable_params>
+        <tunable_param>
+            <name>W_scada_ref</name>
+            <addr>[796917760]</addr>
+            <min>-1000000.0</min>
+            <max>1000000.0</max>
+            <def_value>0.0</def_value>
+            <unit>RPM</unit>
+            <widget_type>float</widget_type>
+            <format>real</format>
+            <size>1</size>
+            <param_type>scada input</param_type>
+            <cpu_type>user_sp_cpu</cpu_type>
+            <cpu_idx>0</cpu_idx>
+            <execution_rate>5e-06</execution_rate>
+            <visible>True</visible>
+        </tunable_param>
+    </tunable_params>
+
+
+    <dsp_monitors>
+        <monitor>
+            <type>user</type>
+            <cpu_idx>0</cpu_idx>
+            <execution_rates>[5e-06]</execution_rates>
+            <execution_rate_labels>['ER0 (5e-06)']</execution_rate_labels>
+            <timer_counters>[1999]</timer_counters>
+
+            
+        </monitor>
+    </dsp_monitors>
+
+    <sp_compiler_type>gcc</sp_compiler_type>
+
+    <streaming>
+
+
+
+     </streaming>
+
+
+    <adv_c_ext_src>
+        <component>
+            <is_fmi>False</is_fmi>
+            <identifier_name>_rad_to_rpm2</identifier_name>
+            <fqn>_rad_to_rpm2</fqn>
+            <fqn_original>rad_to_rpm2</fqn_original>
+            <include_imports>True</include_imports>
+            <library_load_type>Compile-time load</library_load_type>
+            <macros></macros>
+            <library>
+                <win64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </win64>
+                <linux64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </linux64>
+            </library>
+            <additional_sources>
+                <h>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                </h>
+                <c>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </c>
+                <cpp>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </cpp>
+            </additional_sources>
+        </component>
+        <component>
+            <is_fmi>False</is_fmi>
+            <identifier_name>_six_step_commutation__120___logic</identifier_name>
+            <fqn>_six_step_commutation__120___logic</fqn>
+            <fqn_original>Six-step commutation (120º) logic</fqn_original>
+            <include_imports>True</include_imports>
+            <library_load_type>Compile-time load</library_load_type>
+            <macros></macros>
+            <library>
+                <win64>
+                    <library_name>libC_FOR_TYPHOON.dll</library_name>
+                    <linking_name>libC_FOR_TYPHOON</linking_name>
+                    <library_path_relative>ext-src/_six_step_commutation__120___logic/binaries/libC_FOR_TYPHOON.dll</library_path_relative>
+                    <library_path_absolute>ext-src/_six_step_commutation__120___logic/binaries/libC_FOR_TYPHOON.dll</library_path_absolute>
+                    <include_folder_relative>ext-src/_six_step_commutation__120___logic/binaries</include_folder_relative>
+                    <h_file>BLDC.h</h_file>
+                    <h_include_folder_relative>ext-src/_six_step_commutation__120___logic/binaries</h_include_folder_relative>
+                </win64>
+                <linux64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </linux64>
+            </library>
+            <additional_sources>
+                <h>
+                    <files>{'c_for_typhoon.h'}</files>
+                    <files_relative_paths>{'ext-src/_six_step_commutation__120___logic/sources/c_for_typhoon.h'}</files_relative_paths>
+                    <folders_relative_paths>{'ext-src/_six_step_commutation__120___logic/sources'}</folders_relative_paths>
+                </h>
+                <c>
+                    <files>{'c_for_typhoon.c'}</files>
+                    <files_relative_paths>{'ext-src/_six_step_commutation__120___logic/sources/c_for_typhoon.c'}</files_relative_paths>
+                    <folders_relative_paths>{'ext-src/_six_step_commutation__120___logic/sources'}</folders_relative_paths>
+                    <o_files>{'c_for_typhoon.o'}</o_files>
+                    <d_files>{'c_for_typhoon.d'}</d_files>
+                </c>
+                <cpp>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </cpp>
+            </additional_sources>
+        </component>
+        <component>
+            <is_fmi>False</is_fmi>
+            <identifier_name>_hall_effect_sensor3_rem_theta_2pi_</identifier_name>
+            <fqn>_hall_effect_sensor3_rem_theta_2pi_</fqn>
+            <fqn_original>Hall Effect Sensor3.rem(theta,2pi)</fqn_original>
+            <include_imports>True</include_imports>
+            <library_load_type>Compile-time load</library_load_type>
+            <macros></macros>
+            <library>
+                <win64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </win64>
+                <linux64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </linux64>
+            </library>
+            <additional_sources>
+                <h>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                </h>
+                <c>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </c>
+                <cpp>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </cpp>
+            </additional_sources>
+        </component>
+    </adv_c_ext_src>
+</model_description>
